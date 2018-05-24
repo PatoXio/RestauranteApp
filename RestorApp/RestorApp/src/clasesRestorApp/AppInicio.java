@@ -13,19 +13,7 @@ public class AppInicio
 		Ventana ventana = new Ventana(restaurante);
 		ventana.setVisible(true);
 
-		
-		
-		
-		
-		
-		
-		
-	
-	
-		
-		
-		
-		
+		//probando el split
 		
 	}
 	
