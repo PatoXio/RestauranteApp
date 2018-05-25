@@ -23,7 +23,6 @@ public class Restaurante
 		arc = new Archivos();
 		arc.cargarDatos(mesasRestaurante,menuRestaurante); //falta empleados
 	}
-	
 	public Restaurante(String nombre, String direccion)
 	{
 		this.nombre = nombre;
@@ -59,6 +58,21 @@ public class Restaurante
 	 * 
 	 * 
 	 */
+	public boolean agregarGarzon(String rut, String nombre, int sueldo, int edad, String nivelDeIngles,int mesasAtendidas)
+	{
+		Garzon nuevo = new Garzon(rut,nombre,sueldo,edad,nivelDeIngles,mesasAtendidas);
+		return empleadosRestaurante.agregarGarzon(nuevo);
+	}
+	public boolean agregarCocinero(String rut, String nombre, int sueldo, int edad)
+	{
+		Cocinero nuevo = new Cocinero(rut,nombre,sueldo,edad);
+		return empleadosRestaurante.agregarCocinero(nuevo);
+	}
+	public boolean agregarGarzon(String rut, String nombre, int sueldo, int edad)
+	{
+		Cajero nuevo = new Cajero(rut,nombre,sueldo,edad);
+		return empleadosRestaurante.agregarCajero(nuevo);
+	}
 	
 	/*
 	 * Este metodo se utilizara para agregar mesa desde la ventana AgregarMesa
