@@ -36,7 +36,7 @@ public class Garzon extends Empleados
 	
 	public int getSueldo()
 	{
-		sueldo = sueldo*(1+(mesasAtendidas/1000));
+		sueldo = (int) (sueldo*(1+(((double)mesasAtendidas/1000))));
 		if(sueldo>=500000)
 		{
 			sueldo=500000;
@@ -56,7 +56,7 @@ public class Garzon extends Empleados
 			}
 		}
 		mesasAtendidas=mesasAtendidas+1;
-		arrayMesasAtendiendo.add(Integer.toString(numeroMesa));
+		arrayMesasAtendiendo.add(num);
 		return true;
 	}
 	

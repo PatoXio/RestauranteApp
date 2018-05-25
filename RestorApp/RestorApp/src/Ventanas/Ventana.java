@@ -5,6 +5,7 @@ import java.awt.event.*;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -47,7 +48,6 @@ public class Ventana extends JFrame implements ActionListener
 		configurarVentana();				//Llamamos a este metodo para configurar la ventana (el JFrame).
 		inicializarComponentes();			//Llamamos a este metodo para inicializar todos los componentes de la ventana y agregarlos a esta.
 		this.restaurante = restaurante;		//Iniciamos restaurante con la clase empresa que el usuario o la respectiva clase nos entregue.
-		
 	}
 	private void configurarVentana(){
 		setTitle("RestorApp");								// Le otorga el texto que se vera en la parte de arriba de la ventana
@@ -132,15 +132,11 @@ public class Ventana extends JFrame implements ActionListener
 		}
 		//Si no coincide, entonces se debe volver a ingresar los datos.
 		else if(!usuarioIngresado.equals("admin") || !passIngresado.equals("admin")){
-			System.out.println("El usuario o la contraseï¿½a ingresadas no existen");
+			JOptionPane.showMessageDialog(null, "El usuario o la contraseña ingresadas no existen");
 			textusua.setText("");
 			textpass.setText("");
-			
 		}
-
 	}
-	
-	
 }
 	
 	

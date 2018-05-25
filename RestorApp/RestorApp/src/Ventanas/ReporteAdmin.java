@@ -66,6 +66,11 @@ public class ReporteAdmin extends JFrame
 			public void actionPerformed(ActionEvent e) 
 			{
 				dispose();
+				try {
+					restaurante.mostrarEmpleadosArchivos();
+				}catch(IOException e1) {
+					e1.printStackTrace();
+				}
 	    		MostrarEmpleados ventanaAdminMostrar = new MostrarEmpleados(restaurante);
 	    		ventanaAdminMostrar.setVisible(true);
 			}

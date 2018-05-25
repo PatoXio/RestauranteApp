@@ -12,7 +12,7 @@ public class Restaurante
 	private TablaEmpleados empleadosRestaurante; // Tabla con Key el rut de cada Empleado;
 	private MapaMenu menuRestaurante; // Mapa con Key el codeProducto de cada Producto;
 	private Archivos arc;
-	// Constructor
+	// Constructores
 	public Restaurante()
 	{
 		nombre=null;
@@ -23,7 +23,6 @@ public class Restaurante
 		arc = new Archivos();
 		arc.cargarDatos(mesasRestaurante,menuRestaurante); //falta empleados
 	}
-	
 	public Restaurante(String nombre, String direccion)
 	{
 		this.nombre = nombre;
@@ -31,7 +30,7 @@ public class Restaurante
 		mesasRestaurante = new ListaMesas();
 		empleadosRestaurante = new TablaEmpleados();
 		menuRestaurante = new MapaMenu();
-		arc = new Archivos();
+		arc = new Archivos(); //se crea un espacio de memoria para los archivos
 		arc.cargarDatos(mesasRestaurante,menuRestaurante); //falta empleados
 	}
 	
@@ -59,6 +58,21 @@ public class Restaurante
 	 * 
 	 * 
 	 */
+	public boolean agregarGarzon(String rut, String nombre, int sueldo, int edad, String nivelDeIngles,int mesasAtendidas)
+	{
+		Garzon nuevo = new Garzon(rut,nombre,sueldo,edad,nivelDeIngles,mesasAtendidas);
+		return empleadosRestaurante.agregarGarzon(nuevo);
+	}
+	public boolean agregarCocinero(String rut, String nombre, int sueldo, int edad)
+	{
+		Cocinero nuevo = new Cocinero(rut,nombre,sueldo,edad);
+		return empleadosRestaurante.agregarCocinero(nuevo);
+	}
+	public boolean agregarGarzon(String rut, String nombre, int sueldo, int edad)
+	{
+		Cajero nuevo = new Cajero(rut,nombre,sueldo,edad);
+		return empleadosRestaurante.agregarCajero(nuevo);
+	}
 	
 	/*
 	 * Este metodo se utilizara para agregar mesa desde la ventana AgregarMesa
@@ -261,9 +275,12 @@ public class Restaurante
 	
 	public void mostrarProductosVentana(JTextArea textArea) 
 	{
-		menuRestaurante.mostrarProductosVentanaX(textArea);;
+		menuRestaurante.mostrarProductosVentanaX(textArea);
 	}
-	
+	public void mostrarEmpleadosVentana(JTextArea textArea)
+	{
+		empleadosRestaurante.mostrarEmpleadosVentanaX(textArea);
+	}
 	
 	/*
 	 * mostrar*Archivo se encargara de que se efectue el reporte de las mesas
@@ -280,7 +297,9 @@ public class Restaurante
 	public void mostrarProductosArchivo()throws IOException{
 		menuRestaurante.reporteProductosArchivo();
 	}
-	
+	public void mostrarEmpleadosArchivos()throws IOException{
+		empleadosRestaurante.repoteEmpleadosArchivo();
+	}
 	
 	
 	

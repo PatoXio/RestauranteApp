@@ -12,21 +12,5 @@ public class AppInicio
 		Restaurante restaurante = new Restaurante("La Coca", "Av. Sin Nombre #1277");
 		Ventana ventana = new Ventana(restaurante);
 		ventana.setVisible(true);
-		System.out.println("Hola Mundo ");
-		
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	}	
 }

@@ -1,6 +1,10 @@
 package clasesRestorApp;
 
+import java.io.IOException;
 import java.util.Hashtable;
+import java.util.Map;
+
+import javax.swing.JTextArea;
 
 
 
@@ -72,7 +76,6 @@ public class TablaEmpleados
 			tablaDeEmpleados.remove(empleadoPorEliminar.getRut());
 			return empleadoPorEliminar;
 		}
-
 		return null;
 	}
 
@@ -82,12 +85,30 @@ public class TablaEmpleados
 			tablaDeEmpleados.remove(identificador);
 			return true;
 		}
-
 		return false;
 	}
 	
-	
-	
+	/*
+	 * 
+	 * 
+	 * 
+	 */
+	public void repoteEmpleadosArchivo()throws IOException
+	{
+		for(Map.Entry<String,Empleados> entrada : tablaDeEmpleados.entrySet())
+		{
+			String clave = entrada.getKey(); //guardamos la clave
+			tablaDeEmpleados.get(clave).mostrarEmpleadoArchivo();
+		}
+	}
+	public void mostrarEmpleadosVentanaX(JTextArea textArea) 
+	{
+		for (Map.Entry<String, Empleados> entrada : tablaDeEmpleados.entrySet() )
+		{
+			String clave = entrada.getKey(); //Guardamos la clave para luego buscar el objeto espechfico
+			tablaDeEmpleados.get(clave).mostrar(textArea);
+		}	
+	}
 	
 	/*
 	 * calcularTotalSueldos permite tener el numero de "gastos" en lo que respecta
@@ -106,14 +127,4 @@ public class TablaEmpleados
 		
 		return 0;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
