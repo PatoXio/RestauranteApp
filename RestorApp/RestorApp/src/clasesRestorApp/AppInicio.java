@@ -19,14 +19,4 @@ public class AppInicio
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
