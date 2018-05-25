@@ -48,7 +48,6 @@ public class Ventana extends JFrame implements ActionListener
 		configurarVentana();				//Llamamos a este metodo para configurar la ventana (el JFrame).
 		inicializarComponentes();			//Llamamos a este metodo para inicializar todos los componentes de la ventana y agregarlos a esta.
 		this.restaurante = restaurante;		//Iniciamos restaurante con la clase empresa que el usuario o la respectiva clase nos entregue.
-		
 	}
 	private void configurarVentana(){
 		setTitle("RestorApp");								// Le otorga el texto que se vera en la parte de arriba de la ventana
