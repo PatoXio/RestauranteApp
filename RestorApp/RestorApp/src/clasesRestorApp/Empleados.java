@@ -1,5 +1,7 @@
 package clasesRestorApp;
 
+import java.io.IOException;
+
 import javax.swing.JTextArea;
 
 public abstract class Empleados implements Interfaz
@@ -43,6 +45,9 @@ public abstract class Empleados implements Interfaz
 	public void setSueldo(int sueldo) {
 		this.sueldo = sueldo;
 	}
+	public int getSueldo() {
+		return 9999999;
+	}
 	
 	public int getEdad (){
 		return edad;
@@ -53,5 +58,9 @@ public abstract class Empleados implements Interfaz
 	public void mostrar(JTextArea textArea) 
 	{	
 		textArea.append("\n\n" + obtenerInformacion() +"\n\n");
+	}
+	public void mostrarEmpleadoArchivo() throws IOException{
+		Archivos archivo = new Archivos();
+		archivo.crearArchivoReporteProductos(getRut(), getNombre(), Integer.toString(getSueldo()), Integer.toString(getEdad()));
 	}
 }

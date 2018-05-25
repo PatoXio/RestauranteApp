@@ -12,6 +12,7 @@ public class Restaurante
 	private TablaEmpleados empleadosRestaurante; // Tabla con Key el rut de cada Empleado;
 	private MapaMenu menuRestaurante; // Mapa con Key el codeProducto de cada Producto;
 	private Archivos arc;
+	private boolean flag; //borrar
 	// Constructor
 	public Restaurante()
 	{
@@ -32,6 +33,8 @@ public class Restaurante
 		menuRestaurante = new MapaMenu();
 		arc = new Archivos();
 		arc.cargarDatos(mesasRestaurante,menuRestaurante); //falta empleados
+		flag = agregarGarzon("Pato","19617161-4",100000,20,"Medio",400);
+		System.out.println(flag);
 	}
 	
 	// Getter & Setter
@@ -294,7 +297,9 @@ public class Restaurante
 	public void mostrarProductosArchivo()throws IOException{
 		menuRestaurante.reporteProductosArchivo();
 	}
-	
+	public void mostrarEmpleadosArchivos()throws IOException{
+		empleadosRestaurante.repoteEmpleadosArchivo();
+	}
 	
 	
 	
