@@ -31,7 +31,7 @@ public class Restaurante
 		mesasRestaurante = new ListaMesas();
 		empleadosRestaurante = new TablaEmpleados();
 		menuRestaurante = new MapaMenu();
-		arc = new Archivos();
+		arc = new Archivos(); //se crea un espacio de memoria para los archivos
 		arc.cargarDatos(mesasRestaurante,menuRestaurante); //falta empleados
 	}
 	
