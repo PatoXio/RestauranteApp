@@ -21,7 +21,8 @@ public class Restaurante
 		empleadosRestaurante=new TablaEmpleados();
 		menuRestaurante=new MapaMenu();
 		arc = new Archivos();
-		arc.cargarDatos(mesasRestaurante,menuRestaurante); //falta empleados
+		arc.cargarDatos(mesasRestaurante,menuRestaurante,empleadosRestaurante); //falta empleados
+		//vamos en procesox con los empleaditos j3j3j
 	}
 	public Restaurante(String nombre, String direccion)
 	{
