@@ -45,9 +45,8 @@ public abstract class Empleados implements Interfaz
 	public void setSueldo(int sueldo) {
 		this.sueldo = sueldo;
 	}
-	public int getSueldo() {
-		return 9999999;
-	}
+	
+	public abstract int getSueldo();
 	
 	public int getEdad (){
 		return edad;
@@ -59,8 +58,9 @@ public abstract class Empleados implements Interfaz
 	{	
 		textArea.append("\n\n" + obtenerInformacion() +"\n\n");
 	}
+	
 	public void mostrarEmpleadoArchivo() throws IOException{
 		Archivos archivo = new Archivos();
-		archivo.crearArchivoReporteProductos(getRut(), getNombre(), Integer.toString(getSueldo()), Integer.toString(getEdad()));
+		archivo.crearArchivoReporteEmpleados(obtenerInformacion());
 	}
 }

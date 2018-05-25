@@ -4,13 +4,14 @@ import javax.swing.JTextArea;
 
 public interface Interfaz
 {
+	String obtenerInformacion();
 	String getRut();
-	void setRut(String rut);
 	String getNombre();
+	int getEdad ();
+	int getSueldo();
+	void setRut(String rut);
 	void setNombre(String nombre);
 	void setSueldo(int sueldo);
-	int getEdad ();
 	void setEdad (int edad);	
-	String obtenerInformacion();
 	void mostrar(JTextArea textArea);
 }

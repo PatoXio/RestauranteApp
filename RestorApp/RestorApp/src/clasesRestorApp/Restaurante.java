@@ -33,8 +33,6 @@ public class Restaurante
 		menuRestaurante = new MapaMenu();
 		arc = new Archivos();
 		arc.cargarDatos(mesasRestaurante,menuRestaurante); //falta empleados
-		flag = agregarGarzon("Pato","19617161-4",100000,20,"Medio",400);
-		System.out.println(flag);
 	}
 	
 	// Getter & Setter
@@ -278,9 +276,12 @@ public class Restaurante
 	
 	public void mostrarProductosVentana(JTextArea textArea) 
 	{
-		menuRestaurante.mostrarProductosVentanaX(textArea);;
+		menuRestaurante.mostrarProductosVentanaX(textArea);
 	}
-	
+	public void mostrarEmpleadosVentana(JTextArea textArea)
+	{
+		empleadosRestaurante.mostrarEmpleadosVentanaX(textArea);
+	}
 	
 	/*
 	 * mostrar*Archivo se encargara de que se efectue el reporte de las mesas

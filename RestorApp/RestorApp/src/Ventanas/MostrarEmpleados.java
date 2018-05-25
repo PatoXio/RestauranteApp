@@ -102,6 +102,7 @@ public class MostrarEmpleados extends JFrame {
 		scrollPane_1.setViewportView(textArea);
 		textArea.setEditable(false);
 		textArea.setColumns(10);	
+		Lista.mostrarEmpleadosVentana(textArea);
 	
 	}
 }

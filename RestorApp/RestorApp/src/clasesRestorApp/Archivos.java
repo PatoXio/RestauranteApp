@@ -215,6 +215,39 @@ public class Archivos {
 			JOptionPane.showMessageDialog(null, "Error al abrir el archivo de reporte");
 		}
 	}
+		public void crearArchivoReporteEmpleados(String datos) throws IOException{
+			File file = new File("ReporteEmpleados");// prepara el archivo para ser manipulado
+			FileWriter escribir; // escribir en el fichero
+			PrintWriter linea; // permite escribir en el ficher de la misma forma que por pantalla
+			
+			try{
+				if(file.exists()==true){
+					escribir = new FileWriter(file,true);
+					linea = new PrintWriter(escribir);
+					
+					linea.println(datos);
+					linea.println();
+					
+					escribir.close();
+					
+				}
+				else{
+					escribir = new FileWriter("ReporteEmpleados"); 
+					
+					linea = new PrintWriter(escribir);
+					linea = new PrintWriter(escribir);
+					linea.println(datos);
+					linea.println();
+					
+					escribir.close();
+				}
+				
+				
+				
+			}catch(FileNotFoundException e){
+				JOptionPane.showMessageDialog(null, "Error al abrir el archivo de reporte");
+			}
+	}
 	public void crearArchivoReporteProductos(String codProducto,String nombrePro,String precio,String cantidad) throws IOException{
 		File file = new File("ReporteProductos");// prepara el archivo para ser manipulado
 		FileWriter escribir; // escribir en el fichero
