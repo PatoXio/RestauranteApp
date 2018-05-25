@@ -72,7 +72,6 @@ public class TablaEmpleados
 			tablaDeEmpleados.remove(empleadoPorEliminar.getRut());
 			return empleadoPorEliminar;
 		}
-
 		return null;
 	}
 
@@ -82,7 +81,6 @@ public class TablaEmpleados
 			tablaDeEmpleados.remove(identificador);
 			return true;
 		}
-
 		return false;
 	}
 	
@@ -106,14 +104,4 @@ public class TablaEmpleados
 		
 		return 0;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

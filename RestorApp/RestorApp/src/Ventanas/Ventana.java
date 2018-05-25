@@ -5,6 +5,7 @@ import java.awt.event.*;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -132,15 +133,11 @@ public class Ventana extends JFrame implements ActionListener
 		}
 		//Si no coincide, entonces se debe volver a ingresar los datos.
 		else if(!usuarioIngresado.equals("admin") || !passIngresado.equals("admin")){
-			System.out.println("El usuario o la contraseï¿½a ingresadas no existen");
+			JOptionPane.showMessageDialog(null, "El usuario o la contraseña ingresadas no existen");
 			textusua.setText("");
 			textpass.setText("");
-			
 		}
-
 	}
-	
-	
 }
 	
 	
