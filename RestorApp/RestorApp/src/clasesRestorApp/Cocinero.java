@@ -1,5 +1,8 @@
 package clasesRestorApp;
 
+import java.io.IOException;
+
+import javax.swing.JTextArea;
 
 public class Cocinero extends Empleados
 {
@@ -27,4 +30,16 @@ public class Cocinero extends Empleados
 			"\nSalario: " + getSueldo() ;
 		return info;
 	}
+	public void mostrarEmpleadosArchivo() throws IOException{
+		Archivos archivo = new Archivos();
+		archivo.crearArchivoReporteEmpleados(obtenerInformacion());
+		System.out.println(obtenerInformacion());
+	}
+	@Override
+	public void mostrar(JTextArea textArea) {
+		{	
+			textArea.append("\n\n" + obtenerInformacion() +"\n\n");
+		}
+	}
+	
 }

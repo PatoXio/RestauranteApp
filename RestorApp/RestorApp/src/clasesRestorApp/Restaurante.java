@@ -26,6 +26,9 @@ public class Restaurante
 		menuRestaurante=new MapaMenu();
 		arc = new Archivos();
 		arc.cargarDatos(mesasRestaurante,menuRestaurante,empleadosRestaurante); //falta empleados
+		this.agregarGarzon("19617161-4", "Patricio Torres", 100000, 20, "Bajo", 400);
+		this.agregarCajero("11111111-1", "Cocinero Uno", 100000, 11);
+		this.agregarCocinero("22222222-2", "Cocinero Dos", 200000, 22);
 		//vamos en procesox con los empleaditos j3j3j
 	}
 	public Restaurante(String nombre, String direccion)
@@ -36,11 +39,7 @@ public class Restaurante
 		empleadosRestaurante = new TablaEmpleados();
 		menuRestaurante = new MapaMenu();
 		arc = new Archivos(); //se crea un espacio de memoria para los archivos
-<<<<<<< HEAD
 		arc.cargarDatos(mesasRestaurante,menuRestaurante,empleadosRestaurante); //falta empleados
-=======
-		arc.cargarDatos(mesasRestaurante,menuRestaurante, empleadosRestaurante); //falta empleados
->>>>>>> 642466ae06ce32ae41aae4fbb8a344d764d5a19d
 	}
 	
 	// Getter & Setter

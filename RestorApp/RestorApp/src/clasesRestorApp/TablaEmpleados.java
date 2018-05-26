@@ -98,7 +98,7 @@ public class TablaEmpleados
 		for(Map.Entry<String,Empleados> entrada : tablaDeEmpleados.entrySet())
 		{
 			String clave = entrada.getKey(); //guardamos la clave
-			tablaDeEmpleados.get(clave).mostrarEmpleadoArchivo();
+			tablaDeEmpleados.get(clave).mostrarEmpleadosArchivo();
 		}
 	}
 	public void mostrarEmpleadosVentanaX(JTextArea textArea) 
@@ -129,10 +129,7 @@ public class TablaEmpleados
 	}
 	//manu estuvo aqui
 	//vira de aca loco
-<<<<<<< HEAD
 	// alo funciono? 
 	
-=======
 	//cristian qlo report altoque jasja
->>>>>>> 642466ae06ce32ae41aae4fbb8a344d764d5a19d
 }

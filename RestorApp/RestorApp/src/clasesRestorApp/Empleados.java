@@ -55,13 +55,6 @@ public abstract class Empleados implements Interfaz
 	public void setEdad (int edad) {
 		this.edad = edad;
 	}
-	public void mostrar(JTextArea textArea) 
-	{	
-		textArea.append("\n\n" + obtenerInformacion() +"\n\n");
-	}
-	
-	public void mostrarEmpleadoArchivo() throws IOException{
-		Archivos archivo = new Archivos();
-		archivo.crearArchivoReporteEmpleados(obtenerInformacion());
-	}
+	public abstract void mostrar(JTextArea textArea);
+	public abstract void mostrarEmpleadosArchivo()throws IOException;
 }
