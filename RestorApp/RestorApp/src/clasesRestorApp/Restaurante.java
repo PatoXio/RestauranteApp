@@ -1,6 +1,9 @@
 package clasesRestorApp;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.swing.JTextArea;
 
 
@@ -63,14 +66,33 @@ public class Restaurante
 	public boolean agregarGarzon(String rut, String nombre, int sueldo, int edad, String nivelDeIngles,int mesasAtendidas)
 	{
 		Garzon nuevo = new Garzon(rut,nombre,sueldo,edad,nivelDeIngles,mesasAtendidas);
+		
+		//escritura de archivo Garzones
+		FileWriter fichero = null;
+		PrintWriter pw = null;
+		
+		try {
+			fichero = new FileWriter("Garzones.txt");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+        pw = new PrintWriter(fichero);
+
+        pw.println(rut + "," + nombre +","+ sueldo +"," + edad + "," + nivelDeIngles + "," + mesasAtendidas);
+		
+        //HAY QUE HACER VENTANAN PARA AGREGAR EMPLEADOS.
+        
 		return empleadosRestaurante.agregarGarzon(nuevo);
 	}
+	
 	public boolean agregarCocinero(String rut, String nombre, int sueldo, int edad)
 	{
 		Cocinero nuevo = new Cocinero(rut,nombre,sueldo,edad);
 		return empleadosRestaurante.agregarCocinero(nuevo);
 	}
-	public boolean agregarGarzon(String rut, String nombre, int sueldo, int edad)
+	
+	public boolean agregarCajero(String rut, String nombre, int sueldo, int edad) //Se cambia nombre por que estaba mal.
 	{
 		Cajero nuevo = new Cajero(rut,nombre,sueldo,edad);
 		return empleadosRestaurante.agregarCajero(nuevo);

@@ -83,15 +83,8 @@ public class Archivos {
 				
 				int suel=Integer.parseInt(sueldo);
 				int age=Integer.parseInt(edad);
-				
-				
-				
-				
-				
-				
-				
-				
-				
+					
+				//SE NECESITA TENER ARCHIVOS DE GARZONES, COCINEROS Y CAJEROS.
 				
 			}
 			s4.close(); // se cierra el archivo
