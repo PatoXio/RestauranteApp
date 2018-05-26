@@ -6,8 +6,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
-import java.util.StringTokenizer; //Para sacar datos de Empleado separados por ","
-
 import javax.swing.JOptionPane;
 
 public class Archivos {
@@ -64,43 +62,6 @@ public class Archivos {
 			JOptionPane.showMessageDialog(null, "Revise los datos del archivo inicial de pedidos");
 			e1.printStackTrace();
 		}
-		
-		
-		File f4 = new File("Empleados.txt"); 
-		Scanner s4; 
-		try {
-			s4 = new Scanner(f4);
-			while (s4.hasNextLine() == true)
-			{
-				String linea = s4.nextLine().trim(); 
-				
-				StringTokenizer datos = new StringTokenizer(linea,",");
-				
-				String rut = datos.nextToken();
-				String nombre = datos.nextToken();
-				String sueldo = datos.nextToken();
-				String edad = datos.nextToken(); 
-				
-				int suel=Integer.parseInt(sueldo);
-				int age=Integer.parseInt(edad);
-				
-				Empleados emp = new Empleados(rut,nombre,suel,age); // declaracion e instanciacion del objeto mesa
-				
-				
-				
-				
-				
-				
-			}
-			s4.close(); // se cierra el archivo
-		} catch (FileNotFoundException e) {
-			JOptionPane.showMessageDialog(null, "Error al abrir el archivo de Empleados");
-		} catch (Exception e1) {
-			JOptionPane.showMessageDialog(null, "Revise los datos del archivo Empleados");
-			e1.printStackTrace();
-		}
-		
-		
 	}
 	
 	public void cargarDatosAlMapaMenu(MapaMenu menuRestaurante)
