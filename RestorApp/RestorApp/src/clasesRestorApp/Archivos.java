@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 public class Archivos {
 
-	public void cargarDatos(ListaMesas mesasRestaurante,MapaMenu menuRestaurante)
+	public void cargarDatos(ListaMesas mesasRestaurante,MapaMenu menuRestaurante,TablaEmpleados empleadosRestaurante)
 	{
 		cargarDatosAlMapaMenu(menuRestaurante);
 		File f2 = new File("Mesas.txt"); // indica el archivo a manipular
