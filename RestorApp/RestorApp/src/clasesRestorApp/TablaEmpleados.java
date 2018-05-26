@@ -101,6 +101,8 @@ public class TablaEmpleados
 			tablaDeEmpleados.get(clave).mostrarEmpleadosArchivo();
 		}
 	}
+	
+	
 	public void mostrarEmpleadosVentanaX(JTextArea textArea) 
 	{
 		for (Map.Entry<String, Empleados> entrada : tablaDeEmpleados.entrySet() )
@@ -130,16 +132,16 @@ public class TablaEmpleados
 	}
 	//manu estuvo aqui
 	//vira de aca loco
-<<<<<<< HEAD
+
 
 	// alo funciono? 
 	
 
 	//cristian qlo report altoque jasja
 
-=======
+
 	// alo funciono? 
 	
 	//cristian qlo report altoque jasja
->>>>>>> 92f5d8692b8b6bbcad0a7f47aab45fbeb2b35899
+
 }

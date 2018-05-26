@@ -65,35 +65,117 @@ public class Archivos {
 			e1.printStackTrace();
 		}
 		
+		cargarEmpleadosPorTipo(empleadosRestaurante); //Se modulariza para cargar por tipo.
 		
-		File f4 = new File("Empleados.txt"); //o cualquiera de los 3
-		Scanner s4; 
+	}
+	
+	
+	
+	public void cargarEmpleadosPorTipo(TablaEmpleados empleados)
+	{
+		/**********************CAJEROS*********************************/
+		
+		File f1 = new File("Cajeros.txt"); 
+		Scanner s1; 
 		try {
-			s4 = new Scanner(f4);
-			while (s4.hasNextLine() == true)
+			s1 = new Scanner(f1);
+			while (s1.hasNextLine() == true)
 			{
-				String linea = s4.nextLine().trim(); 
+				String linea = s1.nextLine();
 				
 				StringTokenizer datos = new StringTokenizer(linea,", ");
 				
-				String rut = datos.nextToken();
-				String nombre = datos.nextToken();
-				String sueldo = datos.nextToken();
-				String edad = datos.nextToken(); 
+				String rut = datos.nextToken().trim();
+				String nombre = datos.nextToken().trim();
+				String sueldo = datos.nextToken().trim();
+				String edad = datos.nextToken().trim(); 
 				
 				int suel=Integer.parseInt(sueldo);
 				int age=Integer.parseInt(edad);
-					
-				//SE NECESITA TENER ARCHIVOS DE GARZONES, COCINEROS Y CAJEROS.
 				
+				System.out.println(rut + " "+ nombre + " "+ sueldo + " "+edad);
+				
+				Cajero caj=new Cajero(rut,nombre,suel,age);
+				
+				empleados.agregarCajero(caj);	
 			}
-			s4.close(); // se cierra el archivo
+			s1.close(); 
 		} catch (FileNotFoundException e) {
-			JOptionPane.showMessageDialog(null, "Se necesita modificar este codigo");
+			JOptionPane.showMessageDialog(null, "Error al agregar Cajeros");
 		} catch (Exception e1) {
-			JOptionPane.showMessageDialog(null, "Se necesita modificar este codigo");
+			JOptionPane.showMessageDialog(null, "Revise datos de cajeros");
 			e1.printStackTrace();
 		}
+		
+		/*******************Cocineros**************************/
+		
+		File f2 = new File("Cocineros.txt"); 
+		Scanner s2; 
+		try {
+			s2 = new Scanner(f2);
+			while (s2.hasNextLine() == true)
+			{
+				String linea = s2.nextLine(); 
+				
+				StringTokenizer datos = new StringTokenizer(linea,", ");
+				
+				String rut = datos.nextToken().trim();
+				String nombre = datos.nextToken().trim();
+				String sueldo = datos.nextToken().trim();
+				String edad = datos.nextToken().trim(); 
+				
+				int suel=Integer.parseInt(sueldo);
+				int age=Integer.parseInt(edad);
+				
+				Cocinero coc=new Cocinero(rut,nombre,suel,age);
+				
+				empleados.agregarCocinero(coc);
+			}
+			s2.close(); // se cierra el archivo
+		} catch (FileNotFoundException e) {
+			JOptionPane.showMessageDialog(null, "Error al agregar Cocineros");
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(null, "Revise datos cocineros");
+			e1.printStackTrace();
+		}
+		
+		/***********************Garzones**********************/
+		
+		File f3 = new File("Garzones.txt"); 
+		Scanner s3; 
+		try {
+			s3 = new Scanner(f3);
+			while (s3.hasNextLine() == true)
+			{
+				String linea = s3.nextLine().trim(); 
+				
+				StringTokenizer datos = new StringTokenizer(linea,", ");
+				
+				String rut = datos.nextToken().trim();
+				String nombre = datos.nextToken().trim();
+				String sueldo = datos.nextToken().trim();
+				String edad = datos.nextToken().trim(); 
+				String nivelIngles = datos.nextToken().trim();
+				String mesasAtendidas = datos.nextToken().trim();
+				
+				int suel=Integer.parseInt(sueldo);
+				int age=Integer.parseInt(edad);
+				int mesas=Integer.parseInt(mesasAtendidas);
+				
+				Garzon gar=new Garzon(rut,nombre,suel,age,nivelIngles,mesas);
+				
+				
+				empleados.agregarGarzon(gar);
+			}
+			s3.close(); // se cierra el archivo
+		} catch (FileNotFoundException e) {
+			JOptionPane.showMessageDialog(null, "Error al agregar Garzones");
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(null, "Revise datos Garzones");
+			e1.printStackTrace();
+		}
+		
+		
 		
 		
 	}
