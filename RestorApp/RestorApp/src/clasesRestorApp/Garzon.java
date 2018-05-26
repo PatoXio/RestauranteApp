@@ -1,6 +1,9 @@
 package clasesRestorApp;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.swing.JTextArea;
 
 public class Garzon extends Empleados
 {
@@ -80,12 +83,16 @@ public class Garzon extends Empleados
 			"\nSalario: " + getSueldo() ;
 		return info;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+	@Override
+	public void mostrarEmpleadosArchivo() throws IOException{
+		Archivos archivo = new Archivos();
+		archivo.crearArchivoReporteEmpleados(obtenerInformacion());
+
+	}
+	@Override
+	public void mostrar(JTextArea textArea) {
+		{	
+			textArea.append("\n\n" + obtenerInformacion() +"\n\n");
+		}
+	}
 }

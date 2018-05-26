@@ -1,5 +1,9 @@
 package clasesRestorApp;
 
+import java.io.IOException;
+
+import javax.swing.JTextArea;
+
 public class Cajero extends Empleados
 {
 	// Atributos particulares de un Cajero(a)
@@ -15,15 +19,28 @@ public class Cajero extends Empleados
 		super(rut, nombre, sueldo, edad);
 
 	}
+	@Override
 	public int getSueldo()
 	{
 		return sueldo;
 	}
-	
+	@Override
 	public String obtenerInformacion() 
 	{
 		String info="Rut: " + getRut() + "\nNombre: " + getNombre() + "\nEdad: " + getEdad() +
 			"\nSalario: " + getSueldo() ;
 		return info;
+	}
+	@Override
+	public void mostrarEmpleadosArchivo() throws IOException {
+		Archivos archivo = new Archivos();
+		archivo.crearArchivoReporteEmpleados(obtenerInformacion());
+
+	}
+	@Override
+	public void mostrar(JTextArea textArea) {
+		{	
+			textArea.append("\n\n" + obtenerInformacion() +"\n\n");
+		}
 	}
 }
