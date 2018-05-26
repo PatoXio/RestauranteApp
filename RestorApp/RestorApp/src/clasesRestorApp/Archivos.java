@@ -85,6 +85,7 @@ public class Archivos {
 				int age=Integer.parseInt(edad);
 				
 				Empleados emp = new Empleados(rut,nombre,suel,age); // declaracion e instanciacion del objeto mesa
+				//TIRA ERROR POR QUE Empleados es una clase abstracta, y no se trabaja como objeto
 				
 				
 				
