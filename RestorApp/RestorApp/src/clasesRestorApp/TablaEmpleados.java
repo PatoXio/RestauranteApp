@@ -115,6 +115,7 @@ public class TablaEmpleados
 	 * al personal contratado a fin de tener parte de los datos necesario para
 	 * calcular rentabilidad del negocio.
 	 */
+	
 	public int calcularTotalSueldos()
 	{
 		int sumaSueldosEmpleados = 0;
@@ -129,10 +130,10 @@ public class TablaEmpleados
 	}
 	//manu estuvo aqui
 	//vira de aca loco
-<<<<<<< HEAD
+
 	// alo funciono? 
 	
-=======
+
 	//cristian qlo report altoque jasja
->>>>>>> 642466ae06ce32ae41aae4fbb8a344d764d5a19d
+
 }
