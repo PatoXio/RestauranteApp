@@ -60,7 +60,7 @@ public class Restaurante
 
 	
 	
-	//M�todos
+	//Metodos
 	
 	/*
 	 * 

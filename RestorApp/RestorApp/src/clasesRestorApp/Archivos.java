@@ -74,7 +74,7 @@ public class Archivos {
 			{
 				String linea = s4.nextLine().trim(); 
 				
-				StringTokenizer datos = new StringTokenizer(linea,",");
+				StringTokenizer datos = new StringTokenizer(linea,", ");
 				
 				String rut = datos.nextToken();
 				String nombre = datos.nextToken();
@@ -89,9 +89,9 @@ public class Archivos {
 			}
 			s4.close(); // se cierra el archivo
 		} catch (FileNotFoundException e) {
-			JOptionPane.showMessageDialog(null, "Error al abrir el archivo de Empleados");
+			JOptionPane.showMessageDialog(null, "Se necesita modificar este codigo");
 		} catch (Exception e1) {
-			JOptionPane.showMessageDialog(null, "Revise los datos del archivo Empleados");
+			JOptionPane.showMessageDialog(null, "Se necesita modificar este codigo");
 			e1.printStackTrace();
 		}
 		
