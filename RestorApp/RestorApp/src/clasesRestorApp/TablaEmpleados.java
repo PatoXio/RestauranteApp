@@ -11,7 +11,7 @@ import javax.swing.JTextArea;
 public class TablaEmpleados
 {
 
-	private Hashtable<String, Empleados> tablaDeEmpleados;
+	private Hashtable<String,Empleados> tablaDeEmpleados;
 
 	
 	// Constructor

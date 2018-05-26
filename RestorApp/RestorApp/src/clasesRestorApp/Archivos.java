@@ -84,8 +84,9 @@ public class Archivos {
 				int suel=Integer.parseInt(sueldo);
 				int age=Integer.parseInt(edad);
 				
-				Empleados emp = new Empleados(rut,nombre,suel,age); // declaracion e instanciacion del objeto mesa
-				//TIRA ERROR POR QUE Empleados es una clase abstracta, y no se trabaja como objeto
+				
+				
+				
 				
 				
 				
@@ -146,6 +147,8 @@ public class Archivos {
 			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de pedidos");
 		}
 	}
+	
+	
 	public void escribirTxTProductos(String codigo,String nombre,String precio,String cantidad) throws IOException{
 		File file = new File("Productos.txt");// prepara el archivo para ser manipulado
 		FileWriter escribir; // escribir en el fichero
@@ -164,6 +167,9 @@ public class Archivos {
 			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de pedidos");
 		}
 	}
+	
+	
+	
 	public void escribirSoloPEdidoTxT(String codigoMesa,String codigoPedido) throws IOException{
 		File file = new File("Pedidos.txt");// prepara el archivo para ser manipulado
 		FileWriter escribir; // escribir en el fichero
@@ -240,7 +246,7 @@ public class Archivos {
 				escribir = new FileWriter("ReportePedidos"); 
 				
 				linea = new PrintWriter(escribir);
-				linea = new PrintWriter(escribir);
+				linea = new PrintWriter(escribir);  
 				linea.println("Numero de mesa" + ":" + codMesa);
 				linea.println("Numero de pedido" + ":" + codPedido);
 				linea.println("precio total Del pedido" + ":" + precioTotal);

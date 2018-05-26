@@ -26,7 +26,8 @@ public abstract class Empleados implements Interfaz
 		this.sueldo = sueldo;
 		this.edad = edad;
 	}
-
+	
+	
 	// Getter & Setters
 	public String getRut() {
 		return rut;

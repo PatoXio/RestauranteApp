@@ -12,6 +12,7 @@ public class Restaurante
 	private TablaEmpleados empleadosRestaurante; // Tabla con Key el rut de cada Empleado;
 	private MapaMenu menuRestaurante; // Mapa con Key el codeProducto de cada Producto;
 	private Archivos arc;
+	
 	// Constructores
 	public Restaurante()
 	{
