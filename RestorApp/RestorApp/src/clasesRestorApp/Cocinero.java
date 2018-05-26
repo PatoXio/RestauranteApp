@@ -33,7 +33,6 @@ public class Cocinero extends Empleados
 	public void mostrarEmpleadosArchivo() throws IOException{
 		Archivos archivo = new Archivos();
 		archivo.crearArchivoReporteEmpleados(obtenerInformacion());
-		System.out.println(obtenerInformacion());
 	}
 	@Override
 	public void mostrar(JTextArea textArea) {

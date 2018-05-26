@@ -43,7 +43,7 @@ public class Restaurante
 		flagGarzon=agregarGarzon("19617161-4", "Patricio Torres", 100000, 20, "Bajo", 400);
 		flagCajero=agregarCajero("11111111-1", "Cajero Uno", 100000, 11);
 		flagCocinero=agregarCocinero("22222222-2", "Cocinero Dos", 200000, 22);
-		System.out.println("Garzon: "+flagGarzon+"\nCajero: "+flagCajero+"\nCocinero: "+flagCocinero);
+		//System.out.println("Garzon: "+flagGarzon+"\nCajero: "+flagCajero+"\nCocinero: "+flagCocinero); //por si quieres revisar si se crean, quita los dos primeros "/"
 	}
 	
 	// Getter & Setter
