@@ -1,5 +1,7 @@
 package clasesRestorApp;
 
+import java.io.IOException;
+
 import javax.swing.JTextArea;
 
 public interface Interfaz
@@ -14,4 +16,5 @@ public interface Interfaz
 	void setSueldo(int sueldo);
 	void setEdad (int edad);	
 	void mostrar(JTextArea textArea);
+	void mostrarEmpleadosArchivo()throws IOException;
 }

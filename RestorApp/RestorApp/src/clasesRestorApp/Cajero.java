@@ -19,11 +19,12 @@ public class Cajero extends Empleados
 		super(rut, nombre, sueldo, edad);
 
 	}
+	@Override
 	public int getSueldo()
 	{
 		return sueldo;
 	}
-	
+	@Override
 	public String obtenerInformacion() 
 	{
 		String info="Rut: " + getRut() + "\nNombre: " + getNombre() + "\nEdad: " + getEdad() +

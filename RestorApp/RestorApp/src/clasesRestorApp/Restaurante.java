@@ -1,9 +1,6 @@
 package clasesRestorApp;
 
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.swing.JTextArea;
 
 
@@ -31,7 +28,7 @@ public class Restaurante
 		arc.cargarDatos(mesasRestaurante,menuRestaurante,empleadosRestaurante); //falta empleados
 		//vamos en procesox con los empleaditos j3j3j
 	}
-	public Restaurante(String nombre, String direccion)
+	public Restaurante(String nombre, String direccion) throws IOException
 	{
 		this.nombre = nombre;
 		this.direccion = direccion;
@@ -43,7 +40,7 @@ public class Restaurante
 		flagGarzon=agregarGarzon("19617161-4", "Patricio Torres", 100000, 20, "Bajo", 400);
 		flagCajero=agregarCajero("11111111-1", "Cajero Uno", 100000, 11);
 		flagCocinero=agregarCocinero("22222222-2", "Cocinero Dos", 200000, 22);
-		//System.out.println("Garzon: "+flagGarzon+"\nCajero: "+flagCajero+"\nCocinero: "+flagCocinero); //por si quieres revisar si se crean, quita los dos primeros "/"
+		System.out.println("Garzon: "+flagGarzon+"\nCajero: "+flagCajero+"\nCocinero: "+flagCocinero); // Borrar despues de añadir el agregar a las ventanas
 	}
 	
 	// Getter & Setter
@@ -70,38 +67,24 @@ public class Restaurante
 	 * 
 	 * 
 	 */
-	public boolean agregarGarzon(String rut, String nombre, int sueldo, int edad, String nivelDeIngles,int mesasAtendidas)
+	public boolean agregarGarzon(String rut, String nombre, int sueldo, int edad, String nivelDeIngles,int mesasAtendidas) throws IOException
 	{
 		Garzon nuevo = new Garzon(rut,nombre,sueldo,edad,nivelDeIngles,mesasAtendidas);
-		
-		//escritura de archivo Garzones
-		FileWriter fichero = null;
-		PrintWriter pw = null;
-		
-		try {
-			fichero = new FileWriter("Garzones.txt");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-        pw = new PrintWriter(fichero);
-
-        pw.println(rut + "," + nombre +","+ sueldo +"," + edad + "," + nivelDeIngles + "," + mesasAtendidas);
-		
-        //HAY QUE HACER VENTANAN PARA AGREGAR EMPLEADOS.
-        
+		arc.escribirTxTGarzones(rut, nombre, sueldo, edad, nivelDeIngles, mesasAtendidas);
 		return empleadosRestaurante.agregarGarzon(nuevo);
 	}
 	
-	public boolean agregarCocinero(String rut, String nombre, int sueldo, int edad)
+	public boolean agregarCocinero(String rut, String nombre, int sueldo, int edad) throws IOException
 	{
 		Cocinero nuevo = new Cocinero(rut,nombre,sueldo,edad);
+		arc.escribirTxTCocineros(rut, nombre, sueldo, edad);
 		return empleadosRestaurante.agregarCocinero(nuevo);
 	}
 	
-	public boolean agregarCajero(String rut, String nombre, int sueldo, int edad) //Se cambia nombre por que estaba mal.
+	public boolean agregarCajero(String rut, String nombre, int sueldo, int edad) throws IOException //Se cambia nombre por que estaba mal.
 	{
 		Cajero nuevo = new Cajero(rut,nombre,sueldo,edad);
+		arc.escribirTxTCajeros(rut, nombre, sueldo, edad);
 		return empleadosRestaurante.agregarCajero(nuevo);
 	}
 	

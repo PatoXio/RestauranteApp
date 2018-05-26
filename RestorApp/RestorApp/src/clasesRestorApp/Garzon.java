@@ -83,7 +83,7 @@ public class Garzon extends Empleados
 			"\nSalario: " + getSueldo() ;
 		return info;
 	}
-	
+	@Override
 	public void mostrarEmpleadosArchivo() throws IOException{
 		Archivos archivo = new Archivos();
 		archivo.crearArchivoReporteEmpleados(obtenerInformacion());
@@ -95,11 +95,4 @@ public class Garzon extends Empleados
 			textArea.append("\n\n" + obtenerInformacion() +"\n\n");
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
 }

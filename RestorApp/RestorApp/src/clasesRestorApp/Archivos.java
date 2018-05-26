@@ -66,7 +66,7 @@ public class Archivos {
 		}
 		
 		
-		File f4 = new File("Empleados.txt"); 
+		File f4 = new File("Empleados.txt"); //o cualquiera de los 3
 		Scanner s4; 
 		try {
 			s4 = new Scanner(f4);
@@ -140,7 +140,60 @@ public class Archivos {
 			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de pedidos");
 		}
 	}
-	
+	public void escribirTxTGarzones(String rut, String nombre, int sueldo, int edad, String nivelDeIngles,int mesasAtendidas) throws IOException{
+		File file = new File("Garzones.txt");// prepara el archivo para ser manipulado
+		FileWriter escribir; // escribir en el fichero
+		PrintWriter linea; // permite escribir en el ficher de la misma forma que por pantalla 
+		
+		try{
+			
+			escribir = new FileWriter(file,true);
+			linea = new PrintWriter(escribir);
+			String texto=rut + ", " + nombre +", "+ sueldo +", " + edad + ", " + nivelDeIngles + ", " + mesasAtendidas;
+			linea.println(texto);
+			escribir.close();
+			
+			
+		}catch(FileNotFoundException e){
+			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de Garzones");
+		}
+	}
+	public void escribirTxTCocineros(String rut, String nombre, int sueldo, int edad) throws IOException{
+		File file = new File("Cocineros.txt");// prepara el archivo para ser manipulado
+		FileWriter escribir; // escribir en el fichero
+		PrintWriter linea; // permite escribir en el ficher de la misma forma que por pantalla 
+		
+		try{
+			
+			escribir = new FileWriter(file,true);
+			linea = new PrintWriter(escribir);
+			String texto=rut + ", " + nombre +", "+ sueldo +", " + edad;
+			linea.println(texto);
+			escribir.close();
+			
+			
+		}catch(FileNotFoundException e){
+			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de Cocineros");
+		}
+	}
+	public void escribirTxTCajeros(String rut, String nombre, int sueldo, int edad) throws IOException{
+		File file = new File("Cajeros.txt");// prepara el archivo para ser manipulado
+		FileWriter escribir; // escribir en el fichero
+		PrintWriter linea; // permite escribir en el ficher de la misma forma que por pantalla 
+		
+		try{
+			
+			escribir = new FileWriter(file,true);
+			linea = new PrintWriter(escribir);
+			String texto=rut + ", " + nombre +", "+ sueldo +", " + edad;
+			linea.println(texto);
+			escribir.close();
+			
+			
+		}catch(FileNotFoundException e){
+			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de Cajeros");
+		}
+	}
 	
 	public void escribirTxTProductos(String codigo,String nombre,String precio,String cantidad) throws IOException{
 		File file = new File("Productos.txt");// prepara el archivo para ser manipulado

@@ -29,32 +29,38 @@ public abstract class Empleados implements Interfaz
 	
 	
 	// Getter & Setters
+	@Override
 	public String getRut() {
 		return rut;
 	}
+	@Override
 	public void setRut(String rut) {
 		this.rut = rut;
 	}
-
+	@Override
 	public String getNombre() {
 		return nombre;
 	}
+	@Override
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+	@Override
 	public void setSueldo(int sueldo) {
 		this.sueldo = sueldo;
 	}
-	
+	@Override
 	public abstract int getSueldo();
-	
+	@Override
 	public int getEdad (){
 		return edad;
 	}
+	@Override
 	public void setEdad (int edad) {
 		this.edad = edad;
 	}
+	@Override
 	public abstract void mostrar(JTextArea textArea);
+	@Override
 	public abstract void mostrarEmpleadosArchivo()throws IOException;
 }
