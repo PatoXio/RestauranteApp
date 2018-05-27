@@ -134,7 +134,7 @@ public class TablaEmpleados
 	//vira de aca loco
 
 
-	// alo funciono? 
+	// alo funciono?
 	
 
 	//cristian qlo report altoque jasja

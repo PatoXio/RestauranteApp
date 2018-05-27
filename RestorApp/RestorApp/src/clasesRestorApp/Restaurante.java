@@ -12,9 +12,9 @@ public class Restaurante
 	private TablaEmpleados empleadosRestaurante; // Tabla con Key el rut de cada Empleado;
 	private MapaMenu menuRestaurante; // Mapa con Key el codeProducto de cada Producto;
 	private Archivos arc;
-	private boolean flagGarzon;
+	/*private boolean flagGarzon;
 	private boolean flagCajero;
-	private boolean flagCocinero;
+	private boolean flagCocinero;*/
 	
 	// Constructores
 	public Restaurante()
@@ -39,10 +39,10 @@ public class Restaurante
 
 		arc.cargarDatos(mesasRestaurante,menuRestaurante,empleadosRestaurante); //falta empleados
 		
-		flagGarzon=agregarGarzon("19617161-4", "Patricio Torres", 100000, 20, "Bajo", 400);
+		/*flagGarzon=agregarGarzon("19617161-4", "Patricio Torres", 100000, 20, "Bajo", 400);
 		flagCajero=agregarCajero("11111111-1", "Cajero Uno", 100000, 11);
 		flagCocinero=agregarCocinero("22222222-2", "Cocinero Dos", 200000, 22);
-		System.out.println("Garzon: "+flagGarzon+"\nCajero: "+flagCajero+"\nCocinero: "+flagCocinero); // Borrar despues de añadir el agregar a las ventanas
+		System.out.println("Garzon: "+flagGarzon+"\nCajero: "+flagCajero+"\nCocinero: "+flagCocinero); // Borrar despues de añadir el agregar a las ventanas*/
 
 	}
 	

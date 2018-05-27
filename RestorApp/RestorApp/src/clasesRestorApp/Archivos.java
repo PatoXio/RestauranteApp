@@ -83,7 +83,7 @@ public class Archivos {
 			{
 				String linea = s1.nextLine();
 				
-				StringTokenizer datos = new StringTokenizer(linea,", ");
+				StringTokenizer datos = new StringTokenizer(linea,",");
 				
 				String rut = datos.nextToken().trim();
 				String nombre = datos.nextToken().trim();
@@ -93,7 +93,6 @@ public class Archivos {
 				int suel=Integer.parseInt(sueldo);
 				int age=Integer.parseInt(edad);
 				
-				System.out.println(rut + " "+ nombre + " "+ sueldo + " "+edad);
 				
 				Cajero caj=new Cajero(rut,nombre,suel,age);
 				
@@ -117,7 +116,7 @@ public class Archivos {
 			{
 				String linea = s2.nextLine(); 
 				
-				StringTokenizer datos = new StringTokenizer(linea,", ");
+				StringTokenizer datos = new StringTokenizer(linea,",");
 				
 				String rut = datos.nextToken().trim();
 				String nombre = datos.nextToken().trim();
@@ -130,6 +129,8 @@ public class Archivos {
 				Cocinero coc=new Cocinero(rut,nombre,suel,age);
 				
 				empleados.agregarCocinero(coc);
+				
+
 			}
 			s2.close(); // se cierra el archivo
 		} catch (FileNotFoundException e) {
@@ -149,7 +150,7 @@ public class Archivos {
 			{
 				String linea = s3.nextLine().trim(); 
 				
-				StringTokenizer datos = new StringTokenizer(linea,", ");
+				StringTokenizer datos = new StringTokenizer(linea,",");
 				
 				String rut = datos.nextToken().trim();
 				String nombre = datos.nextToken().trim();
