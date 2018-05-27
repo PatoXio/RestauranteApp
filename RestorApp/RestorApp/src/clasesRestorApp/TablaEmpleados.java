@@ -130,18 +130,5 @@ public class TablaEmpleados
 		
 		return 0;
 	}
-	//manu estuvo aqui
-	//vira de aca loco
-
-
-	// alo funciono?
-	
-
-	//cristian qlo report altoque jasja
-
-
-	// alo funciono? 
-	
-	//cristian qlo report altoque jasja
 
 }

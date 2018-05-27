@@ -12,9 +12,6 @@ public class Restaurante
 	private TablaEmpleados empleadosRestaurante; // Tabla con Key el rut de cada Empleado;
 	private MapaMenu menuRestaurante; // Mapa con Key el codeProducto de cada Producto;
 	private Archivos arc;
-	/*private boolean flagGarzon;
-	private boolean flagCajero;
-	private boolean flagCocinero;*/
 	
 	// Constructores
 	public Restaurante()
@@ -26,7 +23,6 @@ public class Restaurante
 		menuRestaurante=new MapaMenu();
 		arc = new Archivos();
 		arc.cargarDatos(mesasRestaurante,menuRestaurante,empleadosRestaurante); //falta empleados
-		//vamos en procesox con los empleaditos j3j3j
 	}
 	public Restaurante(String nombre, String direccion) throws IOException
 	{
@@ -36,14 +32,7 @@ public class Restaurante
 		empleadosRestaurante = new TablaEmpleados();
 		menuRestaurante = new MapaMenu();
 		arc = new Archivos(); //se crea un espacio de memoria para los archivos
-
 		arc.cargarDatos(mesasRestaurante,menuRestaurante,empleadosRestaurante); //falta empleados
-		
-		/*flagGarzon=agregarGarzon("19617161-4", "Patricio Torres", 100000, 20, "Bajo", 400);
-		flagCajero=agregarCajero("11111111-1", "Cajero Uno", 100000, 11);
-		flagCocinero=agregarCocinero("22222222-2", "Cocinero Dos", 200000, 22);
-		System.out.println("Garzon: "+flagGarzon+"\nCajero: "+flagCajero+"\nCocinero: "+flagCocinero); // Borrar despues de añadir el agregar a las ventanas*/
-
 	}
 	
 	// Getter & Setter
