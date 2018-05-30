@@ -10,6 +10,8 @@ public interface Interfaz
 	String obtenerInformacion();
 	String getRut();
 	String getNombre();
+	String getCodigo();
+	int getSueldo();
 	int getEdad ();
 	void setRut(String rut);
 	void setNombre(String nombre);

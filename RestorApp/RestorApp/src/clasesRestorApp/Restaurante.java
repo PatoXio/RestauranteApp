@@ -14,7 +14,7 @@ public class Restaurante
 	private Archivos arc;
 	
 	// Constructores
-	public Restaurante()
+	public Restaurante() throws IOException
 	{
 		nombre=null;
 		direccion=null;
@@ -23,6 +23,7 @@ public class Restaurante
 		menuRestaurante=new MapaMenu();
 		arc = new Archivos();
 		arc.cargarDatos(mesasRestaurante,menuRestaurante,empleadosRestaurante); //falta empleados
+		arc.actualizarEmpleados(empleadosRestaurante);
 	}
 	public Restaurante(String nombre, String direccion) throws IOException
 	{
@@ -33,6 +34,7 @@ public class Restaurante
 		menuRestaurante = new MapaMenu();
 		arc = new Archivos(); //se crea un espacio de memoria para los archivos
 		arc.cargarDatos(mesasRestaurante,menuRestaurante,empleadosRestaurante);
+		//arc.actualizarEmpleados(empleadosRestaurante);
 	}
 	
 	// Getter & Setter
@@ -149,7 +151,10 @@ public class Restaurante
 		Mesa mesa = mesasRestaurante.obtenerMesa(codMesa);
 		Producto producto = menuRestaurante.obtenerProductoEspecifico(codProducto);
 		if(mesa !=null && producto!=null){
-			return mesa.agregarProductoAPedido(codigoPedido, producto);
+			if(mesa.agregarProductoAPedido(codigoPedido, producto)==true)
+			{
+				arc.actualizarPedidos(mesasRestaurante, menuRestaurante);
+			}
 		}
 		return false;
 	}
@@ -169,6 +174,7 @@ public class Restaurante
 		if(mesasRestaurante!=null){
 			if(mesasRestaurante.buscarMesa(codigoMesa) == true){
 				if(mesasRestaurante.eliminarMesa(codigoMesa)==true){
+					arc.actualizarMesas(mesasRestaurante);
 					return true;
 				}
 				
@@ -195,6 +201,7 @@ public class Restaurante
 		if(mesasRestaurante.buscarMesa(codMesa) == true){
 			Mesa mesa = mesasRestaurante.obtenerMesa(codMesa);
 			if(mesa.elimnarPedido(codPedido)==true){
+				arc.actualizarPedidos(mesasRestaurante, menuRestaurante);
 				return true;
 			}
 			else{
@@ -215,7 +222,15 @@ public class Restaurante
 	 */
 	public boolean eliminarProductoMenu(String idProducto)
 	{
-		return menuRestaurante.eliminarProductoDelMenu(idProducto);
+		if(menuRestaurante.eliminarProductoDelMenu(idProducto)==true)
+		{
+			arc.actualizarProductos(menuRestaurante);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
 	
@@ -235,9 +250,13 @@ public class Restaurante
 		Mesa mesa = mesasRestaurante.obtenerMesa(codMesa);
 		Producto producto = menuRestaurante.obtenerProductoEspecifico(codProducto);
 		if(mesa !=null && producto!=null){
-			return mesa.eliminarProductoAPedido(codigoPedido, producto);
+			if(mesa.eliminarProductoAPedido(codigoPedido, producto)==true)
+			{
+				arc.actualizarProductos(menuRestaurante);
+				arc.actualizarPedidos(mesasRestaurante, menuRestaurante);
+				return true;
+			}
 		}
-			
 		return false;
 	}
 	
@@ -257,9 +276,6 @@ public class Restaurante
 	{
 		return mesasRestaurante.buscarMesa(id);
 	}
-	
-	
-	
 	
 	/*
 	 * 

@@ -27,6 +27,12 @@ public class Garzon extends Empleados
 		arrayMesasAtendiendo = new ArrayList<String>();
 	}
 	
+	public String getCodigo()
+	{				
+		String codigo=rut+"Garzon";
+		return codigo;
+	}
+	
 	public String getNivelDeIngles()
 	{
 		return nivelDeIngles;

@@ -48,6 +48,7 @@ public abstract class Empleados implements Interfaz
 	public void setSueldo(int sueldo) {
 		this.sueldo = sueldo;
 	}
+	@Override
 	public abstract int getSueldo();
 	@Override
 	public int getEdad (){
@@ -61,4 +62,6 @@ public abstract class Empleados implements Interfaz
 	public abstract void mostrar(JTextArea textArea);
 	@Override
 	public abstract void mostrarPersonasArchivo()throws IOException;
+	@Override
+	public abstract String getCodigo();
 }

@@ -14,7 +14,17 @@ public class Archivos {
 
 	public void cargarDatos(ListaMesas mesasRestaurante,MapaMenu menuRestaurante,TablaEmpleados empleadosRestaurante)
 	{
-		cargarDatosAlMapaMenu(menuRestaurante);
+		cargarProductos(menuRestaurante);
+		cargarMesas(mesasRestaurante);
+		cargarPedidos(menuRestaurante,mesasRestaurante);
+		cargarGarzones(empleadosRestaurante);
+		cargarCajeros(empleadosRestaurante);
+		cargarCocineros(empleadosRestaurante);
+		cargarJefe(empleadosRestaurante);
+	}
+	
+	public void cargarMesas(ListaMesas mesasRestaurante)
+	{
 		File f2 = new File("Mesas.txt"); // indica el archivo a manipular
 		Scanner s2; // clase para leer los archivos
 		try {
@@ -32,7 +42,9 @@ public class Archivos {
 			JOptionPane.showMessageDialog(null, "Revise los datos del archivo inicial de mesas");
 			e1.printStackTrace();
 		}
-
+	}
+	public void cargarPedidos(MapaMenu menuRestaurante, ListaMesas mesasRestaurante)
+	{
 		File f3 = new File("Pedidos.txt");
 		Scanner s3;
 		int codPedido = 0;
@@ -64,17 +76,10 @@ public class Archivos {
 			JOptionPane.showMessageDialog(null, "Revise los datos del archivo inicial de pedidos");
 			e1.printStackTrace();
 		}
-		
-		cargarEmpleadosPorTipo(empleadosRestaurante); //Se modulariza para cargar por tipo.
-		
 	}
 	
-	
-	
-	public void cargarEmpleadosPorTipo(TablaEmpleados empleados)
+	public void cargarCajeros(TablaEmpleados empleados)
 	{
-		/**********************CAJEROS*********************************/
-		
 		File f1 = new File("Cajeros.txt"); 
 		Scanner s1; 
 		try {
@@ -105,9 +110,9 @@ public class Archivos {
 			JOptionPane.showMessageDialog(null, "Revise datos de cajeros");
 			e1.printStackTrace();
 		}
-		
-		/*******************Cocineros**************************/
-		
+	}
+	public void cargarCocineros(TablaEmpleados empleados)
+	{
 		File f2 = new File("Cocineros.txt"); 
 		Scanner s2; 
 		try {
@@ -139,9 +144,9 @@ public class Archivos {
 			JOptionPane.showMessageDialog(null, "Revise datos cocineros");
 			e1.printStackTrace();
 		}
-		
-		/***********************Garzones**********************/
-		
+	}
+	public void cargarGarzones(TablaEmpleados empleados)
+	{
 		File f3 = new File("Garzones.txt"); 
 		Scanner s3; 
 		try {
@@ -175,8 +180,10 @@ public class Archivos {
 			JOptionPane.showMessageDialog(null, "Revise datos Garzones");
 			e1.printStackTrace();
 		}
-		
-		/**************JEFE**********/
+	}
+	
+	public void cargarJefe(TablaEmpleados empleados)
+	{
 		File f4 = new File("Jefe.txt"); 
 		Scanner s4; 
 		try {
@@ -212,7 +219,7 @@ public class Archivos {
 	}
 
 	
-	public void cargarDatosAlMapaMenu(MapaMenu menuRestaurante)
+	public void cargarProductos(MapaMenu menuRestaurante)
 	{
 		File f3 = new File("Productos.txt");
 		Scanner s3;
@@ -235,6 +242,81 @@ public class Archivos {
 			JOptionPane.showMessageDialog(null, "Revise los datos del archivo inicial de productos");
 			e1.printStackTrace();
 		}
+	}
+	public void actualizarEmpleados(TablaEmpleados empleados) throws IOException
+	{
+		actualizarGarzones(empleados);
+		actualizarCajeros(empleados);
+		actualizarCocineros(empleados);
+		actualizarJefe(empleados);
+	}
+	
+	public void actualizarGarzones(TablaEmpleados empleados) throws IOException
+	{
+		if(eliminarArchivoTxT("Garzones")==true)
+		{
+			empleados.escribirTxTCompletoGarzones();
+			cargarGarzones(empleados);
+		}
+	}
+
+	public void actualizarCajeros(TablaEmpleados empleados) throws IOException
+	{
+		if(eliminarArchivoTxT("Cajeros")==true)
+		{
+			empleados.escribirTxTCompletoCajeros();
+			cargarCajeros(empleados);
+		}
+	}
+	public void actualizarCocineros(TablaEmpleados empleados) throws IOException
+	{
+		if(eliminarArchivoTxT("Cocineros")==true)
+		{
+			empleados.escribirTxTCompletoCocineros();
+			cargarCocineros(empleados);
+		}
+	}
+	public void actualizarJefe(TablaEmpleados empleados) throws IOException
+	{
+		if(eliminarArchivoTxT("Jefe")==true)
+		{
+			empleados.escribirTxTCompletoJefe();
+			cargarJefe(empleados);
+		}
+	}
+	public void actualizarMesas(ListaMesas mesasRestaurante)
+	{
+		if(eliminarArchivoTxT("Mesas")==true)
+		{
+			cargarMesas(mesasRestaurante);
+		}
+	}
+	public void actualizarProductos(MapaMenu menuRestaurante)
+	{
+		if(eliminarArchivoTxT("Productos")==true)
+		{
+			cargarProductos(menuRestaurante);
+		}
+	}
+	public void actualizarPedidos(ListaMesas mesasRestaurante,MapaMenu menuRestaurante)
+	{
+		if(eliminarArchivoTxT("Pedidos")==true)
+		{
+			cargarPedidos(menuRestaurante,mesasRestaurante);
+		}
+	}
+	
+	public boolean eliminarArchivoTxT(String nombreArchivo)
+	{
+		try{
+            File archivo = new File(nombreArchivo+".txt");
+            boolean estatus = archivo.delete();
+            return estatus;
+        }catch(Exception e)
+        {
+			JOptionPane.showMessageDialog(null, "El archivo no existe");
+            return false;
+        }
 	}
 	
 	public void escribirTxTMesas(String texto)throws IOException{
@@ -263,7 +345,7 @@ public class Archivos {
 			
 			escribir = new FileWriter(file,true);
 			linea = new PrintWriter(escribir);
-			String texto=rut + ", " + nombre +", "+ sueldo +", " + edad + ", " + nivelDeIngles + ", " + mesasAtendidas;
+			String texto=rut + "," + nombre +","+ sueldo +"," + edad + "," + nivelDeIngles + "," + mesasAtendidas;
 			linea.println(texto);
 			escribir.close();
 			
@@ -281,7 +363,7 @@ public class Archivos {
 			
 			escribir = new FileWriter(file,true);
 			linea = new PrintWriter(escribir);
-			String texto=rut + ", " + nombre +", "+ sueldo +", " + edad;
+			String texto=rut + "," + nombre +","+ sueldo +"," + edad;
 			linea.println(texto);
 			escribir.close();
 			
@@ -300,7 +382,7 @@ public class Archivos {
 			
 			escribir = new FileWriter(file,true);
 			linea = new PrintWriter(escribir);
-			String texto=rut + ", " + nombre +", "+ edad +", " + sueldo;
+			String texto=rut + "," + nombre +","+ edad +"," + sueldo;
 			linea.println(texto);
 			escribir.close();
 			
@@ -319,7 +401,7 @@ public class Archivos {
 			
 			escribir = new FileWriter(file,true);
 			linea = new PrintWriter(escribir);
-			String texto=rut + ", " + nombre +", "+ sueldo +", " + edad;
+			String texto=rut + "," + nombre +","+ sueldo +"," + edad;
 			linea.println(texto);
 			escribir.close();
 			
@@ -338,7 +420,7 @@ public class Archivos {
 			
 			escribir = new FileWriter(file,true);
 			linea = new PrintWriter(escribir);
-			String texto=codigo + ", " + nombre + ", " + cantidad + ", " + precio;
+			String texto=codigo + "," + nombre + "," + cantidad + "," + precio;
 			linea.println(texto);
 			escribir.close();
 			
@@ -377,9 +459,9 @@ public class Archivos {
 			if(file.exists()==true){
 				escribir = new FileWriter(file,true);
 				linea = new PrintWriter(escribir);
-				linea.println("codeMesa" + ":" + codigoMesa);
-				linea.println("cantidadDePedidos" + ":" + cantidadPedidos);
-				linea.println("estadoMesa" + ":" + estadoMesa);
+				linea.println("CodeMesa" + ":" + codigoMesa);
+				linea.println("CantidadDePedidos" + ":" + cantidadPedidos);
+				linea.println("EstadoMesa" + ":" + estadoMesa);
 				linea.println();
 				
 				escribir.close();
@@ -389,9 +471,9 @@ public class Archivos {
 				escribir = new FileWriter("ReporteMesas"); 
 				
 				linea = new PrintWriter(escribir);
-				linea.println("codeMesa" + ":" + codigoMesa);
-				linea.println("cantidadDePedidos" + ":" + cantidadPedidos);
-				linea.println("estadoMesa" + ":" + estadoMesa);
+				linea.println("EodeMesa" + ":" + codigoMesa);
+				linea.println("CantidadDePedidos" + ":" + cantidadPedidos);
+				linea.println("EstadoMesa" + ":" + estadoMesa);
 				linea.println();
 				
 				escribir.close();
