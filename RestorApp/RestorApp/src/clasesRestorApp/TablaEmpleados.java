@@ -30,6 +30,16 @@ public class TablaEmpleados
 	 * proceso.
 	 * 
 	 */
+	public boolean agregarJefe(JefeRestaurante JefePorAgregar) {
+		if (tablaDeEmpleados.containsKey(JefePorAgregar.getRut()) == true)
+		{
+			return false;
+		}
+
+		tablaDeEmpleados.put(JefePorAgregar.getRut(), JefePorAgregar);
+		return true;
+	}
+	
 	public boolean agregarGarzon(Garzon GarzonPorAgregar)
 	{
 		if (tablaDeEmpleados.containsKey(GarzonPorAgregar.getRut()) == true)
@@ -130,5 +140,8 @@ public class TablaEmpleados
 		
 		return 0;
 	}
+
+
+
 
 }

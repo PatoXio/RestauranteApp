@@ -59,6 +59,13 @@ public class Restaurante
 	 * 
 	 * 
 	 */
+	public boolean agregarJefe(String rut,String nombre,int edad, int sueldo) throws IOException
+	{
+		JefeRestaurante nuevo=new JefeRestaurante(rut,nombre,edad,sueldo);
+		arc.escribirTxTJefe(rut,nombre,edad,sueldo);
+		return empleadosRestaurante.agregarJefe(nuevo);
+	}
+	
 	public boolean agregarGarzon(String rut, String nombre, int sueldo, int edad, String nivelDeIngles,int mesasAtendidas) throws IOException
 	{
 		Garzon nuevo = new Garzon(rut,nombre,sueldo,edad,nivelDeIngles,mesasAtendidas);

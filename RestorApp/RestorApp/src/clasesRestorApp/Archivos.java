@@ -176,10 +176,41 @@ public class Archivos {
 			e1.printStackTrace();
 		}
 		
-		
+		/**************JEFE**********/
+		File f4 = new File("Jefe.txt"); 
+		Scanner s4; 
+		try {
+			s4 = new Scanner(f4);
+			while (s4.hasNextLine() == true)
+			{
+				String linea = s4.nextLine().trim(); 
+				
+				StringTokenizer datos = new StringTokenizer(linea,",");
+				
+				String rut = datos.nextToken().trim();
+				String nombre = datos.nextToken().trim();
+				String edad = datos.nextToken().trim();
+				String sueldo = datos.nextToken().trim(); 
+				
+				int suel=Integer.parseInt(sueldo);
+				int age=Integer.parseInt(edad);
+				
+				JefeRestaurante jefe=new JefeRestaurante(rut,nombre,age,suel);
+				
+				
+				empleados.agregarJefe(jefe);
+			}
+			s4.close(); // se cierra el archivo
+		} catch (FileNotFoundException e) {
+			JOptionPane.showMessageDialog(null, "Error al agregar al Jefe");
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(null, "Revise datos Jefe");
+			e1.printStackTrace();
+		}
 		
 		
 	}
+
 	
 	public void cargarDatosAlMapaMenu(MapaMenu menuRestaurante)
 	{
@@ -259,6 +290,26 @@ public class Archivos {
 			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de Cocineros");
 		}
 	}
+	public void escribirTxTJefe(String rut, String nombre, int edad, int sueldo) throws IOException
+	{
+		File file = new File("Jefe.txt");// prepara el archivo para ser manipulado
+		FileWriter escribir; // escribir en el fichero
+		PrintWriter linea; // permite escribir en el ficher de la misma forma que por pantalla 
+		
+		try{
+			
+			escribir = new FileWriter(file,true);
+			linea = new PrintWriter(escribir);
+			String texto=rut + ", " + nombre +", "+ edad +", " + sueldo;
+			linea.println(texto);
+			escribir.close();
+			
+			
+		}catch(FileNotFoundException e){
+			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial del Jefe");
+		}
+	}
+	
 	public void escribirTxTCajeros(String rut, String nombre, int sueldo, int edad) throws IOException{
 		File file = new File("Cajeros.txt");// prepara el archivo para ser manipulado
 		FileWriter escribir; // escribir en el fichero
@@ -463,5 +514,6 @@ public class Archivos {
 			JOptionPane.showMessageDialog(null, "Error al abrir el archivo de reporte");
 		}
 	}
+
 	
 }
