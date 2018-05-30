@@ -1,7 +1,5 @@
 package Ventanas;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,16 +13,17 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import clasesRestorApp.Restaurante;
+import clasesRestorApp.Secundaria;
 
 public class ModificarProductos extends JFrame {
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private Restaurante restaurante;
-
-	private JLabel caracteMesa;
-	private JLabel numMesa;
-	private JButton botonRegistrar;
 	private JTextField textClaveProducto;
 	private JTextField textPrecioProducto;
 	private JTextField textCantidadProducto;
@@ -33,6 +32,7 @@ public class ModificarProductos extends JFrame {
 	private JButton botonModificar;
 	private JButton botonAtras;
 	private JLabel PrecioProducto;
+	private Secundaria sec;
 	private JLabel CantidadDelProducto;
 	
 	
@@ -41,6 +41,7 @@ public class ModificarProductos extends JFrame {
 		super();
 		configurarVentana();
 		inicializarComponentes();
+		sec=new Secundaria();
 		this.restaurante = restaurante;
 	}
 	
@@ -81,21 +82,34 @@ public class ModificarProductos extends JFrame {
 			public void actionPerformed(ActionEvent e) 
 			{
 				String claveProducto = textClaveProducto.getText();
-				int precioProducto = Integer.parseInt(textPrecioProducto.getText());
-				int cantidadProducto  = Integer.parseInt(textCantidadProducto.getText());
-				
-				if(e.getSource() == botonModificar)
+				if(sec.validarNumeros(textPrecioProducto.getText())==true)
 				{
-					if(restaurante.modificarProductos(claveProducto, cantidadProducto, precioProducto) == true) //Si se encuentra la mesa
+					int precioProducto = Integer.parseInt(textPrecioProducto.getText());
+					if(sec.validarNumeros(textCantidadProducto.getText())==true)
 					{
-						JOptionPane.showMessageDialog(null, "Se Modifico correctamente el producto.");
+						int cantidadProducto  = Integer.parseInt(textCantidadProducto.getText());
+						
+						if(e.getSource() == botonModificar)
+						{
+							if(restaurante.modificarProductos(claveProducto, cantidadProducto, precioProducto) == true) //Si se encuentra la mesa
+							{
+								JOptionPane.showMessageDialog(null, "Se Modifico correctamente el producto.");
+							}
+							else{
+								JOptionPane.showMessageDialog(null, "La clave del producto no corresponde,ingrese otra.");
+							}
+						}
 					}
-					else{
-						JOptionPane.showMessageDialog(null, "La clave del producto no corresponde,ingrese otra.");
-						textClaveProducto.setText("");
+					else
+					{
+						JOptionPane.showMessageDialog(null, "La cantidad debe ser numerica");
 					}
 
 					
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "El precio debe ser solo numerico");
 				}
 				
 			}

@@ -1,7 +1,5 @@
 package Ventanas;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -12,16 +10,12 @@ import clasesRestorApp.Restaurante;
 
 import javax.swing.JButton;
 import javax.swing.JSeparator;
-import java.awt.TextArea;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.ScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JScrollBar;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.DropMode;
 
 public class MostrarProductos extends JFrame {
 

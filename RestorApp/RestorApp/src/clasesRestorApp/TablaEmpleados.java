@@ -98,7 +98,7 @@ public class TablaEmpleados
 		for(Map.Entry<String,Empleados> entrada : tablaDeEmpleados.entrySet())
 		{
 			String clave = entrada.getKey(); //guardamos la clave
-			tablaDeEmpleados.get(clave).mostrarEmpleadosArchivo();
+			tablaDeEmpleados.get(clave).mostrarPersonasArchivo();
 		}
 	}
 	

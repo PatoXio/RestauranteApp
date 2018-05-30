@@ -3,8 +3,6 @@ package Ventanas;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -13,10 +11,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import clasesRestorApp.Archivos;
 import clasesRestorApp.Restaurante;
+import clasesRestorApp.Secundaria;
 
 public class EliminarMesa extends JFrame  {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JLabel caracteMesa;
 	private JLabel numMesa;
@@ -24,12 +26,14 @@ public class EliminarMesa extends JFrame  {
 	private JTextField textMesa;
 	private Restaurante restaurante;
 	private JButton botonAtras;
+	private Secundaria sec;
 	private JButton botonAgregarOtro;
 	
 	public EliminarMesa(Restaurante restaurante){
 		super();
 		this.restaurante = restaurante;
 		configurarVentana();
+		sec=new Secundaria();
 		inicializarComponentes();
 	}
 	private void configurarVentana(){
@@ -64,16 +68,22 @@ public class EliminarMesa extends JFrame  {
 		botonEliminar.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e) {
-				int codMesa = Integer.parseInt(textMesa.getText());
-				if(e.getSource() == botonEliminar){// si el
-						if(restaurante.elminarMesa(codMesa)==true){
-							JOptionPane.showMessageDialog(null, "Se elimino correctamente  mesa.");
-						}
-						else{
-						JOptionPane.showMessageDialog(null, "La mesa no se puedo eliminar.");
-						textMesa.setText("");
-						}
-	
+				if(sec.validarNumeros(textMesa.getText())==true)
+				{
+					int codMesa = Integer.parseInt(textMesa.getText());
+					if(e.getSource() == botonEliminar){// si el
+							if(restaurante.elminarMesa(codMesa)==true){
+								JOptionPane.showMessageDialog(null, "Se elimino correctamente  mesa.");
+							}
+							else{
+							JOptionPane.showMessageDialog(null, "La mesa no se puedo eliminar.");
+							textMesa.setText("");
+							}
+					}
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "El codigo de la mes debe ser solo numerico");
 				}
 				
 			}

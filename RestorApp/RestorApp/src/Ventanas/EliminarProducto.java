@@ -13,10 +13,11 @@ import javax.swing.border.EmptyBorder;
 import clasesRestorApp.Restaurante;
 
 public class EliminarProducto extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JLabel titulo;
-	private JButton botonEliminarProductoMenu;
-	private JButton botonEliminarProductoPedido;
 	private Restaurante restaurante;
 	
 	public EliminarProducto(Restaurante restaurante){

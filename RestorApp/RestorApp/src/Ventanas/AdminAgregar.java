@@ -15,12 +15,16 @@ import clasesRestorApp.Restaurante;
 
 public class AdminAgregar extends JFrame 
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JLabel titulo;
 	private JButton botonAgregarMesa;
 	private JButton botonAgregarPedido;
 	private JButton botonAgregarProducto;
-	private JButton botonAgregarEmpleado;
+	//private JButton botonAgregarEmpleado;
 	private JButton botonAtras;
 	private Restaurante restaurante;
 	

@@ -36,15 +36,15 @@ public class Garzon extends Empleados
 	{
 		return mesasAtendidas;
 	}
-	
+	@Override
 	public int getSueldo()
 	{
-		sueldo = (int) (sueldo*(1+(((double)mesasAtendidas/1000))));
-		if(sueldo>=500000)
+		int ganancia = (int) (sueldo*(1+(((double)mesasAtendidas/1000))));
+		if(ganancia>=500000)
 		{
-			sueldo=500000;
+			ganancia=500000;
 		}
-		return sueldo;
+		return ganancia;
 	}
 	
 	public boolean AtenderMesa(int numeroMesa)
@@ -77,6 +77,7 @@ public class Garzon extends Empleados
 		}
 		return false;
 	}
+	@Override
 	public String obtenerInformacion() 
 	{
 		String info="Rut: " + getRut() + "\nNombre: " + getNombre() + "\nEdad: " + getEdad() +
@@ -84,7 +85,7 @@ public class Garzon extends Empleados
 		return info;
 	}
 	@Override
-	public void mostrarEmpleadosArchivo() throws IOException{
+	public void mostrarPersonasArchivo() throws IOException{
 		Archivos archivo = new Archivos();
 		archivo.crearArchivoReporteEmpleados(obtenerInformacion());
 

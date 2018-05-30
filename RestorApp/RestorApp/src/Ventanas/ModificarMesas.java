@@ -1,7 +1,5 @@
 package Ventanas;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,9 +13,14 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import clasesRestorApp.Restaurante;
+import clasesRestorApp.Secundaria;
 
 public class ModificarMesas extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private Restaurante restaurante;
 	private JTextField textMesa;
@@ -26,6 +29,7 @@ public class ModificarMesas extends JFrame {
 	private JLabel numMesa;
 	private JButton botonModificar;
 	private JButton botonAtras;
+	private Secundaria sec;
 	private JLabel estadoDeMesa;
 	
 	
@@ -34,6 +38,7 @@ public class ModificarMesas extends JFrame {
 		super();
 		configurarVentana();
 		inicializarComponentes();
+		sec=new Secundaria();
 		this.restaurante = restaurante;
 	}
 	
@@ -73,21 +78,25 @@ public class ModificarMesas extends JFrame {
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				int codMesa = Integer.parseInt(textMesa.getText());
-				String estadodMesa = textEstadoMesa.getText();
-				if(e.getSource() == botonModificar)
+				if(sec.validarNumeros(textMesa.getText())==true)
 				{
-					if(restaurante.buscarMesaX(codMesa) == true) //Si se encuentra la mesa
+					int codMesa = Integer.parseInt(textMesa.getText());
+					String estadodMesa = textEstadoMesa.getText();
+					if(e.getSource() == botonModificar)
 					{
-						restaurante.editarMesa(codMesa, estadodMesa);
-						JOptionPane.showMessageDialog(null, "Se Modifico correctamente la mesa.");
+						if(restaurante.buscarMesaX(codMesa) == true) //Si se encuentra la mesa
+						{
+							restaurante.editarMesa(codMesa, estadodMesa);
+							JOptionPane.showMessageDialog(null, "Se Modifico correctamente la mesa.");
+						}
+						else{
+							JOptionPane.showMessageDialog(null, "El codigo de esa mesa no esta registrada, ingrese otra.");
+						}
 					}
-					else{
-						JOptionPane.showMessageDialog(null, "El codigo de esa mesa no esta registrada,ingrese otra.");
-						textMesa.setText("");
-					}
-
-					
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "El codigo de la mesa debe ser solo numerico");
 				}
 				
 			}

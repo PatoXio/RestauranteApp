@@ -30,7 +30,7 @@ public class Cocinero extends Empleados
 			"\nSalario: " + getSueldo() ;
 		return info;
 	}
-	public void mostrarEmpleadosArchivo() throws IOException{
+	public void mostrarPersonasArchivo() throws IOException{
 		Archivos archivo = new Archivos();
 		archivo.crearArchivoReporteEmpleados(obtenerInformacion());
 	}

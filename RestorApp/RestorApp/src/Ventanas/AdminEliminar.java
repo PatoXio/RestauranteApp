@@ -14,12 +14,16 @@ import clasesRestorApp.Restaurante;
 
 public class AdminEliminar extends JFrame 
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JLabel titulo;
-	private JButton botonEliminarMesa;
-	private JButton botonEliminarPedido;
-	private JButton botonEliminarProducto;
-	private JButton botonAtras;
+	//private JLabel titulo;
+	//private JButton botonEliminarMesa;
+	//private JButton botonEliminarPedido;
+	//private JButton botonEliminarProducto;
+	//private JButton botonAtras;
 	private Restaurante restaurante;
 	
 	

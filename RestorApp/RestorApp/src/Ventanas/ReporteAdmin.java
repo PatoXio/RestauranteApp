@@ -1,7 +1,5 @@
 package Ventanas;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,14 +13,16 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextPane;
-import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.Font;
 
 public class ReporteAdmin extends JFrame 
 {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private Restaurante restaurante;
 	private JButton botonMostrarE;

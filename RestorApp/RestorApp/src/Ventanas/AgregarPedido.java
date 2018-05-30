@@ -15,8 +15,13 @@ import javax.swing.border.EmptyBorder;
 
 import clasesRestorApp.Archivos;
 import clasesRestorApp.Restaurante;
+import clasesRestorApp.Secundaria;
 
 public class AgregarPedido extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textMesa;
 	private JTextField textPedido;
@@ -25,7 +30,8 @@ public class AgregarPedido extends JFrame {
 	private JLabel numPedido;
 	private JButton botonRegistrar;
 	private JButton botonAtras;
-	private JButton botonAgregarOtro;
+	private Secundaria sec;
+	//private JButton botonAgregarOtro;
 	private Restaurante restaurante;
 	private Archivos arc;
 	
@@ -34,6 +40,7 @@ public class AgregarPedido extends JFrame {
 		this.restaurante = restaurante;
 		configurarVentana();
 		inicializarComponentes();
+		sec=new Secundaria();
 		arc= new Archivos();
 	}
 	private void configurarVentana(){
@@ -79,25 +86,38 @@ public class AgregarPedido extends JFrame {
                         @Override
 			public void actionPerformed(ActionEvent e)
 			{
-				int codMesa = Integer.parseInt(textMesa.getText());
-				int codPedido = Integer.parseInt(textPedido.getText());
-				if(e.getSource() == botonRegistrar){
-					if(restaurante.AgregarPedido(codMesa, codPedido)==true){
-						try {
-							arc.escribirSoloPEdidoTxT(Integer.toString(codMesa),Integer.toString(codPedido));
-						} catch (IOException e1) {
-							JOptionPane.showMessageDialog(null, "Ocurrio un error sobreescribir el archivo");
+                if(sec.validarNumeros(textMesa.getText())==true)
+                {
+					int codMesa = Integer.parseInt(textMesa.getText());
+					if(sec.validarNumeros(textPedido.getText())==true)
+					{
+						int codPedido = Integer.parseInt(textPedido.getText());
+						if(e.getSource() == botonRegistrar){
+							if(restaurante.AgregarPedido(codMesa, codPedido)==true){
+								try {
+									arc.escribirSoloPEdidoTxT(Integer.toString(codMesa),Integer.toString(codPedido));
+								} catch (IOException e1) {
+									JOptionPane.showMessageDialog(null, "Ocurrio un error sobreescribir el archivo");
+								}
+								JOptionPane.showMessageDialog(null, "Se agrego con exito");
+							}
+							else{
+								JOptionPane.showMessageDialog(null, "No se logr� agregar el pedido");
+								textMesa.setText("");
+								textPedido.setText("");
+								
+							}
 						}
-						JOptionPane.showMessageDialog(null, "Se agrego con exito");
 					}
-					else{
-						JOptionPane.showMessageDialog(null, "No se logr� agregar el pedido");
-						textMesa.setText("");
-						textPedido.setText("");
+					else
+					{
+						JOptionPane.showMessageDialog(null, "El codigo del pedido solo debe contener numeros");
+					}
 						
-					}
-			
-					
+				}
+                else
+				{
+					JOptionPane.showMessageDialog(null, "El codigo de mesa solo debe llevar numeros");
 				}
 				
 			}

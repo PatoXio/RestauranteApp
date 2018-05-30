@@ -4,7 +4,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,10 +13,15 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import clasesRestorApp.Restaurante;
+import clasesRestorApp.Secundaria;
 
 public class AgregarProductoPedido extends JFrame
 {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JLabel titulo;
 	private JButton botonRegistrar;
@@ -30,11 +34,13 @@ public class AgregarProductoPedido extends JFrame
 	private JLabel codPro;
 	private JButton botonAgregarOtro;
 	private JButton botonAtras;
+	private Secundaria sec;
 	
 	public AgregarProductoPedido(Restaurante restaurante){
 		super();
 		this.restaurante = restaurante;
 		configurarVentana();
+		sec=new Secundaria();
 		inicializarComponentes();
 	}
 	private void configurarVentana(){
@@ -87,11 +93,29 @@ public class AgregarProductoPedido extends JFrame
 		botonRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource() == botonRegistrar ){
-					int codMesa = Integer.parseInt(textMesa.getText());
-					int codPedido = Integer.parseInt(textPedido.getText());
-					String producto = textProducto.getText();
-					if(restaurante.agregarProductoAlPedido(codMesa, codPedido, producto)==true){
-						JOptionPane.showMessageDialog(null, "Se agrego con exito");
+					if(sec.validarNumeros(textMesa.getText())==true)
+					{
+						int codMesa = Integer.parseInt(textMesa.getText());
+						if(sec.validarNumeros(textPedido.getText())==true)
+						{
+							int codPedido = Integer.parseInt(textPedido.getText());
+							String producto = textProducto.getText();
+							if(restaurante.agregarProductoAlPedido(codMesa, codPedido, producto)==true){
+								JOptionPane.showMessageDialog(null, "Se agrego con exito");
+							}
+							else
+							{
+								JOptionPane.showMessageDialog(null, "No se pudo agregar. Quizas el producto no exista");
+							}
+						}
+						else
+						{
+							JOptionPane.showMessageDialog(null, "El codigo del pedido debe contener solo numeros");
+						}
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null, "El codigo de mesa solo debe contener numeros");
 					}
 				}
 			}

@@ -3,8 +3,6 @@ package Ventanas;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -13,24 +11,25 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import clasesRestorApp.Archivos;
 import clasesRestorApp.Restaurante;
+import clasesRestorApp.Secundaria;
 
 public class EliminarPedido extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private Secundaria sec;
 	private JTextField textMesa;
 	private JTextField textPedido;
-	private JLabel caractePedido;
-	private JLabel numMesa;
-	private JLabel numPedido;
-	private JButton botonEliminar;
-	private JButton botoneliminarOtro;
 	private Restaurante restaurante;
 	
 	public EliminarPedido(Restaurante restaurante){
 		super();
 		this.restaurante = restaurante;
 		configurarVentana();
+		sec=new Secundaria();
 		inicializarComponentes();
 	}
 	private void configurarVentana(){
@@ -75,15 +74,27 @@ public class EliminarPedido extends JFrame {
                         @Override
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource() == botonEliminar ){
-					int codMesa = Integer.parseInt(textMesa.getText());
-					int codPedido = Integer.parseInt(textPedido.getText());
-					if(restaurante.eliminarPedido(codMesa, codPedido)==true){
-						JOptionPane.showMessageDialog(null, "Se elimino con exito");
+					if(sec.validarNumeros(textMesa.getText())==true)
+					{
+						int codMesa = Integer.parseInt(textMesa.getText());
+						if(sec.validarNumeros(textPedido.getText())==true)
+						{
+							int codPedido = Integer.parseInt(textPedido.getText());
+							if(restaurante.eliminarPedido(codMesa, codPedido)==true){
+								JOptionPane.showMessageDialog(null, "Se elimino con exito");
+							}
+							else{
+								JOptionPane.showMessageDialog(null, "No se logro eliminar el pedido. Quizas porque este no existe");
+							}
+						}
+						else
+						{
+							JOptionPane.showMessageDialog(null, "El codigo del pedido debe ser numerico");
+						}
 					}
-					else{
-						JOptionPane.showMessageDialog(null, "No se logr� eliminar el pedido");
-						textMesa.setText("");
-						textPedido.setText("");
+					else
+					{
+						JOptionPane.showMessageDialog(null, "El codigo de la mesa debe ser numerico");
 					}
 					
 				}

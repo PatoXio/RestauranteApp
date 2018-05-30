@@ -17,6 +17,10 @@ import clasesRestorApp.Restaurante;
 
 public class Ventana extends JFrame implements ActionListener
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//Alguna  de las siguientes clases se usaran en las siguientes clases:Ventana,VentanaAdmin
 	/*
 	* JPanel: Clase que genera un contenedor al cual se le puede colocar elementos y acomodarlos a su conveniencia
@@ -123,6 +127,7 @@ public class Ventana extends JFrame implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String usuarioIngresado = textusua.getText();
+		@SuppressWarnings("deprecation")
 		String passIngresado = textpass.getText();
 		// si el texto ingresado tanto en el usuario como en password coinciden con las del administrador, entonces libera los recursos actuales y pasa al menu del administrador 
 		if(usuarioIngresado.equals("admin")&& passIngresado.equals("admin")){
