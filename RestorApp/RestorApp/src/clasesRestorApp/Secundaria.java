@@ -57,4 +57,15 @@ public class Secundaria {
 	    }
 	     return false;
 	}
+	public int contarCaracter(String string, String texto) {
+		int cont=0;
+		for(int i=0;i<string.length();i++)
+		{
+			if(string.substring(i,i+1).equals(texto)==true)
+			{
+				cont++;
+			}
+		}
+		return cont;
+	}
 }

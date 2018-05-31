@@ -49,8 +49,6 @@ public abstract class Empleados implements Interfaz
 		this.sueldo = sueldo;
 	}
 	@Override
-	public abstract int getSueldo();
-	@Override
 	public int getEdad (){
 		return edad;
 	}

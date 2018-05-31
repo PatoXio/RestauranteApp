@@ -1,17 +1,17 @@
-1,Ensalada con Atun,25,2500 
-2,Sopa de Choclo,15,2200
-3,Pollo con Papas Fritas,23,3000 
-4,Pescado con Arroz,25,2500 
-5,Fideos Con Carne,33,3000 
-6,Pizza,15,3400 
-7,Bebida express Coca Cola,19,500 
-8,Bebida express Sprite,22,500 
-9,Bebida express Fanta,33,500 
-10,Agua Mineral,44,400 
-11,Vino Tinto,25,1000
-12,Copa Helado de Vainilla,33,2200 
-13,Copa Helado de Lucuma,17,2500 
-14,Pote de Frutas,22,1500
+11,Vino Tinto,0,1000
+12,Copa Helado de Vainilla,0,2200
+13,Copa Helado de Lucuma,0,2500
+14,Pote de Frutas,0,1500
+1,Ensalada con Atun,0,2500
 100,caquita con mayo,5,300000
-432jkfds,432jkfds,4532,4532
+2,Sopa de Choclo,0,2200
+3,Pollo con Papas Fritas,23,3000
 42rew,432rew,3,432
+4,Pescado con Arroz,0,2500
+432jkfds,432jkfds,4532,4532
+5,Fideos Con Carne,0,3000
+6,Pizza,0,3400
+7,Bebida express Coca Cola,0,500
+8,Bebida express Sprite,0,500
+9,Bebida express Fanta,0,500
+10,Agua Mineral,44,400

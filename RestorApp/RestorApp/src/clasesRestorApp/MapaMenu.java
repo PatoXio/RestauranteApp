@@ -9,11 +9,12 @@ import javax.swing.JTextArea;
 public class MapaMenu
 {
 	private HashMap<String, Producto> menu;
-
+	private Archivos arc;
 	
 	// Constructor
 	public MapaMenu()
 	{
+		arc=new Archivos();
 		menu = new HashMap<String, Producto>();
 	}
 
@@ -254,6 +255,17 @@ public class MapaMenu
 		}
 		
 		return 0;
+	}
+
+
+	public void escribirTxTCompletoProductos() throws IOException {
+		Iterator<String> key= menu.keySet().iterator();
+		while(key.hasNext())
+		{
+			Producto pro=menu.get(key.next());
+			arc.escribirTxTProductos(pro.getCodeProducto(), pro.getNombre(), Integer.toString(pro.getPrecioProducto()), Integer.toString(pro.getCantDisponibleEnElRestaurante()));
+	
+		}
 	}
 	
 	

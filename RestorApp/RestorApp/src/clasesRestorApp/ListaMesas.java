@@ -10,11 +10,13 @@ import javax.swing.JTextArea;
 public class ListaMesas
 {
 	private ArrayList<Mesa> listaMesas;
+	private Archivos arc;
 
 	
 	// Constructor
 	public ListaMesas()
 	{
+		arc=new Archivos();
 		listaMesas = new ArrayList<Mesa>();
 	}
 	
@@ -296,7 +298,26 @@ public class ListaMesas
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
+
+
+	public void escribirTxTCompletoMesas() throws IOException {
+		
+		for(int i=0;i<listaMesas.size();i++)
+		{
+			Mesa mesa=listaMesas.get(i);
+			arc.escribirTxTMesas(Integer.toString(mesa.getCodeMesa()));
+		}
+	}
+
+
+	public void escribirTxTCompletoPedidos() throws IOException {
+		
+		for(int i=0;i<listaMesas.size();i++)
+		{
+			Mesa mesa=listaMesas.get(i);
+			mesa.escribirTxTMesaPedidoProductos();
+		}
+	}
 	
 	
 	

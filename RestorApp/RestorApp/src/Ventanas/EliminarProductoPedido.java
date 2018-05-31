@@ -1,8 +1,10 @@
 package Ventanas;
 
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -98,11 +100,16 @@ public class EliminarProductoPedido extends JFrame {
 						{
 							int codPedido = Integer.parseInt(textPedido.getText());
 							String producto = textProducto.getText();
-							if(restaurante.eliminarProductoPedido(codMesa, codPedido, producto)==true){
-								JOptionPane.showMessageDialog(null, "Se elimino con exito");
-							}
-							else{
-								JOptionPane.showMessageDialog(null, "No se elimino con exito. Quizas porque no existe el producto");
+							try {
+								if(restaurante.eliminarProductoPedido(codMesa, codPedido, producto)==true){
+									JOptionPane.showMessageDialog(null, "Se elimino con exito");
+								}
+								else{
+									JOptionPane.showMessageDialog(null, "No se elimino con exito. Quizas porque no existe el producto");
+								}
+							} catch (HeadlessException | IOException e1) {
+								JOptionPane.showMessageDialog(null, "Error. Es posible que no exista");
+								e1.printStackTrace();
 							}
 						}
 						else

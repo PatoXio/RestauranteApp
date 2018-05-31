@@ -23,7 +23,6 @@ public class Restaurante
 		menuRestaurante=new MapaMenu();
 		arc = new Archivos();
 		arc.cargarDatos(mesasRestaurante,menuRestaurante,empleadosRestaurante); //falta empleados
-		arc.actualizarEmpleados(empleadosRestaurante);
 	}
 	public Restaurante(String nombre, String direccion) throws IOException
 	{
@@ -34,7 +33,10 @@ public class Restaurante
 		menuRestaurante = new MapaMenu();
 		arc = new Archivos(); //se crea un espacio de memoria para los archivos
 		arc.cargarDatos(mesasRestaurante,menuRestaurante,empleadosRestaurante);
-		//arc.actualizarEmpleados(empleadosRestaurante);
+		arc.actualizarEmpleados(empleadosRestaurante);
+		arc.actualizarMesas(mesasRestaurante);
+		arc.actualizarProductos(menuRestaurante);
+		arc.actualizarPedidos(mesasRestaurante, menuRestaurante);
 	}
 	
 	// Getter & Setter
@@ -146,7 +148,7 @@ public class Restaurante
 	 * Si ambos no son null, entonces se llama al metodo del objeto mesa para verificar si
 	 * se puedo agregar el producto. Basta con que uno sea null para que retorne false.
 	 */
-	public boolean agregarProductoAlPedido(int codMesa,int codigoPedido,String codProducto)
+	public boolean agregarProductoAlPedido(int codMesa,int codigoPedido,String codProducto) throws IOException
 	{
 		Mesa mesa = mesasRestaurante.obtenerMesa(codMesa);
 		Producto producto = menuRestaurante.obtenerProductoEspecifico(codProducto);
@@ -169,7 +171,7 @@ public class Restaurante
 	 * retornara false en caso que la mesa no se haya podido eliminar
 	 * retornara false si la lista de mesas era null
 	 */
-	public boolean elminarMesa(int codigoMesa)
+	public boolean elminarMesa(int codigoMesa) throws IOException
 	{
 		if(mesasRestaurante!=null){
 			if(mesasRestaurante.buscarMesa(codigoMesa) == true){
@@ -196,7 +198,7 @@ public class Restaurante
 	 * retornara false si no se pudo eliminar
 	 * retornara false si no se encontro la mesa 
 	 */
-	public boolean eliminarPedido(int codMesa,int codPedido)
+	public boolean eliminarPedido(int codMesa,int codPedido) throws IOException
 	{
 		if(mesasRestaurante.buscarMesa(codMesa) == true){
 			Mesa mesa = mesasRestaurante.obtenerMesa(codMesa);
@@ -220,7 +222,7 @@ public class Restaurante
 	 * retornara true si fue posible eliminar el producto
 	 * Retornara false en caso contrario
 	 */
-	public boolean eliminarProductoMenu(String idProducto)
+	public boolean eliminarProductoMenu(String idProducto) throws IOException
 	{
 		if(menuRestaurante.eliminarProductoDelMenu(idProducto)==true)
 		{
@@ -245,7 +247,7 @@ public class Restaurante
 	 * rerornara false si no fue posible eliminarlo
 	 * retornara false en cualquier otro caso que donde los objetos instanciados sean null
 	 */
-	public boolean eliminarProductoPedido(int codMesa,int codigoPedido,String codProducto)
+	public boolean eliminarProductoPedido(int codMesa,int codigoPedido,String codProducto) throws IOException
 	{
 		Mesa mesa = mesasRestaurante.obtenerMesa(codMesa);
 		Producto producto = menuRestaurante.obtenerProductoEspecifico(codProducto);

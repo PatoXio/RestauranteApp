@@ -179,7 +179,7 @@ public class TablaEmpleados
 			if(emp.getCodigo().equals(emp.getRut()+"Cocinero")==true)
 			{
 				Cocinero coc=(Cocinero)emp;
-				arc.escribirTxTCajeros(coc.getRut(), coc.getNombre(), coc.getSueldo(), coc.getEdad());
+				arc.escribirTxTCocineros(coc.getRut(), coc.getNombre(), coc.getSueldo(), coc.getEdad());
 			}
 		}
 	}
@@ -192,7 +192,7 @@ public class TablaEmpleados
 			if(emp.getCodigo().equals(emp.getRut()+"Jefe")==true)
 			{
 				JefeRestaurante jef=(JefeRestaurante)emp;
-				arc.escribirTxTCajeros(jef.getRut(), jef.getNombre(), jef.getEdad(), jef.getSueldo());
+				arc.escribirTxTJefe(jef.getRut(), jef.getNombre(), jef.getEdad(), jef.getSueldo());
 			}
 		}
 	}

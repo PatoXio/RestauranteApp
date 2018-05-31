@@ -1,8 +1,10 @@
 package Ventanas;
 
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -100,12 +102,17 @@ public class AgregarProductoPedido extends JFrame
 						{
 							int codPedido = Integer.parseInt(textPedido.getText());
 							String producto = textProducto.getText();
-							if(restaurante.agregarProductoAlPedido(codMesa, codPedido, producto)==true){
-								JOptionPane.showMessageDialog(null, "Se agrego con exito");
-							}
-							else
-							{
-								JOptionPane.showMessageDialog(null, "No se pudo agregar. Quizas el producto no exista");
+							try {
+								if(restaurante.agregarProductoAlPedido(codMesa, codPedido, producto)==true){
+									JOptionPane.showMessageDialog(null, "Se agrego con exito");
+								}
+								else
+								{
+									JOptionPane.showMessageDialog(null, "No se pudo agregar. Quizas el producto no exista");
+								}
+							} catch (HeadlessException | IOException e1) {
+								JOptionPane.showMessageDialog(null, "No se pudo agregar");
+								e1.printStackTrace();
 							}
 						}
 						else

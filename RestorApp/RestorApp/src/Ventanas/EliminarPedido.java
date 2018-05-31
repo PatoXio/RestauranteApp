@@ -1,8 +1,11 @@
 package Ventanas;
 
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -80,11 +83,16 @@ public class EliminarPedido extends JFrame {
 						if(sec.validarNumeros(textPedido.getText())==true)
 						{
 							int codPedido = Integer.parseInt(textPedido.getText());
-							if(restaurante.eliminarPedido(codMesa, codPedido)==true){
-								JOptionPane.showMessageDialog(null, "Se elimino con exito");
-							}
-							else{
-								JOptionPane.showMessageDialog(null, "No se logro eliminar el pedido. Quizas porque este no existe");
+							try {
+								if(restaurante.eliminarPedido(codMesa, codPedido)==true){
+									JOptionPane.showMessageDialog(null, "Se elimino con exito");
+								}
+								else{
+									JOptionPane.showMessageDialog(null, "No se logro eliminar el pedido. Quizas porque este no existe");
+								}
+							} catch (HeadlessException | IOException e1) {
+								JOptionPane.showMessageDialog(null, "No se logro eliminar. Quizas ya no exista");
+								e1.printStackTrace();
 							}
 						}
 						else

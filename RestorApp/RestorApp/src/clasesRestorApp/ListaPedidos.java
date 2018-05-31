@@ -8,11 +8,13 @@ import javax.swing.JTextArea;
 public class ListaPedidos
 {
 	private ArrayList<Pedido> pedidos;
+	private Archivos arc;
 
 	
 	// Constructor
 	public ListaPedidos()
 	{
+		arc=new Archivos();
 		pedidos = new ArrayList<Pedido>();
 	}
 
@@ -254,6 +256,16 @@ public class ListaPedidos
 		}
 		
 		
+	}
+
+
+	public void escribirTxTMesaPedidoProductos() throws IOException {
+		for(int i=0;i<pedidos.size();i++)
+		{
+			Pedido ped=pedidos.get(i);
+			arc.escribirSoloPedidoTxT(Integer.toString(ped.getidMesa()), Integer.toString(ped.getNumDePedido()));
+			ped.escribirTxTProductosPedido();
+		}
 	}
 	
 	

@@ -11,11 +11,18 @@ import java.util.StringTokenizer; //Para sacar datos de Empleado separados por "
 import javax.swing.JOptionPane;
 
 public class Archivos {
-
+	
+	private Secundaria sec;
+	
+	public Archivos()
+	{
+		sec=new Secundaria();
+	}
+	
 	public void cargarDatos(ListaMesas mesasRestaurante,MapaMenu menuRestaurante,TablaEmpleados empleadosRestaurante)
 	{
-		cargarProductos(menuRestaurante);
 		cargarMesas(mesasRestaurante);
+		cargarProductos(menuRestaurante);
 		cargarPedidos(menuRestaurante,mesasRestaurante);
 		cargarGarzones(empleadosRestaurante);
 		cargarCajeros(empleadosRestaurante);
@@ -54,19 +61,26 @@ public class Archivos {
 		try {
 			s3 = new Scanner(f3);
 			while (s3.hasNextLine() == true) {
-				String linea = s3.nextLine().trim(); //linea = "1:1/1,4,7,12" ---> codMesa:codPedido:pro1,pro2,pro3,pro4
-				lineaSeparada = linea.split(":"); // separo la linea = "1:1/1,4,7,12" por el ":"
+				String linea = s3.nextLine().trim(); //linea = "1:1/1,4,7,12" ---> codMesa,codPedido,pro1,pro2,pro3,pro4
+				lineaSeparada = linea.split(":"); // separo la linea = "1:1/1,4,7,12" por el ","
 				int codMesa = Integer.parseInt(lineaSeparada[0].trim()); //codMesa:1
-				codPedido = Integer.parseInt(lineaSeparada[1].substring(0, 1).trim()); // codPedido:1
-				lineaProductos = lineaSeparada[1].substring(2); //lineaProductos = 1,4,7,12
-				idProductosSeparados = lineaProductos.split(",");
 				Mesa m = mesasRestaurante.obtenerMesa(codMesa);
-				for (int i = 0; i < idProductosSeparados.length && idProductosSeparados[i] != null; i++) { // se va recorriendo el arreglo 
-					Producto producto = menuRestaurante.obtenerProductoEspecifico(idProductosSeparados[i].trim()); // producto sera a una referencia  del objeto producto del menu
-					if (producto != null) {
-						m.agregarPedido(codPedido, producto);
-						m.setEstadoMesa("Ocupada");
+				codPedido = Integer.parseInt(lineaSeparada[1].substring(0, 1).trim()); // codPedido:1
+				if(sec.contarCaracter(linea,"/")>=1)
+				{
+					lineaProductos = lineaSeparada[1].substring(2); //lineaProductos = 1,4,7,12
+					idProductosSeparados = lineaProductos.split(",");
+					for (int i = 0; i < idProductosSeparados.length && idProductosSeparados[i] != null; i++) { // se va recorriendo el arreglo 
+						Producto producto = menuRestaurante.obtenerProductoEspecifico(idProductosSeparados[i].trim()); // producto sera a una referencia  del objeto producto del menu
+						if (producto != null && m!=null) {
+							m.agregarPedido(codPedido, producto);
+							m.setEstadoMesa("Ocupada");
+						}
 					}
+				}
+				else
+				{
+					m.agregarPedido(codPedido);
 				}
 			}
 			s3.close();
@@ -284,24 +298,27 @@ public class Archivos {
 			cargarJefe(empleados);
 		}
 	}
-	public void actualizarMesas(ListaMesas mesasRestaurante)
+	public void actualizarMesas(ListaMesas mesasRestaurante) throws IOException
 	{
 		if(eliminarArchivoTxT("Mesas")==true)
 		{
+			mesasRestaurante.escribirTxTCompletoMesas();
 			cargarMesas(mesasRestaurante);
 		}
 	}
-	public void actualizarProductos(MapaMenu menuRestaurante)
+	public void actualizarProductos(MapaMenu menuRestaurante) throws IOException
 	{
 		if(eliminarArchivoTxT("Productos")==true)
 		{
+			menuRestaurante.escribirTxTCompletoProductos();
 			cargarProductos(menuRestaurante);
 		}
 	}
-	public void actualizarPedidos(ListaMesas mesasRestaurante,MapaMenu menuRestaurante)
+	public void actualizarPedidos(ListaMesas mesasRestaurante,MapaMenu menuRestaurante) throws IOException
 	{
 		if(eliminarArchivoTxT("Pedidos")==true)
 		{
+			mesasRestaurante.escribirTxTCompletoPedidos();
 			cargarPedidos(menuRestaurante,mesasRestaurante);
 		}
 	}
@@ -319,7 +336,7 @@ public class Archivos {
         }
 	}
 	
-	public void escribirTxTMesas(String texto)throws IOException{
+	public void escribirTxTMesas(String i)throws IOException{
 		File file = new File("Mesas.txt");// prepara el archivo para ser manipulado
 		FileWriter escribir; // escribir en el fichero
 		PrintWriter linea; // permite escribir en el ficher de la misma forma que por pantalla 
@@ -328,7 +345,7 @@ public class Archivos {
 			
 			escribir = new FileWriter(file,true);
 			linea = new PrintWriter(escribir);
-			linea.println(texto);
+			linea.println(i);
 			escribir.close();
 			
 			
@@ -450,6 +467,38 @@ public class Archivos {
 			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de pedidos");
 		}
 	}
+	public void escribirSoloPedidoTxT(String codigoMesa,String codigoPedido) throws IOException{
+		File file = new File("Pedidos.txt");// prepara el archivo para ser manipulado		
+		try{
+			
+			FileWriter escribir = new FileWriter(file,true); // escribir en el fichero
+			PrintWriter linea = new PrintWriter(escribir); // permite escribir en el ficher de la misma forma que por pantalla 
+			String texto=codigoMesa + ":" + codigoPedido;
+			linea.print(texto);
+			escribir.close();
+			
+			
+		}catch(FileNotFoundException e){
+			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de pedidos");
+		}
+	}
+
+	public void escribirTxTCodigoProducto(String codPro) throws IOException {
+		File file = new File("Pedidos.txt");
+		try
+		{
+			FileWriter escribir = new FileWriter(file,true);
+			PrintWriter linea =new PrintWriter(escribir);
+			linea.println(codPro);
+			escribir.close();
+		}
+		catch(FileNotFoundException e)
+		{
+			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de pedidos");
+		}
+		
+	}
+	
 	public void crearArchivoReporteMesas(String codigoMesa,String cantidadPedidos,String estadoMesa ) throws IOException{
 		File file = new File("ReporteMesas");// prepara el archivo para ser manipulado
 		FileWriter escribir; // escribir en el fichero
@@ -596,6 +645,7 @@ public class Archivos {
 			JOptionPane.showMessageDialog(null, "Error al abrir el archivo de reporte");
 		}
 	}
+
 
 	
 }

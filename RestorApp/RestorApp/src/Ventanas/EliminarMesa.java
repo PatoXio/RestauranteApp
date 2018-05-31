@@ -1,8 +1,11 @@
 package Ventanas;
 
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -72,12 +75,17 @@ public class EliminarMesa extends JFrame  {
 				{
 					int codMesa = Integer.parseInt(textMesa.getText());
 					if(e.getSource() == botonEliminar){// si el
-							if(restaurante.elminarMesa(codMesa)==true){
-								JOptionPane.showMessageDialog(null, "Se elimino correctamente  mesa.");
-							}
-							else{
-							JOptionPane.showMessageDialog(null, "La mesa no se puedo eliminar.");
-							textMesa.setText("");
+							try {
+								if(restaurante.elminarMesa(codMesa)==true){
+									JOptionPane.showMessageDialog(null, "Se elimino correctamente  mesa.");
+								}
+								else{
+								JOptionPane.showMessageDialog(null, "La mesa no se puedo eliminar.");
+								textMesa.setText("");
+								}
+							} catch (HeadlessException | IOException e1) {
+								JOptionPane.showMessageDialog(null, "Error. Quizas no se encuentre el archivo que se modificara");
+								e1.printStackTrace();
 							}
 					}
 				}
