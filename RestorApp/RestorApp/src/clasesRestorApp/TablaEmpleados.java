@@ -6,6 +6,7 @@ import java.util.Hashtable;
 import java.util.Map;
 
 import javax.swing.JTextArea;
+import javax.swing.text.html.HTMLDocument.Iterator;
 
 
 
@@ -195,8 +196,5 @@ public class TablaEmpleados
 				arc.escribirTxTJefe(jef.getRut(), jef.getNombre(), jef.getEdad(), jef.getSueldo());
 			}
 		}
-	}
-
-
-
+	} 
 }
