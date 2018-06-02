@@ -1,22 +1,25 @@
 package clasesRestorApp;
 
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Map;
 
 import javax.swing.JTextArea;
+import javax.swing.text.html.HTMLDocument.Iterator;
 
 
 
 public class TablaEmpleados
 {
-
+	private Archivos arc;
 	private Hashtable<String,Empleados> tablaDeEmpleados;
 
 	
 	// Constructor
 	public TablaEmpleados()
 	{
+		arc=new Archivos();
 		tablaDeEmpleados = new Hashtable<String, Empleados>();
 	}
 
@@ -30,6 +33,15 @@ public class TablaEmpleados
 	 * proceso.
 	 * 
 	 */
+	public boolean agregarJefe(JefeRestaurante JefePorAgregar) {
+		if (tablaDeEmpleados.containsKey(JefePorAgregar.getRut()) == true)
+		{
+			return false;
+		}
+		tablaDeEmpleados.put(JefePorAgregar.getRut(), JefePorAgregar);
+		return true;
+	}
+	
 	public boolean agregarGarzon(Garzon GarzonPorAgregar)
 	{
 		if (tablaDeEmpleados.containsKey(GarzonPorAgregar.getRut()) == true)
@@ -98,7 +110,7 @@ public class TablaEmpleados
 		for(Map.Entry<String,Empleados> entrada : tablaDeEmpleados.entrySet())
 		{
 			String clave = entrada.getKey(); //guardamos la clave
-			tablaDeEmpleados.get(clave).mostrarEmpleadosArchivo();
+			tablaDeEmpleados.get(clave).mostrarPersonasArchivo();
 		}
 	}
 	
@@ -131,4 +143,58 @@ public class TablaEmpleados
 		return 0;
 	}
 
+	
+
+	public void escribirTxTCompletoGarzones() throws IOException {
+		Enumeration<String> e = tablaDeEmpleados.keys();
+		while(e.hasMoreElements())
+		{
+			String clave=(String) e.nextElement();
+			Empleados emp=tablaDeEmpleados.get(clave);
+			if(emp.getCodigo().equals(emp.getRut()+"Garzon")==true)
+			{
+				Garzon gar=(Garzon)emp;
+				arc.escribirTxTGarzones(gar.getRut(), gar.getNombre(), gar.getSueldo(), gar.getEdad(), gar.getNivelDeIngles(), gar.getMesasAtendidas());
+			}
+		}
+	}
+	public void escribirTxTCompletoCajeros() throws IOException {
+		Enumeration<String> e = tablaDeEmpleados.keys();
+		while(e.hasMoreElements())
+		{
+			String clave=(String) e.nextElement();
+			Empleados emp=tablaDeEmpleados.get(clave);
+			if(emp.getCodigo().equals(emp.getRut()+"Cajero")==true)
+			{
+				Cajero caj=(Cajero)emp;
+				arc.escribirTxTCajeros(caj.getRut(), caj.getNombre(), caj.getSueldo(), caj.getEdad());
+			}
+		}
+	}
+	public void escribirTxTCompletoCocineros() throws IOException {
+		Enumeration<String> e = tablaDeEmpleados.keys();
+		while(e.hasMoreElements())
+		{
+			String clave=(String) e.nextElement();
+			Empleados emp=tablaDeEmpleados.get(clave);
+			if(emp.getCodigo().equals(emp.getRut()+"Cocinero")==true)
+			{
+				Cocinero coc=(Cocinero)emp;
+				arc.escribirTxTCocineros(coc.getRut(), coc.getNombre(), coc.getSueldo(), coc.getEdad());
+			}
+		}
+	}
+	public void escribirTxTCompletoJefe() throws IOException {
+		Enumeration<String> e = tablaDeEmpleados.keys();
+		while(e.hasMoreElements())
+		{
+			String clave=(String) e.nextElement();
+			Empleados emp=tablaDeEmpleados.get(clave);
+			if(emp.getCodigo().equals(emp.getRut()+"Jefe")==true)
+			{
+				JefeRestaurante jef=(JefeRestaurante)emp;
+				arc.escribirTxTJefe(jef.getRut(), jef.getNombre(), jef.getEdad(), jef.getSueldo());
+			}
+		}
+	} 
 }

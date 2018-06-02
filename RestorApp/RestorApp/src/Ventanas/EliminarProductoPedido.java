@@ -1,8 +1,10 @@
 package Ventanas;
 
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,8 +15,13 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import clasesRestorApp.Restaurante;
+import clasesRestorApp.Secundaria;
 
 public class EliminarProductoPedido extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JLabel titulo;
 	private JButton botonEliminarOtro;
@@ -25,6 +32,7 @@ public class EliminarProductoPedido extends JFrame {
 	private JLabel codMesa;
 	private JLabel codPedido;
 	private JLabel codPro;
+	private Secundaria sec;
 	private JButton botonAtras;
 	private JButton botonEliminar;
 	
@@ -32,6 +40,7 @@ public class EliminarProductoPedido extends JFrame {
 		super();
 		this.restaurante = restaurante;
 		configurarVentana();
+		sec=new Secundaria();
 		inicializarComponentes();
 	}
 	private void configurarVentana(){
@@ -84,14 +93,33 @@ public class EliminarProductoPedido extends JFrame {
 		botonEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource() == botonEliminar ){
-					int codMesa = Integer.parseInt(textMesa.getText());
-					int codPedido = Integer.parseInt(textPedido.getText());
-					String producto = textProducto.getText();
-					if(restaurante.eliminarProductoPedido(codMesa, codPedido, producto)==true){
-						JOptionPane.showMessageDialog(null, "Se elimino con exito");
+					if(sec.validarNumeros(textMesa.getText())==true)
+					{
+						int codMesa = Integer.parseInt(textMesa.getText());
+						if(sec.validarNumeros(textPedido.getText())==true)
+						{
+							int codPedido = Integer.parseInt(textPedido.getText());
+							String producto = textProducto.getText();
+							try {
+								if(restaurante.eliminarProductoPedido(codMesa, codPedido, producto)==true){
+									JOptionPane.showMessageDialog(null, "Se elimino con exito");
+								}
+								else{
+									JOptionPane.showMessageDialog(null, "No se elimino con exito. Quizas porque no existe el producto");
+								}
+							} catch (HeadlessException | IOException e1) {
+								JOptionPane.showMessageDialog(null, "Error. Es posible que no exista");
+								e1.printStackTrace();
+							}
+						}
+						else
+						{
+							JOptionPane.showMessageDialog(null, "El codigo del pedido debe ser solo numerico");
+						}
 					}
-					else{
-						JOptionPane.showMessageDialog(null, "No se elimino con exito");
+					else
+					{
+						JOptionPane.showMessageDialog(null, "El codigo de la mesa debe ser solo numerico");
 					}
 				}
 			}

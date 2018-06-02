@@ -11,10 +11,27 @@ import java.util.StringTokenizer; //Para sacar datos de Empleado separados por "
 import javax.swing.JOptionPane;
 
 public class Archivos {
-
+	
+	private Secundaria sec;
+	
+	public Archivos()
+	{
+		sec=new Secundaria();
+	}
+	
 	public void cargarDatos(ListaMesas mesasRestaurante,MapaMenu menuRestaurante,TablaEmpleados empleadosRestaurante)
 	{
-		cargarDatosAlMapaMenu(menuRestaurante);
+		cargarMesas(mesasRestaurante);
+		cargarProductos(menuRestaurante);
+		cargarPedidos(menuRestaurante,mesasRestaurante);
+		cargarGarzones(empleadosRestaurante);
+		cargarCajeros(empleadosRestaurante);
+		cargarCocineros(empleadosRestaurante);
+		cargarJefe(empleadosRestaurante);
+	}
+	
+	public void cargarMesas(ListaMesas mesasRestaurante)
+	{
 		File f2 = new File("Mesas.txt"); // indica el archivo a manipular
 		Scanner s2; // clase para leer los archivos
 		try {
@@ -32,7 +49,9 @@ public class Archivos {
 			JOptionPane.showMessageDialog(null, "Revise los datos del archivo inicial de mesas");
 			e1.printStackTrace();
 		}
-
+	}
+	public void cargarPedidos(MapaMenu menuRestaurante, ListaMesas mesasRestaurante)
+	{
 		File f3 = new File("Pedidos.txt");
 		Scanner s3;
 		int codPedido = 0;
@@ -42,19 +61,26 @@ public class Archivos {
 		try {
 			s3 = new Scanner(f3);
 			while (s3.hasNextLine() == true) {
-				String linea = s3.nextLine().trim(); //linea = "1:1/1,4,7,12" ---> codMesa:codPedido:pro1,pro2,pro3,pro4
-				lineaSeparada = linea.split(":"); // separo la linea = "1:1/1,4,7,12" por el ":"
+				String linea = s3.nextLine().trim(); //linea = "1:1/1,4,7,12" ---> codMesa,codPedido,pro1,pro2,pro3,pro4
+				lineaSeparada = linea.split(":"); // separo la linea = "1:1/1,4,7,12" por el ","
 				int codMesa = Integer.parseInt(lineaSeparada[0].trim()); //codMesa:1
-				codPedido = Integer.parseInt(lineaSeparada[1].substring(0, 1).trim()); // codPedido:1
-				lineaProductos = lineaSeparada[1].substring(2); //lineaProductos = 1,4,7,12
-				idProductosSeparados = lineaProductos.split(",");
 				Mesa m = mesasRestaurante.obtenerMesa(codMesa);
-				for (int i = 0; i < idProductosSeparados.length && idProductosSeparados[i] != null; i++) { // se va recorriendo el arreglo 
-					Producto producto = menuRestaurante.obtenerProductoEspecifico(idProductosSeparados[i].trim()); // producto sera a una referencia  del objeto producto del menu
-					if (producto != null) {
-						m.agregarPedido(codPedido, producto);
-						m.setEstadoMesa("Ocupada");
+				codPedido = Integer.parseInt(lineaSeparada[1].substring(0, 1).trim()); // codPedido:1
+				if(sec.contarCaracter(linea,"/")>=1)
+				{
+					lineaProductos = lineaSeparada[1].substring(2); //lineaProductos = 1,4,7,12
+					idProductosSeparados = lineaProductos.split(",");
+					for (int i = 0; i < idProductosSeparados.length && idProductosSeparados[i] != null; i++) { // se va recorriendo el arreglo 
+						Producto producto = menuRestaurante.obtenerProductoEspecifico(idProductosSeparados[i].trim()); // producto sera a una referencia  del objeto producto del menu
+						if (producto != null && m!=null) {
+							m.agregarPedido(codPedido, producto);
+							m.setEstadoMesa("Ocupada");
+						}
 					}
+				}
+				else
+				{
+					m.agregarPedido(codPedido);
 				}
 			}
 			s3.close();
@@ -64,17 +90,10 @@ public class Archivos {
 			JOptionPane.showMessageDialog(null, "Revise los datos del archivo inicial de pedidos");
 			e1.printStackTrace();
 		}
-		
-		cargarEmpleadosPorTipo(empleadosRestaurante); //Se modulariza para cargar por tipo.
-		
 	}
 	
-	
-	
-	public void cargarEmpleadosPorTipo(TablaEmpleados empleados)
+	public void cargarCajeros(TablaEmpleados empleados)
 	{
-		/**********************CAJEROS*********************************/
-		
 		File f1 = new File("Cajeros.txt"); 
 		Scanner s1; 
 		try {
@@ -105,9 +124,9 @@ public class Archivos {
 			JOptionPane.showMessageDialog(null, "Revise datos de cajeros");
 			e1.printStackTrace();
 		}
-		
-		/*******************Cocineros**************************/
-		
+	}
+	public void cargarCocineros(TablaEmpleados empleados)
+	{
 		File f2 = new File("Cocineros.txt"); 
 		Scanner s2; 
 		try {
@@ -139,9 +158,9 @@ public class Archivos {
 			JOptionPane.showMessageDialog(null, "Revise datos cocineros");
 			e1.printStackTrace();
 		}
-		
-		/***********************Garzones**********************/
-		
+	}
+	public void cargarGarzones(TablaEmpleados empleados)
+	{
 		File f3 = new File("Garzones.txt"); 
 		Scanner s3; 
 		try {
@@ -175,13 +194,46 @@ public class Archivos {
 			JOptionPane.showMessageDialog(null, "Revise datos Garzones");
 			e1.printStackTrace();
 		}
-		
-		
+	}
+	
+	public void cargarJefe(TablaEmpleados empleados)
+	{
+		File f4 = new File("Jefe.txt"); 
+		Scanner s4; 
+		try {
+			s4 = new Scanner(f4);
+			while (s4.hasNextLine() == true)
+			{
+				String linea = s4.nextLine().trim(); 
+				
+				StringTokenizer datos = new StringTokenizer(linea,",");
+				
+				String rut = datos.nextToken().trim();
+				String nombre = datos.nextToken().trim();
+				String edad = datos.nextToken().trim();
+				String sueldo = datos.nextToken().trim(); 
+				
+				int suel=Integer.parseInt(sueldo);
+				int age=Integer.parseInt(edad);
+				
+				JefeRestaurante jefe=new JefeRestaurante(rut,nombre,age,suel);
+				
+				
+				empleados.agregarJefe(jefe);
+			}
+			s4.close(); // se cierra el archivo
+		} catch (FileNotFoundException e) {
+			JOptionPane.showMessageDialog(null, "Error al agregar al Jefe");
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(null, "Revise datos Jefe");
+			e1.printStackTrace();
+		}
 		
 		
 	}
+
 	
-	public void cargarDatosAlMapaMenu(MapaMenu menuRestaurante)
+	public void cargarProductos(MapaMenu menuRestaurante)
 	{
 		File f3 = new File("Productos.txt");
 		Scanner s3;
@@ -205,8 +257,86 @@ public class Archivos {
 			e1.printStackTrace();
 		}
 	}
+	public void actualizarEmpleados(TablaEmpleados empleados) throws IOException
+	{
+		actualizarGarzones(empleados);
+		actualizarCajeros(empleados);
+		actualizarCocineros(empleados);
+		actualizarJefe(empleados);
+	}
 	
-	public void escribirTxTMesas(String texto)throws IOException{
+	public void actualizarGarzones(TablaEmpleados empleados) throws IOException
+	{
+		if(eliminarArchivoTxT("Garzones")==true)
+		{
+			empleados.escribirTxTCompletoGarzones();
+			cargarGarzones(empleados);
+		}
+	}
+
+	public void actualizarCajeros(TablaEmpleados empleados) throws IOException
+	{
+		if(eliminarArchivoTxT("Cajeros")==true)
+		{
+			empleados.escribirTxTCompletoCajeros();
+			cargarCajeros(empleados);
+		}
+	}
+	public void actualizarCocineros(TablaEmpleados empleados) throws IOException
+	{
+		if(eliminarArchivoTxT("Cocineros")==true)
+		{
+			empleados.escribirTxTCompletoCocineros();
+			cargarCocineros(empleados);
+		}
+	}
+	public void actualizarJefe(TablaEmpleados empleados) throws IOException
+	{
+		if(eliminarArchivoTxT("Jefe")==true)
+		{
+			empleados.escribirTxTCompletoJefe();
+			cargarJefe(empleados);
+		}
+	}
+	public void actualizarMesas(ListaMesas mesasRestaurante) throws IOException
+	{
+		if(eliminarArchivoTxT("Mesas")==true)
+		{
+			mesasRestaurante.escribirTxTCompletoMesas();
+			cargarMesas(mesasRestaurante);
+		}
+	}
+	public void actualizarProductos(MapaMenu menuRestaurante) throws IOException
+	{
+		if(eliminarArchivoTxT("Productos")==true)
+		{
+			menuRestaurante.escribirTxTCompletoProductos();
+			cargarProductos(menuRestaurante);
+		}
+	}
+	public void actualizarPedidos(ListaMesas mesasRestaurante,MapaMenu menuRestaurante) throws IOException
+	{
+		if(eliminarArchivoTxT("Pedidos")==true)
+		{
+			mesasRestaurante.escribirTxTCompletoPedidos();
+			cargarPedidos(menuRestaurante,mesasRestaurante);
+		}
+	}
+	
+	public boolean eliminarArchivoTxT(String nombreArchivo)
+	{
+		try{
+            File archivo = new File(nombreArchivo+".txt");
+            boolean estatus = archivo.delete();
+            return estatus;
+        }catch(Exception e)
+        {
+			JOptionPane.showMessageDialog(null, "El archivo no existe");
+            return false;
+        }
+	}
+	
+	public void escribirTxTMesas(String i)throws IOException{
 		File file = new File("Mesas.txt");// prepara el archivo para ser manipulado
 		FileWriter escribir; // escribir en el fichero
 		PrintWriter linea; // permite escribir en el ficher de la misma forma que por pantalla 
@@ -215,7 +345,7 @@ public class Archivos {
 			
 			escribir = new FileWriter(file,true);
 			linea = new PrintWriter(escribir);
-			linea.println(texto);
+			linea.println(i);
 			escribir.close();
 			
 			
@@ -232,7 +362,7 @@ public class Archivos {
 			
 			escribir = new FileWriter(file,true);
 			linea = new PrintWriter(escribir);
-			String texto=rut + ", " + nombre +", "+ sueldo +", " + edad + ", " + nivelDeIngles + ", " + mesasAtendidas;
+			String texto=rut + "," + nombre +","+ sueldo +"," + edad + "," + nivelDeIngles + "," + mesasAtendidas;
 			linea.println(texto);
 			escribir.close();
 			
@@ -250,7 +380,7 @@ public class Archivos {
 			
 			escribir = new FileWriter(file,true);
 			linea = new PrintWriter(escribir);
-			String texto=rut + ", " + nombre +", "+ sueldo +", " + edad;
+			String texto=rut + "," + nombre +","+ sueldo +"," + edad;
 			linea.println(texto);
 			escribir.close();
 			
@@ -259,6 +389,26 @@ public class Archivos {
 			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de Cocineros");
 		}
 	}
+	public void escribirTxTJefe(String rut, String nombre, int edad, int sueldo) throws IOException
+	{
+		File file = new File("Jefe.txt");// prepara el archivo para ser manipulado
+		FileWriter escribir; // escribir en el fichero
+		PrintWriter linea; // permite escribir en el ficher de la misma forma que por pantalla 
+		
+		try{
+			
+			escribir = new FileWriter(file,true);
+			linea = new PrintWriter(escribir);
+			String texto=rut + "," + nombre +","+ edad +"," + sueldo;
+			linea.println(texto);
+			escribir.close();
+			
+			
+		}catch(FileNotFoundException e){
+			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial del Jefe");
+		}
+	}
+	
 	public void escribirTxTCajeros(String rut, String nombre, int sueldo, int edad) throws IOException{
 		File file = new File("Cajeros.txt");// prepara el archivo para ser manipulado
 		FileWriter escribir; // escribir en el fichero
@@ -268,7 +418,7 @@ public class Archivos {
 			
 			escribir = new FileWriter(file,true);
 			linea = new PrintWriter(escribir);
-			String texto=rut + ", " + nombre +", "+ sueldo +", " + edad;
+			String texto=rut + "," + nombre +","+ sueldo +"," + edad;
 			linea.println(texto);
 			escribir.close();
 			
@@ -287,7 +437,7 @@ public class Archivos {
 			
 			escribir = new FileWriter(file,true);
 			linea = new PrintWriter(escribir);
-			String texto=codigo + ", " + nombre + ", " + cantidad + ", " + precio;
+			String texto=codigo + "," + nombre + "," + cantidad + "," + precio;
 			linea.println(texto);
 			escribir.close();
 			
@@ -317,6 +467,38 @@ public class Archivos {
 			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de pedidos");
 		}
 	}
+	public void escribirSoloPedidoTxT(String codigoMesa,String codigoPedido) throws IOException{
+		File file = new File("Pedidos.txt");// prepara el archivo para ser manipulado		
+		try{
+			
+			FileWriter escribir = new FileWriter(file,true); // escribir en el fichero
+			PrintWriter linea = new PrintWriter(escribir); // permite escribir en el ficher de la misma forma que por pantalla 
+			String texto=codigoMesa + ":" + codigoPedido;
+			linea.print(texto);
+			escribir.close();
+			
+			
+		}catch(FileNotFoundException e){
+			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de pedidos");
+		}
+	}
+
+	public void escribirTxTCodigoProducto(String codPro) throws IOException {
+		File file = new File("Pedidos.txt");
+		try
+		{
+			FileWriter escribir = new FileWriter(file,true);
+			PrintWriter linea =new PrintWriter(escribir);
+			linea.println(codPro);
+			escribir.close();
+		}
+		catch(FileNotFoundException e)
+		{
+			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de pedidos");
+		}
+		
+	}
+	
 	public void crearArchivoReporteMesas(String codigoMesa,String cantidadPedidos,String estadoMesa ) throws IOException{
 		File file = new File("ReporteMesas");// prepara el archivo para ser manipulado
 		FileWriter escribir; // escribir en el fichero
@@ -326,9 +508,9 @@ public class Archivos {
 			if(file.exists()==true){
 				escribir = new FileWriter(file,true);
 				linea = new PrintWriter(escribir);
-				linea.println("codeMesa" + ":" + codigoMesa);
-				linea.println("cantidadDePedidos" + ":" + cantidadPedidos);
-				linea.println("estadoMesa" + ":" + estadoMesa);
+				linea.println("CodeMesa" + ":" + codigoMesa);
+				linea.println("CantidadDePedidos" + ":" + cantidadPedidos);
+				linea.println("EstadoMesa" + ":" + estadoMesa);
 				linea.println();
 				
 				escribir.close();
@@ -338,9 +520,9 @@ public class Archivos {
 				escribir = new FileWriter("ReporteMesas"); 
 				
 				linea = new PrintWriter(escribir);
-				linea.println("codeMesa" + ":" + codigoMesa);
-				linea.println("cantidadDePedidos" + ":" + cantidadPedidos);
-				linea.println("estadoMesa" + ":" + estadoMesa);
+				linea.println("EodeMesa" + ":" + codigoMesa);
+				linea.println("CantidadDePedidos" + ":" + cantidadPedidos);
+				linea.println("EstadoMesa" + ":" + estadoMesa);
 				linea.println();
 				
 				escribir.close();
@@ -463,5 +645,7 @@ public class Archivos {
 			JOptionPane.showMessageDialog(null, "Error al abrir el archivo de reporte");
 		}
 	}
+
+
 	
 }

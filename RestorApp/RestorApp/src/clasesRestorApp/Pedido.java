@@ -1,5 +1,6 @@
 package clasesRestorApp;
 
+import java.io.IOException;
 import java.util.*;
 
 import javax.swing.JTextArea;
@@ -14,6 +15,7 @@ public class Pedido
 	private int idMesa;
 	private int precioTotalDelPedido;
 	private Hashtable<Producto, Integer> productosPedidos;
+	private Archivos arc;
 
 	// Constructor
 	public Pedido()
@@ -28,6 +30,7 @@ public class Pedido
 		this.numDePedido = numDePedido;
 		this.idMesa = idMesa;
 		precioTotalDelPedido = 0;
+		arc=new Archivos();
 		productosPedidos = new Hashtable<Producto, Integer>();
 	}
 
@@ -130,6 +133,18 @@ public class Pedido
 	public void mostrar(JTextArea textArea) 
 	{	
 		textArea.append("\n\n" + obtenerInformacion() +"\n\n");
+	}
+	public void escribirTxTProductosPedido() throws IOException {
+		Enumeration<Producto> key = productosPedidos.keys();
+		if(key.hasMoreElements())
+		{
+			String codPro=",";
+			while(key.hasMoreElements())
+			{
+				codPro =codPro+","+key.nextElement().getCodeProducto();
+			}
+			arc.escribirTxTCodigoProducto(codPro);
+		}
 	}
 
 	

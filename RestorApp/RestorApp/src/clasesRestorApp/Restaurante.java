@@ -14,7 +14,7 @@ public class Restaurante
 	private Archivos arc;
 	
 	// Constructores
-	public Restaurante()
+	public Restaurante() throws IOException
 	{
 		nombre=null;
 		direccion=null;
@@ -32,7 +32,11 @@ public class Restaurante
 		empleadosRestaurante = new TablaEmpleados();
 		menuRestaurante = new MapaMenu();
 		arc = new Archivos(); //se crea un espacio de memoria para los archivos
-		arc.cargarDatos(mesasRestaurante,menuRestaurante,empleadosRestaurante); //falta empleados
+		arc.cargarDatos(mesasRestaurante,menuRestaurante,empleadosRestaurante);
+		arc.actualizarEmpleados(empleadosRestaurante);
+		arc.actualizarMesas(mesasRestaurante);
+		arc.actualizarProductos(menuRestaurante);
+		arc.actualizarPedidos(mesasRestaurante, menuRestaurante);
 	}
 	
 	// Getter & Setter
@@ -59,6 +63,13 @@ public class Restaurante
 	 * 
 	 * 
 	 */
+	public boolean agregarJefe(String rut,String nombre,int edad, int sueldo) throws IOException
+	{
+		JefeRestaurante nuevo=new JefeRestaurante(rut,nombre,edad,sueldo);
+		arc.escribirTxTJefe(rut,nombre,edad,sueldo);
+		return empleadosRestaurante.agregarJefe(nuevo);
+	}
+	
 	public boolean agregarGarzon(String rut, String nombre, int sueldo, int edad, String nivelDeIngles,int mesasAtendidas) throws IOException
 	{
 		Garzon nuevo = new Garzon(rut,nombre,sueldo,edad,nivelDeIngles,mesasAtendidas);
@@ -137,12 +148,15 @@ public class Restaurante
 	 * Si ambos no son null, entonces se llama al metodo del objeto mesa para verificar si
 	 * se puedo agregar el producto. Basta con que uno sea null para que retorne false.
 	 */
-	public boolean agregarProductoAlPedido(int codMesa,int codigoPedido,String codProducto)
+	public boolean agregarProductoAlPedido(int codMesa,int codigoPedido,String codProducto) throws IOException
 	{
 		Mesa mesa = mesasRestaurante.obtenerMesa(codMesa);
 		Producto producto = menuRestaurante.obtenerProductoEspecifico(codProducto);
 		if(mesa !=null && producto!=null){
-			return mesa.agregarProductoAPedido(codigoPedido, producto);
+			if(mesa.agregarProductoAPedido(codigoPedido, producto)==true)
+			{
+				arc.actualizarPedidos(mesasRestaurante, menuRestaurante);
+			}
 		}
 		return false;
 	}
@@ -157,11 +171,12 @@ public class Restaurante
 	 * retornara false en caso que la mesa no se haya podido eliminar
 	 * retornara false si la lista de mesas era null
 	 */
-	public boolean elminarMesa(int codigoMesa)
+	public boolean elminarMesa(int codigoMesa) throws IOException
 	{
 		if(mesasRestaurante!=null){
 			if(mesasRestaurante.buscarMesa(codigoMesa) == true){
 				if(mesasRestaurante.eliminarMesa(codigoMesa)==true){
+					arc.actualizarMesas(mesasRestaurante);
 					return true;
 				}
 				
@@ -183,11 +198,12 @@ public class Restaurante
 	 * retornara false si no se pudo eliminar
 	 * retornara false si no se encontro la mesa 
 	 */
-	public boolean eliminarPedido(int codMesa,int codPedido)
+	public boolean eliminarPedido(int codMesa,int codPedido) throws IOException
 	{
 		if(mesasRestaurante.buscarMesa(codMesa) == true){
 			Mesa mesa = mesasRestaurante.obtenerMesa(codMesa);
 			if(mesa.elimnarPedido(codPedido)==true){
+				arc.actualizarPedidos(mesasRestaurante, menuRestaurante);
 				return true;
 			}
 			else{
@@ -206,9 +222,17 @@ public class Restaurante
 	 * retornara true si fue posible eliminar el producto
 	 * Retornara false en caso contrario
 	 */
-	public boolean eliminarProductoMenu(String idProducto)
+	public boolean eliminarProductoMenu(String idProducto) throws IOException
 	{
-		return menuRestaurante.eliminarProductoDelMenu(idProducto);
+		if(menuRestaurante.eliminarProductoDelMenu(idProducto)==true)
+		{
+			arc.actualizarProductos(menuRestaurante);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
 	
@@ -223,14 +247,18 @@ public class Restaurante
 	 * rerornara false si no fue posible eliminarlo
 	 * retornara false en cualquier otro caso que donde los objetos instanciados sean null
 	 */
-	public boolean eliminarProductoPedido(int codMesa,int codigoPedido,String codProducto)
+	public boolean eliminarProductoPedido(int codMesa,int codigoPedido,String codProducto) throws IOException
 	{
 		Mesa mesa = mesasRestaurante.obtenerMesa(codMesa);
 		Producto producto = menuRestaurante.obtenerProductoEspecifico(codProducto);
 		if(mesa !=null && producto!=null){
-			return mesa.eliminarProductoAPedido(codigoPedido, producto);
+			if(mesa.eliminarProductoAPedido(codigoPedido, producto)==true)
+			{
+				arc.actualizarProductos(menuRestaurante);
+				arc.actualizarPedidos(mesasRestaurante, menuRestaurante);
+				return true;
+			}
 		}
-			
 		return false;
 	}
 	
@@ -250,9 +278,6 @@ public class Restaurante
 	{
 		return mesasRestaurante.buscarMesa(id);
 	}
-	
-	
-	
 	
 	/*
 	 * 

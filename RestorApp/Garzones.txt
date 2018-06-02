@@ -1,2 +1,1 @@
-19617161-4, Patricio Torres, 100000, 20, Bajo, 400
-55555555-5, Garzon Cinco, 500000,55, Medio, 500
+19617161-4,Patricio Torres,500000,20,Bajo,400

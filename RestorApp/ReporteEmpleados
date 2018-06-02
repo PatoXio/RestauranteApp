@@ -343,9 +343,356 @@ Nombre: Cocinero Dos
 Edad: 22
 Salario: 200000
 
+<<<<<<< HEAD
 Rut: 19758188-3
 Nombre: Manueeel
 Edad: 20
+Salario: 500000
+
+=======
+Rut: 19617161-4
+Nombre: Patricio Torres
+Edad: 20
+Salario: 274400
+
+Rut: 44444444-4
+Nombre: Cocinero Cuatro
+Edad: 44
+Salario: 400000
+
+Rut: 55555555-5
+Nombre: Garzon Cinco
+Edad: 55
+Salario: 500000
+
+Rut: 33333333-3
+Nombre: Cajero Tres
+Edad: 33
+Salario: 300000
+
+Rut: 11111111-1
+Nombre: Cajero Uno
+Edad: 11
+Salario: 100000
+
+Rut: 22222222-2
+Nombre: Cocinero Dos
+Edad: 22
+Salario: 200000
+
+Rut: 19617161-4
+Nombre: Patricio Torres
+Edad: 20
+Salario: 500000
+
+Rut: 44444444-4
+Nombre: Cocinero Cuatro
+Edad: 44
+Salario: 400000
+
+Rut: 55555555-5
+Nombre: Garzon Cinco
+Edad: 55
+Salario: 500000
+
+Rut: 33333333-3
+Nombre: Cajero Tres
+Edad: 33
+Salario: 300000
+
+Rut: 11111111-1
+Nombre: Cajero Uno
+Edad: 11
+Salario: 100000
+
+Rut: 22222222-2
+Nombre: Cocinero Dos
+Edad: 22
+Salario: 200000
+
+Rut: 19617161-4
+Nombre: Patricio Torres
+Edad: 20
+Salario: 140000
+
+Rut: 44444444-4
+Nombre: Cocinero Cuatro
+Edad: 44
+Salario: 400000
+
+Rut: 55555555-5
+Nombre: Garzon Cinco
+Edad: 55
+Salario: 500000
+
+Rut: 33333333-3
+Nombre: Cajero Tres
+Edad: 33
+Salario: 300000
+
+Rut: 11111111-1
+Nombre: Cajero Uno
+Edad: 11
+Salario: 100000
+
+Rut: 22222222-2
+Nombre: Cocinero Dos
+Edad: 22
+Salario: 200000
+
+Rut: 19617161-4
+Nombre: Patricio Torres
+Edad: 20
+Salario: 140000
+
+Rut: 44444444-4
+Nombre: Cocinero Cuatro
+Edad: 44
+Salario: 400000
+
+Rut: 55555555-5
+Nombre: Garzon Cinco
+Edad: 55
+Salario: 500000
+
+Rut: 33333333-3
+Nombre: Cajero Tres
+Edad: 33
+Salario: 300000
+
+Rut: 11111111-1
+Nombre: Cajero Uno
+Edad: 11
+Salario: 100000
+
+Rut: 22222222-2
+Nombre: Cocinero Dos
+Edad: 22
+Salario: 200000
+
+Rut: 19617161-4
+Nombre: Patricio Torres
+Edad: 20
+Salario: 140000
+
+Rut: 44444444-4
+Nombre: Cocinero Cuatro
+Edad: 44
+Salario: 400000
+
+Rut: 55555555-5
+Nombre: Garzon Cinco
+Edad: 55
+Salario: 500000
+
+Rut: 33333333-3
+Nombre: Cajero Tres
+Edad: 33
+Salario: 300000
+
+Rut: 11111111-1
+Nombre: Cajero Uno
+Edad: 11
+Salario: 100000
+
+Rut: 22222222-2
+Nombre: Cocinero Dos
+Edad: 22
+Salario: 200000
+
+Rut: 19617161-4
+Nombre: Patricio Torres
+Edad: 20
+Salario: 140000
+
+Rut: 44444444-4
+Nombre: Cocinero Cuatro
+Edad: 44
+Salario: 400000
+
+Rut: 55555555-5
+Nombre: Garzon Cinco
+Edad: 55
+Salario: 500000
+
+Rut: 33333333-3
+Nombre: Cajero Tres
+Edad: 33
+Salario: 300000
+
+Rut: 11111111-1
+Nombre: Cajero Uno
+Edad: 11
+Salario: 100000
+
+Rut: 22222222-2
+Nombre: Cocinero Dos
+Edad: 22
+Salario: 200000
+
+Rut: 19617161-4
+Nombre: Patricio Torres
+Edad: 20
+Salario: 140000
+
+Rut: 44444444-4
+Nombre: Cocinero Cuatro
+Edad: 44
+Salario: 400000
+
+Rut: 17563857-k
+Nombre del Jefe: JuanCarlos
+Edad: 54
+Salario: 2000000
+
+Rut: 55555555-5
+Nombre: Garzon Cinco
+Edad: 55
+Salario: 500000
+
+Rut: 33333333-3
+Nombre: Cajero Tres
+Edad: 33
+Salario: 300000
+
+Rut: 11111111-1
+Nombre: Cajero Uno
+Edad: 11
+Salario: 100000
+
+Rut: 22222222-2
+Nombre: Cocinero Dos
+Edad: 22
+Salario: 200000
+
+Rut: 19617161-4
+Nombre: Patricio Torres
+Edad: 20
+Salario: 140000
+
+Rut: 44444444-4
+Nombre: Cocinero Cuatro
+Edad: 44
+Salario: 400000
+
+
+/////JEFE/////
+Rut: 17563857-k
+Nombre: JuanCarlos
+Edad: 54
+Salario: 2000000
+/////JEFE/////
+
+
+Rut: 55555555-5
+Nombre: Garzon Cinco
+Edad: 55
+Salario: 500000
+
+Rut: 33333333-3
+Nombre: Cajero Tres
+Edad: 33
+Salario: 300000
+
+Rut: 11111111-1
+Nombre: Cajero Uno
+Edad: 11
+Salario: 100000
+
+Rut: 22222222-2
+Nombre: Cocinero Dos
+Edad: 22
+Salario: 200000
+
+>>>>>>> 2b161d705622b4b02712737457ee60c299e6bca7
+Rut: 19617161-4
+Nombre: Patricio Torres
+Edad: 20
+Salario: 140000
+
+<<<<<<< HEAD
+=======
+Rut: 44444444-4
+Nombre: Cocinero Cuatro
+Edad: 44
+Salario: 400000
+
+
+////////////////////JEFE////////////////////
+Rut: 17563857-k
+Nombre: JuanCarlos
+Edad: 54
+Salario: 2000000
+////////////////////JEFE////////////////////
+
+
+Rut: 55555555-5
+Nombre: Garzon Cinco
+Edad: 55
+Salario: 500000
+
+Rut: 33333333-3
+Nombre: Cajero Tres
+Edad: 33
+Salario: 300000
+
+Rut: 11111111-1
+Nombre: Cajero Uno
+Edad: 11
+Salario: 100000
+
+Rut: 22222222-2
+Nombre: Cocinero Dos
+Edad: 22
+Salario: 200000
+
+Rut: 19617161-4
+Nombre: Patricio Torres
+Edad: 20
+Salario: 140000
+
+Rut: 44444444-4
+Nombre: Cocinero Cuatro
+Edad: 44
+Salario: 400000
+
+
+////////////////////-Jefe-////////////////////
+Rut: 17563857-k
+Nombre: JuanCarlos
+Edad: 54
+Salario: 2000000
+////////////////////-Jefe-////////////////////
+
+
+Rut: 55555555-5
+Nombre: Garzon Cinco
+Edad: 55
+Salario: 500000
+
+Rut: 33333333-3
+Nombre: Cajero Tres
+Edad: 33
+Salario: 300000
+
+Rut: 11111111-1
+Nombre: Cajero Uno
+Edad: 11
+Salario: 100000
+
+Rut: 22222222-2
+Nombre: Cocinero Dos
+Edad: 22
+Salario: 200000
+
+Rut: 19617161-4
+Nombre: Patricio Torres
+Edad: 20
+Salario: 140000
+
+Rut: 55555555-5
+Nombre: Garzon Cinco
+Edad: 55
 Salario: 500000
 
 Rut: 19617161-4
@@ -353,3 +700,637 @@ Nombre: Patricio Torres
 Edad: 20
 Salario: 140000
 
+Rut: 55555555-5
+Nombre: Garzon Cinco
+Edad: 55
+Salario: 500000
+
+Rut: 19617161-4
+Nombre: Patricio Torres
+Edad: 20
+Salario: 140000
+
+Rut: 44444444-4
+Nombre: Cocinero Cuatro
+Edad: 44
+Salario: 400000
+
+
+////////////////////-Jefe-////////////////////
+Rut: 17563857-k
+Nombre: JuanCarlos
+Edad: 54
+Salario: 2000000
+////////////////////-Jefe-////////////////////
+
+
+Rut: 33333333-3
+Nombre: Cajero Tres
+Edad: 33
+Salario: 300000
+
+Rut: 11111111-1
+Nombre: Cajero Uno
+Edad: 11
+Salario: 100000
+
+Rut: 55555555-5
+Nombre: Garzon Cinco
+Edad: 55
+Salario: 500000
+
+Rut: 22222222-2
+Nombre: Cocinero Dos
+Edad: 22
+Salario: 200000
+
+Rut: 19617161-4
+Nombre: Patricio Torres
+Edad: 20
+Salario: 140000
+
+Rut: 44444444-4
+Nombre: Cocinero Cuatro
+Edad: 44
+Salario: 400000
+
+
+////////////////////-Jefe-////////////////////
+Rut: 17563857-k
+Nombre: JuanCarlos
+Edad: 54
+Salario: 2000000
+////////////////////-Jefe-////////////////////
+
+
+Rut: 33333333-3
+Nombre: Cajero Tres
+Edad: 33
+Salario: 300000
+
+Rut: 11111111-1
+Nombre: Cajero Uno
+Edad: 11
+Salario: 100000
+
+Rut: 55555555-5
+Nombre: Garzon Cinco
+Edad: 55
+Salario: 500000
+
+Rut: 22222222-2
+Nombre: Cocinero Dos
+Edad: 22
+Salario: 200000
+
+Rut: 19617161-4
+Nombre: Patricio Torres
+Edad: 20
+Salario: 140000
+
+Rut: 44444444-4
+Nombre: Cocinero Cuatro
+Edad: 44
+Salario: 400000
+
+
+////////////////////-Jefe-////////////////////
+Rut: 17563857-k
+Nombre: JuanCarlos
+Edad: 54
+Salario: 2000000
+////////////////////-Jefe-////////////////////
+
+
+Rut: 33333333-3
+Nombre: Cajero Tres
+Edad: 33
+Salario: 300000
+
+Rut: 11111111-1
+Nombre: Cajero Uno
+Edad: 11
+Salario: 100000
+
+Rut: 22222222-2
+Nombre: Cocinero Dos
+Edad: 22
+Salario: 200000
+
+Rut: 44444444-4
+Nombre: Cocinero Cuatro
+Edad: 44
+Salario: 400000
+
+
+////////////////////-Jefe-////////////////////
+Rut: 17563857-k
+Nombre: JuanCarlos
+Edad: 54
+Salario: 2000000
+////////////////////-Jefe-////////////////////
+
+
+Rut: 33333333-3
+Nombre: Cajero Tres
+Edad: 33
+Salario: 300000
+
+Rut: 11111111-1
+Nombre: Cajero Uno
+Edad: 11
+Salario: 100000
+
+Rut: 22222222-2
+Nombre: Cocinero Dos
+Edad: 22
+Salario: 200000
+
+Rut: 44444444-4
+Nombre: Cocinero Cuatro
+Edad: 44
+Salario: 400000
+
+
+////////////////////-Jefe-////////////////////
+Rut: 17563857-k
+Nombre: JuanCarlos
+Edad: 54
+Salario: 2000000
+////////////////////-Jefe-////////////////////
+
+
+Rut: 33333333-3
+Nombre: Cajero Tres
+Edad: 33
+Salario: 300000
+
+Rut: 11111111-1
+Nombre: Cajero Uno
+Edad: 11
+Salario: 100000
+
+Rut: 22222222-2
+Nombre: Cocinero Dos
+Edad: 22
+Salario: 200000
+
+Rut: 19617161-4
+Nombre: Patricio Torres
+Edad: 20
+Salario: 140000
+
+Rut: 44444444-4
+Nombre: Cocinero Cuatro
+Edad: 44
+Salario: 400000
+
+
+////////////////////-Jefe-////////////////////
+Rut: 17563857-k
+Nombre: JuanCarlos
+Edad: 54
+Salario: 2000000
+////////////////////-Jefe-////////////////////
+
+
+Rut: 33333333-3
+Nombre: Cajero Tres
+Edad: 33
+Salario: 300000
+
+Rut: 11111111-1
+Nombre: Cajero Uno
+Edad: 11
+Salario: 100000
+
+Rut: 22222222-2
+Nombre: Cocinero Dos
+Edad: 22
+Salario: 200000
+
+Rut: 44444444-4
+Nombre: Cocinero Cuatro
+Edad: 44
+Salario: 400000
+
+
+////////////////////-Jefe-////////////////////
+Rut: 17563857-k
+Nombre: JuanCarlos
+Edad: 54
+Salario: 2000000
+////////////////////-Jefe-////////////////////
+
+
+Rut: 33333333-3
+Nombre: Cajero Tres
+Edad: 33
+Salario: 300000
+
+Rut: 11111111-1
+Nombre: Cajero Uno
+Edad: 11
+Salario: 100000
+
+Rut: 22222222-2
+Nombre: Cocinero Dos
+Edad: 22
+Salario: 200000
+
+Rut: 19617161-4
+Nombre: Patricio Torres
+Edad: 20
+Salario: 140000
+
+Rut: 44444444-4
+Nombre: Cocinero Cuatro
+Edad: 44
+Salario: 400000
+
+
+////////////////////-Jefe-////////////////////
+Rut: 17563857-k
+Nombre: JuanCarlos
+Edad: 54
+Salario: 2000000
+////////////////////-Jefe-////////////////////
+
+
+Rut: 33333333-3
+Nombre: Cajero Tres
+Edad: 33
+Salario: 300000
+
+Rut: 11111111-1
+Nombre: Cajero Uno
+Edad: 11
+Salario: 100000
+
+Rut: 22222222-2
+Nombre: Cocinero Dos
+Edad: 22
+Salario: 200000
+
+Rut: 19617161-4
+Nombre: Patricio Torres
+Edad: 20
+Salario: 500000
+
+
+////////////////////-Jefe-////////////////////
+Rut: 77777777-7
+Nombre: Ruperto
+Edad: 67
+Salario: 2000000
+////////////////////-Jefe-////////////////////
+
+
+Rut: 44444444-4
+Nombre: Cocinero Cuatro
+Edad: 44
+Salario: 400000
+
+Rut: 33333333-3
+Nombre: Cajero Tres
+Edad: 33
+Salario: 300000
+
+Rut: 11111111-1
+Nombre: Cajero Uno
+Edad: 11
+Salario: 100000
+
+Rut: 17563857-k
+Nombre: JuanCarlos
+Edad: 2000000
+Salario: 54
+
+Rut: 22222222-2
+Nombre: Cocinero Dos
+Edad: 22
+Salario: 200000
+
+Rut: 19617161-4
+Nombre: Patricio Torres
+Edad: 20
+Salario: 500000
+
+
+////////////////////-Jefe-////////////////////
+Rut: 77777777-7
+Nombre: Ruperto
+Edad: 67
+Salario: 2000000
+////////////////////-Jefe-////////////////////
+
+
+Rut: 44444444-4
+Nombre: Cocinero Cuatro
+Edad: 44
+Salario: 400000
+
+Rut: 33333333-3
+Nombre: Cajero Tres
+Edad: 33
+Salario: 300000
+
+Rut: 11111111-1
+Nombre: Cajero Uno
+Edad: 11
+Salario: 100000
+
+Rut: 17563857-k
+Nombre: JuanCarlos
+Edad: 43
+Salario: 20000
+
+Rut: 22222222-2
+Nombre: Cocinero Dos
+Edad: 22
+Salario: 200000
+
+Rut: 19617161-4
+Nombre: Patricio Torres
+Edad: 20
+Salario: 500000
+
+
+////////////////////-Jefe-////////////////////
+Rut: 77777777-7
+Nombre: Ruperto
+Edad: 67
+Salario: 2000000
+////////////////////-Jefe-////////////////////
+
+
+Rut: 44444444-4
+Nombre: Cocinero Cuatro
+Edad: 44
+Salario: 400000
+
+Rut: 33333333-3
+Nombre: Cajero Tres
+Edad: 33
+Salario: 300000
+
+Rut: 11111111-1
+Nombre: Cajero Uno
+Edad: 11
+Salario: 100000
+
+Rut: 17563857-k
+Nombre: JuanCarlos
+Edad: 43
+Salario: 20000
+
+Rut: 22222222-2
+Nombre: Cocinero Dos
+Edad: 22
+Salario: 200000
+
+Rut: 19617161-4
+Nombre: Patricio Torres
+Edad: 20
+Salario: 500000
+
+
+////////////////////-Jefe-////////////////////
+Rut: 77777777-7
+Nombre: Ruperto
+Edad: 67
+Salario: 2000000
+////////////////////-Jefe-////////////////////
+
+
+Rut: 44444444-4
+Nombre: Cocinero Cuatro
+Edad: 44
+Salario: 400000
+
+Rut: 33333333-3
+Nombre: Cajero Tres
+Edad: 33
+Salario: 300000
+
+Rut: 11111111-1
+Nombre: Cajero Uno
+Edad: 11
+Salario: 100000
+
+Rut: 17563857-k
+Nombre: JuanCarlos
+Edad: 43
+Salario: 20000
+
+Rut: 22222222-2
+Nombre: Cocinero Dos
+Edad: 22
+Salario: 200000
+
+Rut: 19617161-4
+Nombre: Patricio Torres
+Edad: 20
+Salario: 500000
+
+
+////////////////////-Jefe-////////////////////
+Rut: 77777777-7
+Nombre: Ruperto
+Edad: 67
+Salario: 2000000
+////////////////////-Jefe-////////////////////
+
+
+Rut: 44444444-4
+Nombre: Cocinero Cuatro
+Edad: 44
+Salario: 400000
+
+Rut: 33333333-3
+Nombre: Cajero Tres
+Edad: 33
+Salario: 300000
+
+Rut: 11111111-1
+Nombre: Cajero Uno
+Edad: 11
+Salario: 100000
+
+Rut: 17563857-k
+Nombre: JuanCarlos
+Edad: 43
+Salario: 20000
+
+Rut: 22222222-2
+Nombre: Cocinero Dos
+Edad: 22
+Salario: 200000
+
+Rut: 19617161-4
+Nombre: Patricio Torres
+Edad: 20
+Salario: 500000
+
+
+////////////////////-Jefe-////////////////////
+Rut: 77777777-7
+Nombre: Ruperto
+Edad: 67
+Salario: 2000000
+////////////////////-Jefe-////////////////////
+
+
+Rut: 44444444-4
+Nombre: Cocinero Cuatro
+Edad: 44
+Salario: 400000
+
+Rut: 33333333-3
+Nombre: Cajero Tres
+Edad: 33
+Salario: 300000
+
+Rut: 11111111-1
+Nombre: Cajero Uno
+Edad: 11
+Salario: 100000
+
+Rut: 17563857-k
+Nombre: JuanCarlos
+Edad: 43
+Salario: 20000
+
+Rut: 22222222-2
+Nombre: Cocinero Dos
+Edad: 22
+Salario: 200000
+
+Rut: 19617161-4
+Nombre: Patricio Torres
+Edad: 20
+Salario: 500000
+
+
+////////////////////-Jefe-////////////////////
+Rut: 77777777-7
+Nombre: Ruperto
+Edad: 67
+Salario: 2000000
+////////////////////-Jefe-////////////////////
+
+
+Rut: 44444444-4
+Nombre: Cocinero Cuatro
+Edad: 44
+Salario: 400000
+
+Rut: 33333333-3
+Nombre: Cajero Tres
+Edad: 33
+Salario: 300000
+
+Rut: 11111111-1
+Nombre: Cajero Uno
+Edad: 11
+Salario: 100000
+
+Rut: 17563857-k
+Nombre: JuanCarlos
+Edad: 43
+Salario: 20000
+
+Rut: 22222222-2
+Nombre: Cocinero Dos
+Edad: 22
+Salario: 200000
+
+Rut: 19617161-4
+Nombre: Patricio Torres
+Edad: 20
+Salario: 500000
+
+
+////////////////////-Jefe-////////////////////
+Rut: 77777777-7
+Nombre: Ruperto
+Edad: 67
+Salario: 2000000
+////////////////////-Jefe-////////////////////
+
+
+Rut: 44444444-4
+Nombre: Cocinero Cuatro
+Edad: 44
+Salario: 400000
+
+Rut: 33333333-3
+Nombre: Cajero Tres
+Edad: 33
+Salario: 300000
+
+Rut: 11111111-1
+Nombre: Cajero Uno
+Edad: 11
+Salario: 100000
+
+Rut: 17563857-k
+Nombre: JuanCarlos
+Edad: 43
+Salario: 20000
+
+Rut: 22222222-2
+Nombre: Cocinero Dos
+Edad: 22
+Salario: 200000
+
+Rut: 19617161-4
+Nombre: Patricio Torres
+Edad: 20
+Salario: 500000
+
+Rut: 77777777-7
+Nombre: Ruperto
+Edad: 2000000
+Salario: 67
+
+Rut: 44444444-4
+Nombre: Cocinero Cuatro
+Edad: 44
+Salario: 400000
+
+Rut: 17563857-k
+Nombre: JuanCarlos
+Edad: 43
+Salario: 20000
+
+Rut: 11111111-1
+Nombre: Cajero Uno
+Edad: 11
+Salario: 100000
+
+Rut: 33333333-3
+Nombre: Cajero Tres
+Edad: 33
+Salario: 300000
+
+Rut: 22222222-2
+Nombre: Cocinero Dos
+Edad: 22
+Salario: 200000
+
+
+////////////////////-Jefe-////////////////////
+Rut: 12345678-9
+Nombre: jefex
+Edad: 65
+Salario: 1000000000
+////////////////////-Jefe-////////////////////
+
+
+Rut: 19617161-4
+Nombre: Patricio Torres
+Edad: 20
+Salario: 500000
+
+>>>>>>> 2b161d705622b4b02712737457ee60c299e6bca7

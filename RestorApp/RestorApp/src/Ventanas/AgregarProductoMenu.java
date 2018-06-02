@@ -16,10 +16,15 @@ import javax.swing.border.EmptyBorder;
 import clasesRestorApp.Archivos;
 import clasesRestorApp.Producto;
 import clasesRestorApp.Restaurante;
+import clasesRestorApp.Secundaria;
 
 public class AgregarProductoMenu extends JFrame
 {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textCodigo;
 	private JTextField textNombre;
@@ -27,11 +32,12 @@ public class AgregarProductoMenu extends JFrame
 	private JTextField textCantidad;
 	private JLabel titulo;
 	private JLabel codigo;
+	private Secundaria sec;
 	private JLabel nombre;
 	private JLabel precio;
 	private JLabel cantidadDisponible;
 	private JButton botonRegistrar;
-	private JButton botonAgregarOtro;
+	//private JButton botonAgregarOtro;
 	private JButton botonSalir;
 	
 	private Restaurante restaurante;
@@ -40,6 +46,7 @@ public class AgregarProductoMenu extends JFrame
 		super();
 		this.restaurante = restaurante;
 		configurarVentana();
+		sec=new Secundaria();
 		inicializarComponentes();
 	}
 	private void configurarVentana(){
@@ -103,28 +110,41 @@ public class AgregarProductoMenu extends JFrame
 				if(e.getSource() == botonRegistrar){
 					String codigo = textCodigo.getText();
 					String nombre = textNombre.getText();
-					int precio = Integer.parseInt(textPrecio.getText());
-					int cant = Integer.parseInt(textCantidad.getText());
-					Producto producto = new Producto(codigo,nombre,cant,precio);
-					if(restaurante.agregarProductoMenu(producto)==true){
-						Archivos a = new Archivos();
-						try {
-							a.escribirTxTProductos(codigo,nombre,textPrecio.getText(),textCantidad.getText());
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
+					if(sec.validarNumeros(textPrecio.getText())==true)
+					{
+						int precio = Integer.parseInt(textPrecio.getText());
+						if(sec.validarNumeros(textCantidad.getText())==true)
+						{
+							int cant = Integer.parseInt(textCantidad.getText());
+							Producto producto = new Producto(codigo,nombre,cant,precio);
+							if(restaurante.agregarProductoMenu(producto)==true){
+								Archivos a = new Archivos();
+								try {
+									a.escribirTxTProductos(codigo,nombre,textPrecio.getText(),textCantidad.getText());
+								} catch(IOException e1){
+									JOptionPane.showMessageDialog(null, "Error al escribir en el archivo");
+								}
+								JOptionPane.showMessageDialog(null, "Se agrego con exito");
+							
+							}
+							else{
+								JOptionPane.showMessageDialog(null, "No se logr� agregar el producto");
+								textCodigo.setText("");
+								textNombre.setText("");
+								textPrecio.setText("");
+								textCantidad.setText("");
+								
+								
+							}
 						}
-						JOptionPane.showMessageDialog(null, "Se agrego con exito");
-					
+						else
+						{
+							JOptionPane.showMessageDialog(null, "La cantidad debe contener solo numeros");
+						}
 					}
-					else{
-						JOptionPane.showMessageDialog(null, "No se logr� agregar el producto");
-						textCodigo.setText("");
-						textNombre.setText("");
-						textPrecio.setText("");
-						textCantidad.setText("");
-						
-						
+					else
+					{
+						JOptionPane.showMessageDialog(null, "El precio debe contener solo numeros");
 					}
 				}
 			}

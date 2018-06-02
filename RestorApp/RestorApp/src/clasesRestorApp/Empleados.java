@@ -1,7 +1,6 @@
 package clasesRestorApp;
 
 import java.io.IOException;
-
 import javax.swing.JTextArea;
 
 public abstract class Empleados implements Interfaz
@@ -50,8 +49,6 @@ public abstract class Empleados implements Interfaz
 		this.sueldo = sueldo;
 	}
 	@Override
-	public abstract int getSueldo();
-	@Override
 	public int getEdad (){
 		return edad;
 	}
@@ -62,5 +59,7 @@ public abstract class Empleados implements Interfaz
 	@Override
 	public abstract void mostrar(JTextArea textArea);
 	@Override
-	public abstract void mostrarEmpleadosArchivo()throws IOException;
+	public abstract void mostrarPersonasArchivo()throws IOException;
+	@Override
+	public abstract String getCodigo();
 }

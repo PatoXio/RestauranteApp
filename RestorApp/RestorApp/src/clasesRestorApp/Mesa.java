@@ -228,6 +228,14 @@ public class Mesa
 	public void mostrarDatosPedidosArchivo() throws IOException{
 		pedidosMesa.mostrarSusDatos();
 	}
+	public String getCodigoPedido() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public void escribirTxTMesaPedidoProductos() throws IOException
+	{
+		pedidosMesa.escribirTxTMesaPedidoProductos();
+	}
 
 	
 	

@@ -7,17 +7,18 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import clasesRestorApp.Restaurante;
 
-import java.util.*;
 
 
 
 public class VentanaAdmin extends JFrame  {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JLabel titulo;
 	private JButton botonAgregar;
@@ -25,7 +26,6 @@ public class VentanaAdmin extends JFrame  {
 	private JButton botonEliminar;
 	private JButton botonGenerarReporte;
 	private JButton botonSalir;
-	private JButton salir;
 	private Restaurante restaurante;
 	
 	

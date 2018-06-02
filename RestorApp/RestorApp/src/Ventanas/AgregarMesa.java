@@ -9,18 +9,23 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
+//import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import clasesRestorApp.Archivos;
 import clasesRestorApp.Restaurante;
+import clasesRestorApp.Secundaria;
 
 
 
 
 public class AgregarMesa extends JFrame 
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JLabel caracteMesa;
 	private JLabel numMesa;
@@ -29,10 +34,12 @@ public class AgregarMesa extends JFrame
 	private JTextField textMesa;
 	private Restaurante restaurante;
 	private JButton botonAgregarOtro;
+	private Secundaria sec;
 	
 	public AgregarMesa(Restaurante restaurante){
 		super();
 		this.restaurante = restaurante;
+		sec=new Secundaria();
 		configurarVentana();
 		inicializarComponentes();
 	}
@@ -68,27 +75,30 @@ public class AgregarMesa extends JFrame
 		botonRegistrar.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e) {
-				int codMesa = Integer.parseInt(textMesa.getText());
-				if(e.getSource() == botonRegistrar){// si el
-					if(restaurante.agregarMesa(codMesa)==true){
-						Archivos a = new Archivos();
-						try {
-							a.escribirTxTMesas(textMesa.getText());
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
+				if(sec.validarNumeros(textMesa.getText())==true)
+				{
+					int codMesa = Integer.parseInt(textMesa.getText());
+					
+					if(e.getSource() == botonRegistrar)
+					{// si el
+						if(restaurante.agregarMesa(codMesa)==true)
+						{
+							Archivos a = new Archivos();
+							try
+							{
+								a.escribirTxTMesas(textMesa.getText());
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
+							JOptionPane.showMessageDialog(null, "Se agrego correctamente la nueva mesa.");
 						}
-					
-						JOptionPane.showMessageDialog(null, "Se agrego correctamente la nueva mesa.");
-						
-						
+						else{
+							JOptionPane.showMessageDialog(null, "El codigo de esa mesa ya se encuentra registrada,ingrese otra.");
+							textMesa.setText("");
+						}
 					}
-					else{
-						JOptionPane.showMessageDialog(null, "El codigo de esa mesa ya se encuentra registrada,ingrese otra.");
-						textMesa.setText("");
-					}
-
-					
+				}else {
+					JOptionPane.showMessageDialog(null, "Solo se deben ingresar numeros");
 				}
 				
 			}

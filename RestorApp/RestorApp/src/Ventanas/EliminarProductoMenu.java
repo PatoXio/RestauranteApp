@@ -1,6 +1,7 @@
 package Ventanas;
 
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -13,19 +14,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import clasesRestorApp.Archivos;
-import clasesRestorApp.Producto;
 import clasesRestorApp.Restaurante;
 
 public class EliminarProductoMenu extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textCodigo;
-	
-	private JLabel titulo;
-	private JLabel codigo;
-	private JButton botonEliminar;
-	private JButton botonEliminarOtro;
-	private JButton botonSalir;
 	
 	private Restaurante restaurante;
 	
@@ -69,13 +66,18 @@ public class EliminarProductoMenu extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource() == botonRegistrar){
 					String codigo = textCodigo.getText();
-					if(restaurante.eliminarProductoMenu(codigo)==true){
-						JOptionPane.showMessageDialog(null, "Se elimino el producto con exito");
-					}
-					else{
-						JOptionPane.showMessageDialog(null, "No se logr� eliminar el producto");
-						textCodigo.setText("");	
-							
+					try {
+						if(restaurante.eliminarProductoMenu(codigo)==true){
+							JOptionPane.showMessageDialog(null, "Se elimino el producto con exito");
+							textCodigo.setText("");	
+						}
+						else{
+							JOptionPane.showMessageDialog(null, "No se logro eliminar el producto");
+								
+						}
+					} catch (HeadlessException | IOException e1) {
+						JOptionPane.showMessageDialog(null, "Error. Es posible que no exista");
+						e1.printStackTrace();
 					}	
 					
 				} 
