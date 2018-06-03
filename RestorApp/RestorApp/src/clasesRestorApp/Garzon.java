@@ -14,6 +14,7 @@ public class Garzon extends Empleados
 	private ArrayList<String> arrayMesasAtendiendo;
 	public Garzon()
 	{
+		//alooooh//
 		super(null,null,0,0);
 		nivelDeIngles=null;
 		mesasAtendidas=0;
