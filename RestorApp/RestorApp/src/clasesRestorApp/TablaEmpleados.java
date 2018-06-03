@@ -6,7 +6,6 @@ import java.util.Hashtable;
 import java.util.Map;
 
 import javax.swing.JTextArea;
-import javax.swing.text.html.HTMLDocument.Iterator;
 
 
 
