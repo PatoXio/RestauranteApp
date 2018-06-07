@@ -124,9 +124,6 @@ public class Restaurante
 		}
 	}
 	
-	
-	
-	
 	/*
 	 * Este metodo se utilizara para agregar productos al menu
 	 * desde la ventana AgregarProductoMenu.
@@ -137,8 +134,6 @@ public class Restaurante
 	{
 		return menuRestaurante.agregarProductoAlMenu(producto);
 	}
-	
-	
 	
 	
 	/*

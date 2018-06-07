@@ -164,5 +164,4 @@ public class AgregarProductoPedido extends JFrame
 	
 	}
 	
-	
 }
