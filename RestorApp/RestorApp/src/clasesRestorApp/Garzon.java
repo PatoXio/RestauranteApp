@@ -14,7 +14,6 @@ public class Garzon extends Empleados
 	private ArrayList<String> arrayMesasAtendiendo;
 	public Garzon()
 	{
-		//alooooh//
 		super(null,null,0,0);
 		nivelDeIngles=null;
 		mesasAtendidas=0;
@@ -25,7 +24,7 @@ public class Garzon extends Empleados
 		super(rut, nombre, sueldo, edad);
 		this.nivelDeIngles = nivelDeIngles;
 		this.mesasAtendidas = mesasAtendidas;
-		arrayMesasAtendiendo = new ArrayList<String>();
+		arrayMesasAtendiendo = new ArrayList<String>(); // cantidad de mesas que puede antender a la vez
 	}
 	
 	public String getCodigo()

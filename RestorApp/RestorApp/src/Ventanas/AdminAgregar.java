@@ -52,7 +52,7 @@ public class AdminAgregar extends JFrame
 		
 		botonAgregarMesa = new JButton("Mesa");
 		botonAgregarMesa.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		botonAgregarMesa.setBounds(157, 56, 102, 23);
+		botonAgregarMesa.setBounds(45, 56, 114, 36);
 		botonAgregarMesa.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e) {
@@ -68,7 +68,7 @@ public class AdminAgregar extends JFrame
 		
 		botonAgregarPedido = new JButton("Pedido");
 		botonAgregarPedido.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		botonAgregarPedido.setBounds(157, 103, 102, 23);
+		botonAgregarPedido.setBounds(45, 128, 114, 36);
 		botonAgregarPedido.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e) {
@@ -84,7 +84,7 @@ public class AdminAgregar extends JFrame
 		
 		botonAgregarProducto = new JButton("Producto");
 		botonAgregarProducto.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		botonAgregarProducto.setBounds(157, 155, 102, 23);
+		botonAgregarProducto.setBounds(253, 56, 114, 36);
 		botonAgregarProducto.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				dispose();
@@ -112,8 +112,17 @@ public class AdminAgregar extends JFrame
 			}
 		});
 		contentPane.add(botonAtras);
-	}
-
-	
 		
+		JButton button = new JButton("Empleado");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				AgregarEmpleado ventana = new AgregarEmpleado(restaurante);
+				ventana.setVisible(true);
+			}
+		});
+		button.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		button.setBounds(253, 128, 114, 36);
+		contentPane.add(button);
+	}
 }
