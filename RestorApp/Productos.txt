@@ -6,9 +6,7 @@
 100,caquita con mayo,5,300000
 2,Sopa de Choclo,0,2200
 3,Pollo con Papas Fritas,23,3000
-42rew,432rew,3,432
 4,Pescado con Arroz,0,2500
-432jkfds,432jkfds,4532,4532
 5,Fideos Con Carne,0,3000
 6,Pizza,0,3400
 7,Bebida express Coca Cola,0,500
