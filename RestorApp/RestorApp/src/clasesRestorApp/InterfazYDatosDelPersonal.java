@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import javax.swing.JTextArea;
 
-public interface Interfaz
+public interface InterfazYDatosDelPersonal
 {
 	String obtenerInformacion();
 	String getRut();

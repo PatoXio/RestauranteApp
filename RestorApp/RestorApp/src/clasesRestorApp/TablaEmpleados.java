@@ -13,6 +13,7 @@ public class TablaEmpleados
 {
 	private Archivos arc;
 	private Hashtable<String,Empleados> tablaDeEmpleados;
+	private JefeRestaurante jefe;
 
 	
 	// Constructor
@@ -32,13 +33,20 @@ public class TablaEmpleados
 	 * proceso.
 	 * 
 	 */
-	public boolean agregarJefe(JefeRestaurante JefePorAgregar) {
-		if (tablaDeEmpleados.containsKey(JefePorAgregar.getRut()) == true)
+	public boolean agregarJefe(JefeRestaurante jefeRes) {
+		if(jefe==null)
 		{
-			return false;
+			jefe=jefeRes;
+			return true;
 		}
-		tablaDeEmpleados.put(JefePorAgregar.getRut(), JefePorAgregar);
-		return true;
+		else
+		{
+			if(jefe.getRut().equals(jefeRes.getRut())==false)
+			{
+				jefe=jefeRes;
+			}
+		}
+		return false;
 	}
 	
 	public boolean agregarGarzon(Garzon GarzonPorAgregar)
@@ -106,6 +114,7 @@ public class TablaEmpleados
 	 */
 	public void repoteEmpleadosArchivo()throws IOException
 	{
+		jefe.mostrarPersonasArchivo();
 		for(Map.Entry<String,Empleados> entrada : tablaDeEmpleados.entrySet())
 		{
 			String clave = entrada.getKey(); //guardamos la clave
@@ -116,6 +125,7 @@ public class TablaEmpleados
 	
 	public void mostrarEmpleadosVentanaX(JTextArea textArea) 
 	{
+		jefe.mostrar(textArea);
 		for (Map.Entry<String, Empleados> entrada : tablaDeEmpleados.entrySet() )
 		{
 			String clave = entrada.getKey(); //Guardamos la clave para luego buscar el objeto espechfico
@@ -184,16 +194,9 @@ public class TablaEmpleados
 		}
 	}
 	public void escribirTxTCompletoJefe() throws IOException {
-		Enumeration<String> e = tablaDeEmpleados.keys();
-		while(e.hasMoreElements())
+		if(jefe.getRut()!=null)
 		{
-			String clave=(String) e.nextElement();
-			Empleados emp=tablaDeEmpleados.get(clave);
-			if(emp.getCodigo().equals(emp.getRut()+"Jefe")==true)
-			{
-				JefeRestaurante jef=(JefeRestaurante)emp;
-				arc.escribirTxTJefe(jef.getRut(), jef.getNombre(), jef.getEdad(), jef.getSueldo());
-			}
+			arc.escribirTxTJefe(jefe.getRut(), jefe.getNombre(), jefe.getEdad(), jefe.getSueldo());
 		}
-	} 
+	}
 }

@@ -44,7 +44,7 @@ public class Archivos {
 			}
 			s2.close(); // se cierra el archivo
 		} catch (FileNotFoundException e) {
-			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de mesas");
+			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de mesas. Quizas no existe.");
 		} catch (Exception e1) {
 			JOptionPane.showMessageDialog(null, "Revise los datos del archivo inicial de mesas");
 			e1.printStackTrace();
@@ -85,7 +85,7 @@ public class Archivos {
 			}
 			s3.close();
 		} catch (FileNotFoundException e) {
-			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de pedidos");
+			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de pedidos. Quizas no existe.");
 		} catch (Exception e1) {
 			JOptionPane.showMessageDialog(null, "Revise los datos del archivo inicial de pedidos");
 			e1.printStackTrace();
@@ -119,7 +119,7 @@ public class Archivos {
 			}
 			s1.close(); 
 		} catch (FileNotFoundException e) {
-			JOptionPane.showMessageDialog(null, "Error al agregar Cajeros");
+			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de Cajeros. Quizas no existe.");
 		} catch (Exception e1) {
 			JOptionPane.showMessageDialog(null, "Revise datos de cajeros");
 			e1.printStackTrace();
@@ -153,7 +153,7 @@ public class Archivos {
 			}
 			s2.close(); // se cierra el archivo
 		} catch (FileNotFoundException e) {
-			JOptionPane.showMessageDialog(null, "Error al agregar Cocineros");
+			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de Cocineros. Quizas no existe.");
 		} catch (Exception e1) {
 			JOptionPane.showMessageDialog(null, "Revise datos cocineros");
 			e1.printStackTrace();
@@ -189,7 +189,7 @@ public class Archivos {
 			}
 			s3.close(); // se cierra el archivo
 		} catch (FileNotFoundException e) {
-			JOptionPane.showMessageDialog(null, "Error al agregar Garzones");
+			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de Garzones. Quizas no existe.");
 		} catch (Exception e1) {
 			JOptionPane.showMessageDialog(null, "Revise datos Garzones");
 			e1.printStackTrace();
@@ -223,7 +223,7 @@ public class Archivos {
 			}
 			s4.close(); // se cierra el archivo
 		} catch (FileNotFoundException e) {
-			JOptionPane.showMessageDialog(null, "Error al agregar al Jefe");
+			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de Jefe. Quizas no existe.");
 		} catch (Exception e1) {
 			JOptionPane.showMessageDialog(null, "Revise datos Jefe");
 			e1.printStackTrace();
@@ -246,12 +246,12 @@ public class Archivos {
 				String nombre = separacion[1].trim();
 				int cantidadDisponibleDelProducto = Integer.parseInt(separacion[2].trim());
 				int precioProducto = Integer.parseInt(separacion[3].trim());
-				Producto producto = new Producto(codProducto, nombre,precioProducto , cantidadDisponibleDelProducto);
+				Producto producto = new Producto(codProducto, nombre,precioProducto, cantidadDisponibleDelProducto);
 				menuRestaurante.putCodigoProducto(codProducto, producto);
 			}
 			s3.close();
 		} catch (FileNotFoundException e) {
-			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de productos");
+			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de productos. Quizas no existe.");
 		} catch (Exception e1) {
 			JOptionPane.showMessageDialog(null, "Revise los datos del archivo inicial de productos");
 			e1.printStackTrace();
@@ -350,7 +350,7 @@ public class Archivos {
 			
 			
 		}catch(FileNotFoundException e){
-			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de pedidos");
+			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de pedidos. Quizas no existe.");
 		}
 	}
 	public void escribirTxTGarzones(String rut, String nombre, int sueldo, int edad, String nivelDeIngles,int mesasAtendidas) throws IOException{
@@ -368,7 +368,7 @@ public class Archivos {
 			
 			
 		}catch(FileNotFoundException e){
-			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de Garzones");
+			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de Garzones. Quizas no existe.");
 		}
 	}
 	public void escribirTxTCocineros(String rut, String nombre, int sueldo, int edad) throws IOException{
@@ -386,7 +386,7 @@ public class Archivos {
 			
 			
 		}catch(FileNotFoundException e){
-			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de Cocineros");
+			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de Cocineros. Quizas no existe.");
 		}
 	}
 	public void escribirTxTJefe(String rut, String nombre, int edad, int sueldo) throws IOException
@@ -405,7 +405,7 @@ public class Archivos {
 			
 			
 		}catch(FileNotFoundException e){
-			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial del Jefe");
+			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial del Jefe. Quizas no existe.");
 		}
 	}
 	
@@ -424,7 +424,7 @@ public class Archivos {
 			
 			
 		}catch(FileNotFoundException e){
-			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de Cajeros");
+			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de Cajeros. Quizas no existe.");
 		}
 	}
 	
@@ -443,34 +443,30 @@ public class Archivos {
 			
 			
 		}catch(FileNotFoundException e){
-			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de pedidos");
+			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de pedidos. Quizas no existe.");
 		}
 	}
 	
 	
 	
-	public void escribirSoloPEdidoTxT(String codigoMesa,String codigoPedido) throws IOException{
+	/*public void escribirSoloPEdidoTxT(String codigoMesa,String codigoPedido) throws IOException{
 		File file = new File("Pedidos.txt");// prepara el archivo para ser manipulado
-		FileWriter escribir; // escribir en el fichero
-		PrintWriter linea; // permite escribir en el ficher de la misma forma que por pantalla 
-		
 		try{
-			
-			escribir = new FileWriter(file,true);
-			linea = new PrintWriter(escribir);
+			FileWriter escribir = new FileWriter(file,true); // escribir en el fichero
+			PrintWriter linea = new PrintWriter(escribir); // permite escribir en el ficher de la misma forma que por pantalla 
 			String texto=codigoMesa + ":" + codigoPedido;
 			linea.println(texto);
 			escribir.close();
 			
 			
 		}catch(FileNotFoundException e){
-			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de pedidos");
+			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de pedidos. Quizas no existe.");
 		}
-	}
+	}*/
+	
 	public void escribirSoloPedidoTxT(String codigoMesa,String codigoPedido) throws IOException{
 		File file = new File("Pedidos.txt");// prepara el archivo para ser manipulado		
 		try{
-			
 			FileWriter escribir = new FileWriter(file,true); // escribir en el fichero
 			PrintWriter linea = new PrintWriter(escribir); // permite escribir en el ficher de la misma forma que por pantalla 
 			String texto=codigoMesa + ":" + codigoPedido;
@@ -479,7 +475,7 @@ public class Archivos {
 			
 			
 		}catch(FileNotFoundException e){
-			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de pedidos");
+			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de pedidos. Quizas no existe.");
 		}
 	}
 
@@ -494,7 +490,7 @@ public class Archivos {
 		}
 		catch(FileNotFoundException e)
 		{
-			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de pedidos");
+			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de pedidos. Quizas no existe.");
 		}
 		
 	}

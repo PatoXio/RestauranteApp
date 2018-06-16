@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import javax.swing.JTextArea;
 
-public class JefeRestaurante extends Empleados{
+public class JefeRestaurante implements InterfazYDatosDelPersonal{
 
 	private String rut;
 	private String nombre;
@@ -26,9 +26,10 @@ public class JefeRestaurante extends Empleados{
 		this.sueldo=sueldo;
 	}
 	@Override
-	public String obtenerInformacion() {
+	public String obtenerInformacion()
+	{
 		String info="\n////////////////////-Jefe-////////////////////\nRut: " + getRut() + "\nNombre: " + getNombre() + "\nEdad: " + getEdad() +
-			"\nSalario: " + getSueldo() +"\n////////////////////-Jefe-////////////////////\n";
+		"\nSalario: " + getSueldo() +"\n////////////////////-Jefe-////////////////////\n";
 		return info;
 	}
 	public int getSueldo()

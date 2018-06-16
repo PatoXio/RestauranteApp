@@ -3,7 +3,7 @@ package clasesRestorApp;
 import java.io.IOException;
 import javax.swing.JTextArea;
 
-public abstract class Empleados implements Interfaz
+public abstract class Empleados implements InterfazYDatosDelPersonal
 {	
 	protected String rut;
 	protected String nombre;

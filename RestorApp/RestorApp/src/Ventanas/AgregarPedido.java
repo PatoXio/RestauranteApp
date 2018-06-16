@@ -95,7 +95,7 @@ public class AgregarPedido extends JFrame {
 						if(e.getSource() == botonRegistrar){
 							if(restaurante.AgregarPedido(codMesa, codPedido)==true){
 								try {
-									arc.escribirSoloPEdidoTxT(Integer.toString(codMesa),Integer.toString(codPedido));
+									arc.escribirSoloPedidoTxT(Integer.toString(codMesa),Integer.toString(codPedido));
 								} catch (IOException e1) {
 									JOptionPane.showMessageDialog(null, "Ocurrio un error sobreescribir el archivo");
 								}
