@@ -84,10 +84,10 @@ public class Restaurante
 		return empleadosRestaurante.agregarCocinero(nuevo);
 	}
 	
-	public boolean agregarCajero(String rut, String nombre, int sueldo, int edad) throws IOException //Se cambia nombre por que estaba mal.
+	public boolean agregarCajero(String rut, String nombre, int sueldo, int edad,int total, int diferencia) throws IOException //Se cambia nombre por que estaba mal.
 	{
-		Cajero nuevo = new Cajero(rut,nombre,sueldo,edad);
-		arc.escribirTxTCajeros(rut, nombre, sueldo, edad);
+		Cajero nuevo = new Cajero(rut,nombre,sueldo,edad,total,diferencia);
+		arc.escribirTxTCajeros(rut, nombre, sueldo, edad,total,diferencia);
 		return empleadosRestaurante.agregarCajero(nuevo);
 	}
 	

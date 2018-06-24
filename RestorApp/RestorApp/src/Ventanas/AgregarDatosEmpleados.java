@@ -140,7 +140,7 @@ public class AgregarDatosEmpleados extends JFrame
 										break;
 									}
 									case 2:{
-										if(restaurante.agregarCajero(rut, nombre, sueldo, edad)==true) {
+										if(restaurante.agregarCajero(rut, nombre, sueldo, edad,0,0)==true) {
 											JOptionPane.showMessageDialog(null, "El Cajero ha sido agregado excitosamente");
 										}
 										else {

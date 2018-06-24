@@ -108,12 +108,16 @@ public class Archivos {
 				String nombre = datos.nextToken().trim();
 				String sueldo = datos.nextToken().trim();
 				String edad = datos.nextToken().trim(); 
+				String total = datos.nextToken().trim();
+				String diferencia = datos.nextToken().trim();
 				
 				int suel=Integer.parseInt(sueldo);
 				int age=Integer.parseInt(edad);
+				int tot=Integer.parseInt(total);
+				int dif=Integer.parseInt(diferencia);
 				
 				
-				Cajero caj=new Cajero(rut,nombre,suel,age);
+				Cajero caj=new Cajero(rut,nombre,suel,age,tot,dif);
 				
 				empleados.agregarCajero(caj);	
 			}
@@ -409,7 +413,7 @@ public class Archivos {
 		}
 	}
 	
-	public void escribirTxTCajeros(String rut, String nombre, int sueldo, int edad) throws IOException{
+	public void escribirTxTCajeros(String rut, String nombre, int sueldo, int edad,int total,int diferencia) throws IOException{
 		File file = new File("Cajeros.txt");// prepara el archivo para ser manipulado
 		FileWriter escribir; // escribir en el fichero
 		PrintWriter linea; // permite escribir en el ficher de la misma forma que por pantalla 
@@ -418,7 +422,7 @@ public class Archivos {
 			
 			escribir = new FileWriter(file,true);
 			linea = new PrintWriter(escribir);
-			String texto=rut + "," + nombre +","+ sueldo +"," + edad;
+			String texto=rut + "," + nombre +","+ sueldo +"," + edad + "," + total + "," + diferencia;
 			linea.println(texto);
 			escribir.close();
 			

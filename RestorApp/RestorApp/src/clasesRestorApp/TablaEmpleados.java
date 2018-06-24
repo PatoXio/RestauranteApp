@@ -176,7 +176,7 @@ public class TablaEmpleados
 			if(emp.getCodigo().equals(emp.getRut()+"Cajero")==true)
 			{
 				Cajero caj=(Cajero)emp;
-				arc.escribirTxTCajeros(caj.getRut(), caj.getNombre(), caj.getSueldo(), caj.getEdad());
+				arc.escribirTxTCajeros(caj.getRut(), caj.getNombre(), caj.getSueldo(), caj.getEdad(), caj.getTotalCaja(),caj.getDiferencia());
 			}
 		}
 	}
