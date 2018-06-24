@@ -25,6 +25,7 @@ public class AgregarEmpleado extends JFrame
 	private JButton botonAtras;
 	
 	private Restaurante restaurante;
+	//testing
 	
 
 	public AgregarEmpleado(Restaurante restaurante)
