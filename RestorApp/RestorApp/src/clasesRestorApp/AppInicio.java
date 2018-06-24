@@ -14,3 +14,4 @@ public class AppInicio
 		ventana.setVisible(true);
 	}	
 }
+//Cristian: EL PATO ME LO ESTA METIENDO SUPER RICO
