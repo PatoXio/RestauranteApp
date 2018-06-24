@@ -61,7 +61,7 @@ public class AgregarEmpleado extends JFrame
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource() == botonAgregarCocinero){
 					dispose();
-					AgregarDatosEmpleados ventana = new AgregarDatosEmpleados(restaurante,1);
+					AgregarCocinero ventana = new AgregarCocinero(restaurante);
 					ventana.setVisible(true);
 				}
 			}
@@ -82,11 +82,9 @@ public class AgregarEmpleado extends JFrame
 				}
 			}
 		}
-				
-				
-				
 		);
 		contentPane.add(botonAgregarGarzon);
+		
 		
 		botonAgregarCajero = new JButton("Cajero") ;
 		botonAgregarCajero.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -96,7 +94,7 @@ public class AgregarEmpleado extends JFrame
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource() == botonAgregarCajero){
 					dispose();
-					AgregarDatosEmpleados ventana = new AgregarDatosEmpleados(restaurante,2);
+					AgregarCajero ventana = new AgregarCajero(restaurante);
 					ventana.setVisible(true);
 				}
 			}

@@ -17,7 +17,7 @@ import clasesRestorApp.Secundaria;
 
 import javax.swing.JTextField;
 
-public class AgregarDatosEmpleados extends JFrame
+public class AgregarCocinero extends JFrame
 {
 	
 	private static final long serialVersionUID = 1L;
@@ -38,14 +38,11 @@ public class AgregarDatosEmpleados extends JFrame
 	//
 	private Secundaria sec;
 	private Restaurante restaurante;
-	private int opcion;
-	
 
-	public AgregarDatosEmpleados(Restaurante restaurante,int opcion)
+	public AgregarCocinero(Restaurante restaurante)
 	{
 		super();
 		this.restaurante = restaurante;
-		this.opcion = opcion;
 		sec= new Secundaria();
 		configurarVentana();
 		inicializarVentana();
@@ -127,9 +124,6 @@ public class AgregarDatosEmpleados extends JFrame
 							{
 								int edad = Integer.parseInt(textoEdad.getText());
 								try {
-									switch(opcion)
-									{
-									case 1:{
 										if(restaurante.agregarCocinero(rut, nombre, sueldo, edad)==true)
 										{
 											JOptionPane.showMessageDialog(null, "El Cocinero ha sido agregado excitosamente");
@@ -137,18 +131,7 @@ public class AgregarDatosEmpleados extends JFrame
 										else {
 											JOptionPane.showMessageDialog(null, "El rut ya exite");
 										}
-										break;
-									}
-									case 2:{
-										if(restaurante.agregarCajero(rut, nombre, sueldo, edad,0,0)==true) {
-											JOptionPane.showMessageDialog(null, "El Cajero ha sido agregado excitosamente");
-										}
-										else {
-											JOptionPane.showMessageDialog(null, "El rut ya existe");
-										}
-										break;
-									}
-									}
+									
 								} catch (IOException e1) {
 									JOptionPane.showMessageDialog(null, "Ha ocurrido un inconveniente");
 								}
