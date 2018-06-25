@@ -20,7 +20,7 @@ public class Cajero extends Empleados
 	public Cajero(String rut, String nombre, int sueldo, int edad, int total, int diferencia)
 	{
 		super(rut, nombre, sueldo, edad);
-		totalCaja=total;
+		totalCaja=total; // 
 		diferenciaCaja=diferencia;
 	}
 	public int getTotalCaja()

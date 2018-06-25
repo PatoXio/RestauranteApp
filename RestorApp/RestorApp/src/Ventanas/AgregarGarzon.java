@@ -27,13 +27,11 @@ public class AgregarGarzon extends JFrame
 	private JLabel sueldoEmpleado;
 	private JLabel edadEmpleado;
 	private JLabel nivelDeInglesEmpleado;
-	private JLabel mesasAtendidasEmpleados;
 	private JTextField textoRut;
 	private JTextField textoNombre;
 	private JTextField textoSueldo;
 	private JTextField textoEdad;
 	private JTextField textoNivelIngles;
-	private JTextField textoMesasAtendidas;
 	private JButton botonAgregarOtro;
 	private JButton botonRegistro;
 	private JButton botonSalir;
@@ -56,7 +54,7 @@ public class AgregarGarzon extends JFrame
 	{
 		setTitle("RestorApp - Administrador");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 375);
+		setBounds(100, 100, 450, 330);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -120,19 +118,10 @@ public class AgregarGarzon extends JFrame
 		textoNivelIngles.setBounds(204, 222, 110, 20);
 		contentPane.add(textoNivelIngles);
 		
-		mesasAtendidasEmpleados = new JLabel("Numero mesas:");
-		mesasAtendidasEmpleados.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		mesasAtendidasEmpleados.setBounds(90, 255, 104, 28);
-		contentPane.add(mesasAtendidasEmpleados);
-		
-		textoMesasAtendidas = new JTextField();
-		textoMesasAtendidas.setColumns(10);
-		textoMesasAtendidas.setBounds(204, 261, 110, 20);
-		contentPane.add(textoMesasAtendidas);
 		
 		botonRegistro = new JButton("Registrar");
 		botonRegistro.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		botonRegistro.setBounds(156, 294, 139, 31);
+		botonRegistro.setBounds(155, 255, 139, 31);
 		botonRegistro.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e) 
 			{
@@ -149,11 +138,8 @@ public class AgregarGarzon extends JFrame
 							{
 								int edad = Integer.parseInt(textoEdad.getText());
 								String nivelDeIngles = textoNivelIngles.getText();
-								if(sec.validarNumeros(textoMesasAtendidas.getText())==true) 
-								{
-									int mesasAtendidas = Integer.parseInt(textoMesasAtendidas.getText());
 									try {
-										if(restaurante.agregarGarzon(rut, nombre, sueldo, edad, nivelDeIngles, mesasAtendidas)==true)
+										if(restaurante.agregarGarzon(rut, nombre, sueldo, edad, nivelDeIngles, 0)==true)
 										{
 											JOptionPane.showMessageDialog(null, "Garzón agregado excitosamente");
 										}else {
@@ -162,9 +148,7 @@ public class AgregarGarzon extends JFrame
 									}catch (IOException e1) {
 										JOptionPane.showMessageDialog(null, "Ha ocurrido un inconveniente");
 									}
-								}else {
-								JOptionPane.showMessageDialog(null, "Numero invalido");
-								}
+								
 							}else {
 							JOptionPane.showMessageDialog(null, "Numero invalido");
 							}
@@ -191,7 +175,7 @@ public class AgregarGarzon extends JFrame
 				}	
 			}
 		});
-		botonAgregarOtro.setBounds(314, 300, 110, 23);
+		botonAgregarOtro.setBounds(314, 261, 110, 23);
 		contentPane.add(botonAgregarOtro);
 		
 		botonSalir = new JButton("Salir ");
@@ -205,7 +189,7 @@ public class AgregarGarzon extends JFrame
 				
 			}
 		});
-		botonSalir.setBounds(10, 302, 116, 23);
+		botonSalir.setBounds(10, 261, 116, 23);
 		contentPane.add(botonSalir);
 		
 		
