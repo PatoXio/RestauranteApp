@@ -113,7 +113,6 @@ public class AgregarPedido extends JFrame {
 					{
 						JOptionPane.showMessageDialog(null, "El codigo del pedido solo debe contener numeros");
 					}
-						
 				}
                 else
 				{

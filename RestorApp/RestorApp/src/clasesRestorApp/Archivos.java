@@ -63,24 +63,27 @@ public class Archivos {
 			while (s3.hasNextLine() == true) {
 				String linea = s3.nextLine().trim(); //linea = "1:1/1,4,7,12" ---> codMesa,codPedido,pro1,pro2,pro3,pro4
 				lineaSeparada = linea.split(":"); // separo la linea = "1:1/1,4,7,12" por el ","
-				int codMesa = Integer.parseInt(lineaSeparada[0].trim()); //codMesa:1
-				Mesa m = mesasRestaurante.obtenerMesa(codMesa);
-				codPedido = Integer.parseInt(lineaSeparada[1].substring(0, 1).trim()); // codPedido:1
-				if(sec.contarCaracter(linea,"/")>=1)
+				if(lineaSeparada[0].trim().equals("")==false)
 				{
-					lineaProductos = lineaSeparada[1].substring(2); //lineaProductos = 1,4,7,12
-					idProductosSeparados = lineaProductos.split(",");
-					for (int i = 0; i < idProductosSeparados.length && idProductosSeparados[i] != null; i++) { // se va recorriendo el arreglo 
-						Producto producto = menuRestaurante.obtenerProductoEspecifico(idProductosSeparados[i].trim()); // producto sera a una referencia  del objeto producto del menu
-						if (producto != null && m!=null) {
-							m.agregarPedido(codPedido, producto);
-							m.setEstadoMesa("Ocupada");
+					int codMesa = Integer.parseInt(lineaSeparada[0].trim()); //codMesa:1
+					Mesa m = mesasRestaurante.obtenerMesa(codMesa);
+					codPedido = Integer.parseInt(lineaSeparada[1].substring(0, 1).trim()); // codPedido:1
+					if(sec.contarCaracter(linea,"/")>=1)
+					{
+						lineaProductos = lineaSeparada[1].substring(2); //lineaProductos = 1,4,7,12
+						idProductosSeparados = lineaProductos.split(",");
+						for (int i = 0; i < idProductosSeparados.length && idProductosSeparados[i] != null; i++) { // se va recorriendo el arreglo 
+							Producto producto = menuRestaurante.obtenerProductoEspecifico(idProductosSeparados[i]); // producto sera a una referencia  del objeto producto del menu
+							if (producto != null && m!=null) {
+								m.agregarPedido(codPedido, producto);
+								m.setEstadoMesa("Ocupada");
+							}
 						}
 					}
-				}
-				else
-				{
-					m.agregarPedido(codPedido);
+					else
+					{
+						m.agregarPedido(codPedido);
+					}
 				}
 			}
 			s3.close();
@@ -261,12 +264,16 @@ public class Archivos {
 			e1.printStackTrace();
 		}
 	}
-	public void actualizarEmpleados(TablaEmpleados empleados) throws IOException
+	public void actualizarDatos(TablaEmpleados empleados,MapaMenu menuRestaurante,ListaMesas mesasRestaurante) throws IOException
 	{
 		actualizarGarzones(empleados);
 		actualizarCajeros(empleados);
 		actualizarCocineros(empleados);
 		actualizarJefe(empleados);
+		actualizarMesas(mesasRestaurante);
+		actualizarPedidos(mesasRestaurante, menuRestaurante);
+		actualizarProductos(menuRestaurante);
+		
 	}
 	
 	public void actualizarGarzones(TablaEmpleados empleados) throws IOException
@@ -483,13 +490,13 @@ public class Archivos {
 		}
 	}
 
-	public void escribirTxTCodigoProducto(String codPro) throws IOException {
+	public void escribirTxTCodigoProducto(String codsPro) throws IOException {
 		File file = new File("Pedidos.txt");
 		try
 		{
 			FileWriter escribir = new FileWriter(file,true);
 			PrintWriter linea =new PrintWriter(escribir);
-			linea.println(codPro);
+			linea.println(codsPro);
 			escribir.close();
 		}
 		catch(FileNotFoundException e)
