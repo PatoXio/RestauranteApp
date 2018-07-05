@@ -36,7 +36,13 @@ public class Cajero extends Empleados
 	{
 		int sueldoFinal=sueldo;
 		if (diferenciaCaja<0)
+		{
+			sueldoFinal = sueldo + (-1*diferenciaCaja);
+		}
+		else
+		{
 			sueldoFinal = sueldo + diferenciaCaja;
+		}
 		return sueldoFinal;
 	}
 	@Override
