@@ -134,17 +134,19 @@ public class Pedido
 	{	
 		textArea.append("\n\n" + obtenerInformacion() +"\n\n");
 	}
+	
 	public void escribirTxTProductosPedido() throws IOException {
-		Enumeration<Producto> key = productosPedidos.keys();
-		if(key.hasMoreElements())
+		Enumeration<Producto> e = productosPedidos.keys();
+		String productos = "\n";
+		if(e.hasMoreElements())
 		{
-			String codPro=",";
-			while(key.hasMoreElements())
+			productos = "/"+e.nextElement().getCodeProducto();
+			while(e.hasMoreElements())
 			{
-				codPro =codPro+","+key.nextElement().getCodeProducto();
+				productos =productos+","+e.nextElement().getCodeProducto();
 			}
-			arc.escribirTxTCodigoProducto(codPro);
 		}
+		arc.escribirTxTCodigoProducto(productos);
 	}
 
 	

@@ -254,10 +254,7 @@ public class ListaPedidos
 		for(int i=0;i<pedidos.size() && pedidos.get(i)!=null;i++){
 			archivo.crearArchivoReportePedidos(Integer.toString(pedidos.get(i).getidMesa()),Integer.toString(pedidos.get(i).getNumDePedido()), Integer.toString(pedidos.get(i).getPrecio()));
 		}
-		
-		
 	}
-
 
 	public void escribirTxTMesaPedidoProductos() throws IOException {
 		for(int i=0;i<pedidos.size();i++)

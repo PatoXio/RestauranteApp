@@ -22,7 +22,8 @@ public class Restaurante
 		empleadosRestaurante=new TablaEmpleados();
 		menuRestaurante=new MapaMenu();
 		arc = new Archivos();
-		arc.cargarDatos(mesasRestaurante,menuRestaurante,empleadosRestaurante); //falta empleados
+		arc.cargarDatos(mesasRestaurante,menuRestaurante,empleadosRestaurante);
+		arc.actualizarDatos(empleadosRestaurante,menuRestaurante,mesasRestaurante);
 	}
 	public Restaurante(String nombre, String direccion) throws IOException
 	{
@@ -33,10 +34,7 @@ public class Restaurante
 		menuRestaurante = new MapaMenu();
 		arc = new Archivos(); //se crea un espacio de memoria para los archivos
 		arc.cargarDatos(mesasRestaurante,menuRestaurante,empleadosRestaurante);
-		arc.actualizarEmpleados(empleadosRestaurante);
-		arc.actualizarMesas(mesasRestaurante);
-		arc.actualizarProductos(menuRestaurante);
-		arc.actualizarPedidos(mesasRestaurante, menuRestaurante);
+		arc.actualizarDatos(empleadosRestaurante,menuRestaurante,mesasRestaurante);
 	}
 	
 	// Getter & Setter
