@@ -28,7 +28,7 @@ public class AdminAgregar extends JFrame
 	private JButton botonAtras;
 	private Restaurante restaurante;
 	
-	
+	//que pasa chavales, todo bien, todo correcto y yo que me alegro :vv
 	public AdminAgregar(Restaurante restaurante){
 		super();
 		this.restaurante = restaurante;

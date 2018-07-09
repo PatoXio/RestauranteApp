@@ -101,7 +101,6 @@ public class AgregarCajero extends JFrame {
 		textoEdad.setColumns(10);
 		textoEdad.setBounds(204, 183, 110, 20);
 		contentPane.add(textoEdad);
-		//me cago en dio
 		
 		botonRegistro = new JButton("Registrar");
 		botonRegistro.setFont(new Font("Tahoma", Font.PLAIN, 14));

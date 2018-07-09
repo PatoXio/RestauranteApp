@@ -1,15 +1,15 @@
-11,Vino Tinto,5,1000
-12,Copa Helado de Vainilla,5,2200
+11,Vino Tinto,0,1000
+12,Copa Helado de Vainilla,0,2200
 13,Copa Helado de Lucuma,0,2500
-14,Pote de Frutas,20,1500
+14,Pote de Frutas,0,1500
 1,Ensalada con Atun,0,2500
 100,caquita con mayo,55,300000
 2,Sopa de Choclo,0,2200
 3,Pollo con Papas Fritas,23,3000
 4,Pescado con Arroz,0,2500
-5,Fideos Con Carne,5,3000
-6,Pizza,3,3400
-7,Bebida express Coca Cola,20,500
+5,Fideos Con Carne,0,3000
+6,Pizza,0,3400
+7,Bebida express Coca Cola,0,500
 8,Bebida express Sprite,0,500
-9,Bebida express Fanta,20,500
+9,Bebida express Fanta,0,500
 10,Agua Mineral,44,400
