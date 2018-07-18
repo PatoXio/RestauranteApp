@@ -81,10 +81,5 @@ public class JefeRestaurante implements InterfazYDatosDelPersonal{
 		Archivos archivo = new Archivos();
 		archivo.crearArchivoReporteEmpleados(obtenerInformacion());		
 	}
-	@Override
-	public String getCodigo() {
-		String codigo=rut+"Jefe";
-		return codigo;
-	}
 
 }

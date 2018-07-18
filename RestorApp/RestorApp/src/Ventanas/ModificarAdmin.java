@@ -22,6 +22,7 @@ public class ModificarAdmin extends JFrame {
 	private JButton botonAtras;
 	private JButton botonModificarMesas;
 	private JButton botonModificarProductos;
+	private JButton botonModificarEmpleados; // por diseño aun no defino si será así, ya no veo la logica de modificar los empleados en su totalidad, o mas bien no encontré los metodos para modificarlos a todos
 	private JLabel modificar;
 
 	public ModificarAdmin(Restaurante restaurante)
@@ -68,7 +69,7 @@ public class ModificarAdmin extends JFrame {
 	    		dispose();
 			}
 		});
-		botonModificarMesas.setBounds(139, 91, 123, 42);
+		botonModificarMesas.setBounds(139, 45, 123, 42);
 		contentPane.add(botonModificarMesas);
 		
 		botonModificarProductos = new JButton("Productos");
@@ -81,8 +82,20 @@ public class ModificarAdmin extends JFrame {
 	    		dispose();
 			}
 		});
-		botonModificarProductos.setBounds(139, 144, 123, 35);
+		botonModificarProductos.setBounds(139, 112, 123, 42);
 		contentPane.add(botonModificarProductos);
+		
+		botonModificarEmpleados = new JButton("Empleados");
+		botonModificarEmpleados.setFont(new Font("Tahoma",Font.PLAIN, 13));
+		botonModificarEmpleados.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+			ModificarEmpleados ventanaAdminModificar = new ModificarEmpleados(restaurante);
+			ventanaAdminModificar.setVisible(true);
+			dispose();
+		}
+		});
+		botonModificarEmpleados.setBounds(139, 179, 123, 42);
+		contentPane.add(botonModificarEmpleados);
 		
 		modificar = new JLabel("Seleccione lo que desea modificar");
 		modificar.setFont(new Font("Tahoma", Font.PLAIN, 14));

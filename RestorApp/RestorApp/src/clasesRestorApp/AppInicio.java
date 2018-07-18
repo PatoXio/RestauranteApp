@@ -9,7 +9,7 @@ public class AppInicio
 {
 	public static void main(String[] args) throws IOException
 	{
-		Restaurante restaurante = new Restaurante("La Coca", "Av. Sin Nombre #1277");
+		Restaurante restaurante = new Restaurante();
 		Ventana ventana = new Ventana(restaurante);
 		ventana.setVisible(true);
 	}	

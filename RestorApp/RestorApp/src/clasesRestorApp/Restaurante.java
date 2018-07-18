@@ -8,33 +8,24 @@ public class Restaurante
 {
 	private String nombre;
 	private String direccion;
+	private double activoNoCorriente;
 	private ListaMesas mesasRestaurante; // Lista de las Mesas que el restaurante posee.
 	private TablaEmpleados empleadosRestaurante; // Tabla con Key el rut de cada Empleado;
 	private MapaMenu menuRestaurante; // Mapa con Key el codeProducto de cada Producto;
 	private Archivos arc;
 	
-	// Constructores
+	// Constructor
 	public Restaurante() throws IOException
 	{
 		nombre=null;
 		direccion=null;
+		activoNoCorriente=0;
 		mesasRestaurante=new ListaMesas();
 		empleadosRestaurante=new TablaEmpleados();
 		menuRestaurante=new MapaMenu();
 		arc = new Archivos();
-		arc.cargarDatos(mesasRestaurante,menuRestaurante,empleadosRestaurante);
-		arc.actualizarDatos(empleadosRestaurante,menuRestaurante,mesasRestaurante);
-	}
-	public Restaurante(String nombre, String direccion) throws IOException
-	{
-		this.nombre = nombre;
-		this.direccion = direccion;
-		mesasRestaurante = new ListaMesas();
-		empleadosRestaurante = new TablaEmpleados();
-		menuRestaurante = new MapaMenu();
-		arc = new Archivos(); //se crea un espacio de memoria para los archivos
-		arc.cargarDatos(mesasRestaurante,menuRestaurante,empleadosRestaurante);
-		arc.actualizarDatos(empleadosRestaurante,menuRestaurante,mesasRestaurante);
+		arc.cargarDatos(mesasRestaurante,menuRestaurante,empleadosRestaurante,this);
+		arc.actualizarDatos(empleadosRestaurante,menuRestaurante,mesasRestaurante,this);
 	}
 	
 	// Getter & Setter
@@ -50,6 +41,14 @@ public class Restaurante
 	}
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
+	}
+	public double getActivoNoCorriente()
+	{
+		return activoNoCorriente;
+	}
+	public void setActivoNoCorriente(double activoNoCorriente)
+	{
+		this.activoNoCorriente=activoNoCorriente;
 	}
 
 	
@@ -92,7 +91,7 @@ public class Restaurante
 	/*
 	 * Este metodo se utilizara para agregar mesa desde la ventana AgregarMesa
 	 * Recibe el codMesa, se declara e instancia el objeto Mesa dado su codigo
-	 * Dependiendo de si la mesa se agrego o no, ser� el booleano que retorne
+	 * Dependiendo de si la mesa se agrego o no, ser el booleano que retorne
 	 */
 	public boolean agregarMesa(int codMesa)//se ocupa en la ventana agregarMesa
 	{
@@ -107,7 +106,7 @@ public class Restaurante
 	 * Este metodo se utilizara para agregar pedido desde la ventana AgregarPedido
 	 * Recibe el codMesa y codPedido, se verifica si la mesa existe
 	 * Si no existe, retorna false. Si la mesa existe, se declara e instancia,
-	 * Retornara un booleano dependiendo si el pedido se logr� agregar o no.
+	 * Retornara un booleano dependiendo si el pedido se logro agregar o no.
 	 */
 	public boolean agregarPedido(int codMesa,int codPedido)// se ocupa en la ventana agregarPedido
 	{
@@ -125,8 +124,8 @@ public class Restaurante
 	/*
 	 * Este metodo se utilizara para agregar productos al menu
 	 * desde la ventana AgregarProductoMenu.
-	 * Recibe el objeto Producto, y dependiendo si el producto se logr�
-	 * agregar o no, ser� el retorno (true o false) de este proceso.
+	 * Recibe el objeto Producto, y dependiendo si el producto se logro
+	 * agregar o no, sera el retorno (true o false) de este proceso.
 	 */
 	public boolean agregarProductoMenu(Producto producto)//  se ocupa en la ventana agregarProductoMenu
 	{
@@ -282,7 +281,6 @@ public class Restaurante
 	
 	
 	
-	
 	/*
 	 * mostrar*Ventana busca otorgar un reporte por las ventanas producidas de
 	 * las Mesas, Pedidos y Productos mediante el llamado a sus metodos asociados
@@ -328,8 +326,8 @@ public class Restaurante
 	
 	
 	/*
-	 * renovarInventario son aquellos metodos que le permite al restaurante renovar y proveer m�s stock
-	 * Ya sea a un producto espec�fico, o a todos los productos al mismo tiempo.
+	 * renovarInventario son aquellos metodos que le permite al restaurante renovar y proveer mas stock
+	 * Ya sea a un producto especifico, o a todos los productos al mismo tiempo.
 	 */
 	public boolean renovarInventarioDelProducto(String codigoProducto, int cantidadStock)
 	{
@@ -353,9 +351,9 @@ public class Restaurante
 	
 	
 	/*
-	 * obteneBoletaDeMesa es una sucesi�n de procesos que buscan tomar los pedidos de una mesa
+	 * obteneBoletaDeMesa es una sucesion de procesos que buscan tomar los pedidos de una mesa
 	 * y ser adjuntados (en un arreglo) para imprimirlos en una boleta a ser recibida ante el pago de la misma.
-	 * Para ello (antes de eliminar los pedidos de la mesa) se busca �sta y se pide obtener la Boleta de la mesa.
+	 * Para ello (antes de eliminar los pedidos de la mesa) se busca esta y se pide obtener la Boleta de la mesa.
 	 */
 	public Pedido[] obteneBoletaDeMesa(int codeMesa)
 	{
@@ -364,48 +362,170 @@ public class Restaurante
 		}
 		return null;
 	}
-	
-	
-	
-	
-	/*
-	 * calcularRentabilidadDelNegocio es una funcionalidad que invita al Admin
-	 * a saber cuan viable es el negocio en aspectos econ�micos.
-	 * Para ello se le pide que ingrese cuanto es el TA del negocio y en una serie
-	 * de procesos se puede obtener el ROA del local (en aspectos porcentuales).
-	 */
-	public double calcularRentabilidadDelNegocio (int ActivoTotal)
-	{
-		if(mesasRestaurante != null && empleadosRestaurante != null && menuRestaurante != null) {
-			
-			double ROA = 0.0; //RentabilidadEconomica
-			int NI = 0; //IngresoNeto
-			int costesDelNegocio = 0;
-			
-			
-			costesDelNegocio = (empleadosRestaurante.calcularTotalSueldos() + menuRestaurante.calcularTotalGastosProductos());
-			
-			//IngresoNeto(NI) = Ganancias - CostesDelNegocio;
-			NI = (mesasRestaurante.calcularGanancias() - costesDelNegocio);
-			
-			//RentabilidadEconomica(ROA) = IngresoNeto(NI) / ActivoTotal(TA);
-			ROA = NI / ActivoTotal;
-			
-			return (ROA*100);
-		}
-		
-		return -1;
-	}
 
     public boolean AgregarPedido(int codMesa, int codPedido) {
         return mesasRestaurante.AgregarPedido(codMesa,codPedido);
     }
-	
-	
-	
-	
-	
-	
-	
-	//vinculate luego po mono qlo
+    
+    /*
+     * METODOS DE BUSQUEDA
+     */
+    
+    public Garzon traerGarzon(String rut)
+    {
+    	return empleadosRestaurante.traerGarzon(rut);
+    }
+    public Cocinero traerCocinero(String rut)
+    {
+    	return empleadosRestaurante.traerCocinero(rut);
+    }
+    public Cajero traerCajero(String rut)
+    {
+    	return empleadosRestaurante.traerCajero(rut);
+    }
+    public JefeRestaurante traerJefe()
+    {
+    	return empleadosRestaurante.traerJefe();
+    }
+    
+    public boolean buscarGarzon(String rut)
+    {
+    	return empleadosRestaurante.buscarGarzon(rut);
+    }
+    public boolean buscarCocinero(String rut)
+    {
+    	return empleadosRestaurante.buscarCocinero(rut);
+    }
+    public boolean buscarCajero(String rut)
+    {
+    	return empleadosRestaurante.buscarCajero(rut);
+    }
+    public boolean buscarJefe()
+    {
+    	return empleadosRestaurante.buscarJefe();
+    }
+    
+    /*
+     * METODOS MODIFICAR (POR AHORA HICE LOS 4 IGUALES YA QUE CADA EMPLEADO Y EL JEFE ESTAN EXPUESTOS A CAMBIOS)
+     * 
+     */
+    
+    public void modificarGarzon(String rut, String nombre, int edad, int sueldo)
+    {
+    	empleadosRestaurante.modificarGarzon(rut, nombre, edad, sueldo);
+    }
+    
+    public void modificarCocinero(String rut, String nombre, int edad, int sueldo)
+    {
+    	empleadosRestaurante.modificarCocinero(rut, nombre, edad, sueldo);
+    }
+    
+    public void modificarCajero(String rut, String nombre, int edad, int sueldo)
+    {
+    	empleadosRestaurante.modificarCajero(rut, nombre, edad, sueldo);
+    }
+    
+    public void modificarJefe(String rut, String nombre, int edad, int sueldo)
+    {
+    	empleadosRestaurante.modificarJefe(rut, nombre, edad, sueldo);
+    }
+    
+    /*
+     * 
+     * METODOS EXTRAS
+     * 
+     */
+    
+    public int calcularTotalSueldos()
+    {
+    	return empleadosRestaurante.calcularTotalSueldos();
+    }
+    
+    public String porcentajeDeEmpleados()
+    {
+    	return empleadosRestaurante.porcentajeDeEmpleados();
+    }
+    
+    public int calcularTotalPrecioProductos()
+    {
+    	return menuRestaurante.calcularTotalPrecioProductos();
+    }
+    
+    public int calcularCantidadTotalProductos()
+    {
+    	return menuRestaurante.calcularCantidadTotalProductos();
+    }
+    
+    public String procentajeDeCadaProductoEnElVaLorToTal()
+    {
+    	return menuRestaurante.procentajeDeCadaProductoEnElVaLorToTal();
+    }
+    
+    /*
+	 * calcularRentabilidadDelNegocio es una funcionalidad que invita al Admin
+	 * a saber cuan viable es el negocio en aspectos economicos.
+	 * Para ello se le pide que ingrese cuanto es el TA del negocio y en una serie
+	 * de procesos se puede obtener el ROA del local (en aspectos porcentuales).
+	 */
+    public double obtenerGanancias()
+    {
+    	return menuRestaurante.obtenerGanancias();
+    }
+    
+	public String calcularRentabilidadDelNegocio ()
+	{
+		double activoTotal=(obtenerGanancias()+activoNoCorriente);
+		if(mesasRestaurante != null && empleadosRestaurante != null && menuRestaurante != null) {
+			double ROA = 0.0; //RentabilidadEconomica
+			double NI = 0; //IngresoNeto
+			int costesDelNegocio = 0;
+			costesDelNegocio = (empleadosRestaurante.calcularTotalSueldos() + menuRestaurante.calcularTotalPrecioProductos()/2);
+			//IngresoNeto(NI) = Ganancias - CostesDelNegocio;
+			NI = (int) (obtenerGanancias() - costesDelNegocio);
+			//RentabilidadEconomica(ROA) = IngresoNeto(NI) / ActivoTotal(TA);
+			if(activoTotal>0)
+			{
+				ROA = NI / activoTotal;
+				return "La rentabilidad es de un: "+(ROA*(double)100);
+			}
+			else
+			{
+				return "El activo total es 0";
+			}
+		}
+		return "No es posible determinar la rentabilidad";
+	}
+    
+	public String finalizarElDia() throws IOException
+	{
+		double activoCorriente=obtenerGanancias();
+		String datos;
+		
+		datos="Las ganancias actuales fueron: $"+String.format("%.0f",activoCorriente)+" pesos.\n";
+		
+		double costeNegocio=(empleadosRestaurante.calcularTotalSueldos() + menuRestaurante.calcularTotalPrecioProductos()/2);
+		
+		datos+="Mientras que el coste de negocio fue de un equivalente a: $"+String.format("%.0f", costeNegocio)+" pesos.\n";
+		
+		activoNoCorriente=activoNoCorriente+activoCorriente-costeNegocio;
+		
+		datos+="Por lo tanto el activo no corriente total se establece con un monto de: $"+String.format("%.0f", activoNoCorriente)+" pesos.\n";
+				
+		arc.actualizarActivoNoCorriente(this);
+		
+		return datos;
+		
+	}
+    
+	public void modificarRestaurante(String nombre, String direccion) throws IOException
+	{
+		this.nombre=nombre;
+		this.direccion=direccion;
+		arc.actualizarRestaurante(this);
+	}
+    
+    
+
+    
+    
 }

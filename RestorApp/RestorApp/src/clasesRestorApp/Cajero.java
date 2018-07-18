@@ -64,7 +64,6 @@ public class Cajero extends Empleados
 			textArea.append("\n\n" + obtenerInformacion() +"\n\n");
 		}
 	}
-	@Override
 	public String getCodigo() {
 		String codigo=rut+"Cajero";
 		return codigo;

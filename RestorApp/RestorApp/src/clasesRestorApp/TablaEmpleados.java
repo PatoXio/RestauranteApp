@@ -5,6 +5,7 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Map;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 
@@ -19,6 +20,7 @@ public class TablaEmpleados
 	// Constructor
 	public TablaEmpleados()
 	{
+		jefe=null;
 		arc=new Archivos();
 		tablaDeEmpleados = new Hashtable<String, Empleados>();
 	}
@@ -89,6 +91,7 @@ public class TablaEmpleados
 	 * sobrecarga.
 	 * 
 	 */
+	
 	public Empleados eliminarEmpleado(Empleados empleadoPorEliminar)
 	{
 		if (tablaDeEmpleados.containsKey(empleadoPorEliminar.getRut()) == true) {
@@ -112,6 +115,7 @@ public class TablaEmpleados
 	 * 
 	 * 
 	 */
+	
 	public void repoteEmpleadosArchivo()throws IOException
 	{
 		jefe.mostrarPersonasArchivo();
@@ -142,23 +146,69 @@ public class TablaEmpleados
 	public int calcularTotalSueldos()
 	{
 		int sumaSueldosEmpleados = 0;
-		
+		int sueldoJefe=0;
+		if(jefe!=null) sueldoJefe=jefe.getSueldo();
 		//Recorrer cada uno de los Empleados, y obtener su sueldo e ir acumulandolos.
 		if (tablaDeEmpleados != null && tablaDeEmpleados.isEmpty()!= true)
 		{
-			return sumaSueldosEmpleados;
+			Enumeration<String> e = tablaDeEmpleados.keys();
+			while(e.hasMoreElements())
+			{
+				String clave = e.nextElement();
+				String codigo=tablaDeEmpleados.get(clave).getCodigo();
+				if(codigo.equals(clave+"Garzon")==true)
+				{
+					sumaSueldosEmpleados+=traerGarzon(clave).getSueldo();
+				}
+				if(codigo.equals(clave+"Cajero")==true)
+				{
+					sumaSueldosEmpleados+=traerCajero(clave).getSueldo();
+				}
+				if(codigo.equals(clave+"Cocinero")==true)
+				{
+					sumaSueldosEmpleados+=traerCocinero(clave).getSueldo();
+				}
+			}
+			return sumaSueldosEmpleados+sueldoJefe;
 		}
-		
-		return 0;
+		return sumaSueldosEmpleados+sueldoJefe;
+	}
+	
+	public String porcentajeDeEmpleados()
+	{
+		int cantGarzones=0;
+		int cantCocineros=0;
+		int cantCajeros=0;
+		double porcentajeGarzones=0;
+		double porcentajeCocineros=0;
+		double porcentajeCajeros=0;
+		int totalEmpleados=0;
+		if(tablaDeEmpleados!=null && tablaDeEmpleados.isEmpty()==false)
+		{
+			Enumeration<String> e = tablaDeEmpleados.keys();
+			while(e.hasMoreElements())
+			{
+				String clave = e.nextElement();
+				String codigo=tablaDeEmpleados.get(clave).getCodigo();
+				if(codigo.equals(clave+"Garzon")==true) cantGarzones++;
+				if(codigo.equals(clave+"Cajero")==true) cantCajeros++;
+				if(codigo.equals(clave+"Cocinero")==true) cantCocineros++;
+			}
+			totalEmpleados=cantGarzones+cantCajeros+cantCocineros;
+			porcentajeGarzones=(cantGarzones*100)/(double)totalEmpleados;
+			porcentajeCajeros=(cantCajeros*100)/(double)totalEmpleados;
+			porcentajeCocineros=(cantCocineros*100)/(double)totalEmpleados;
+		}
+		return "Total de empleados: "+totalEmpleados+".\nEl "+String.format("%.1f", porcentajeGarzones)+"% son garzones.\nEl"
+				+ " "+String.format("%.1f", porcentajeCocineros)+"% son cocineros.\nEl "+String.format("%.1f", porcentajeCajeros)+"% son cajeros.";
 	}
 
-	
-
-	public void escribirTxTCompletoGarzones() throws IOException {
+	public void escribirTxTCompletoGarzones() throws IOException
+	{
 		Enumeration<String> e = tablaDeEmpleados.keys();
 		while(e.hasMoreElements())
 		{
-			String clave=(String) e.nextElement();
+			String clave= e.nextElement();
 			Empleados emp=tablaDeEmpleados.get(clave);
 			if(emp.getCodigo().equals(emp.getRut()+"Garzon")==true)
 			{
@@ -167,7 +217,9 @@ public class TablaEmpleados
 			}
 		}
 	}
-	public void escribirTxTCompletoCajeros() throws IOException {
+	
+	public void escribirTxTCompletoCajeros() throws IOException
+	{
 		Enumeration<String> e = tablaDeEmpleados.keys();
 		while(e.hasMoreElements())
 		{
@@ -180,6 +232,7 @@ public class TablaEmpleados
 			}
 		}
 	}
+	
 	public void escribirTxTCompletoCocineros() throws IOException {
 		Enumeration<String> e = tablaDeEmpleados.keys();
 		while(e.hasMoreElements())
@@ -193,10 +246,152 @@ public class TablaEmpleados
 			}
 		}
 	}
+	
 	public void escribirTxTCompletoJefe() throws IOException {
 		if(jefe.getRut()!=null)
 		{
 			arc.escribirTxTJefe(jefe.getRut(), jefe.getNombre(), jefe.getEdad(), jefe.getSueldo());
 		}
 	}
+
+
+	public Garzon traerGarzon(String rut) {
+		if(tablaDeEmpleados.containsKey(rut)==false) return null;
+		Garzon gar = (Garzon) tablaDeEmpleados.get(rut);
+		if(gar.getCodigo().equals(rut+"Garzon")==false) return null;
+		return gar;
+	}
+	
+	public Cocinero traerCocinero(String rut) {
+		if(tablaDeEmpleados.containsKey(rut)==false) return null;
+		Cocinero coc = (Cocinero) tablaDeEmpleados.get(rut);
+		if(coc.getCodigo().equals(rut+"Cocinero")==false) return null;
+		return coc;
+	}
+	
+	public Cajero traerCajero(String rut) {
+		if(tablaDeEmpleados.containsKey(rut)==false) return null;
+		Cajero caj = (Cajero) tablaDeEmpleados.get(rut);
+		if(caj.getCodigo().equals(rut+"Cajero")==false) return null;
+		return caj;
+	}
+	
+	public JefeRestaurante traerJefe() {
+		return jefe;
+	}
+	
+	public boolean buscarGarzon(String rut) {
+		if(tablaDeEmpleados.containsKey(rut)==false) return false;
+		Garzon gar = (Garzon) tablaDeEmpleados.get(rut);
+		if(gar.getCodigo().equals(rut+"Garzon")==false) return false;
+		return true;
+	}
+	
+	public boolean buscarCocinero(String rut) {
+		if(tablaDeEmpleados.containsKey(rut)==false) return false;
+		Cocinero coc = (Cocinero) tablaDeEmpleados.get(rut);
+		if(coc.getCodigo().equals(rut+"Cocinero")==false) return false;
+		return true;
+	}
+	
+	public boolean buscarCajero(String rut) {
+		if(tablaDeEmpleados.containsKey(rut)==false) return false;
+		Cajero caj = (Cajero) tablaDeEmpleados.get(rut);
+		if(caj.getCodigo().equals(rut+"Cajero")==false) return false;
+		return true;
+	}
+	
+	public boolean buscarJefe()
+	{
+		if(jefe!=null) return true;
+		return false;
+	}
+
+
+	public void modificarGarzon(String rut, String nombre, int edad, int sueldo)
+	{
+		try {
+			Garzon gar=traerGarzon(rut);
+			gar.setEdad(edad);
+			gar.setNombre(nombre);
+			gar.setRut(rut);
+			gar.setSueldo(sueldo);
+			arc.actualizarGarzones(this);
+		} catch (IOException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Error al modificar garzon");
+		}
+	}
+	
+	public void modificarCocinero(String rut, String nombre, int edad, int sueldo)
+	{
+		try {
+			Cocinero coc=traerCocinero(rut);
+			coc.setEdad(edad);
+			coc.setNombre(nombre);
+			coc.setRut(rut);
+			coc.setSueldo(sueldo);
+			arc.actualizarCocineros(this);
+		}catch(IOException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null,"Error al modificar cocinero");
+		}
+	}
+	
+	public void modificarCajero(String rut, String nombre, int edad, int sueldo)
+	{
+		try {
+			Cajero caj=traerCajero(rut);
+			caj.setEdad(edad);
+			caj.setNombre(nombre);
+			caj.setRut(rut);
+			caj.setSueldo(sueldo);
+			arc.actualizarCajeros(this);
+		}catch(IOException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null,"Error al modificar Cajero");
+		}
+	}
+	
+	public void modificarJefe(String rut, String nombre, int edad, int sueldo)
+	{
+		try {
+			JefeRestaurante jefe=traerJefe();
+			jefe.setEdad(edad);
+			jefe.setNombre(nombre);
+			jefe.setRut(rut);
+			jefe.setSueldo(sueldo);
+			arc.actualizarJefe(this);
+		}catch(IOException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null,"Error al modificar Jefe");
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

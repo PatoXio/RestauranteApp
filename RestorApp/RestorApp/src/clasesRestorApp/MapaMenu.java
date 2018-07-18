@@ -244,17 +244,54 @@ public class MapaMenu
 	 * todos los productos que el restaurante posee (no al que se vende), y asi tener
 	 * el gasto en bruto de los productos del local y permitirnos calcular la rentabilidad del negocio.
 	 */
-	public int calcularTotalGastosProductos()
+	public int calcularTotalPrecioProductos()
 	{
 		int sumaPreciosProductos = 0;
-		
-		//Recorrer cada uno de los Empleados, y obtener su sueldo e ir acumulandolos.
+		//Recorrer cada uno de los productos del menu, y obtener su precio e ir acumulandolos.
 		if (menu != null && menu.isEmpty()!= true)
 		{
-			return sumaPreciosProductos;
+			Iterator<String> key = menu.keySet().iterator();
+			while(key.hasNext())
+			{
+				Producto pro=menu.get(key.next());
+				sumaPreciosProductos+=(pro.getPrecioProducto()*pro.getCantDisponibleEnElRestaurante());
+			}
 		}
+		return sumaPreciosProductos;
+	}
+	
+	public int calcularCantidadTotalProductos()
+	{
+		int sumaProductos = 0;
+		//Recorrer cada uno de los productos del menu, y obtener su cantidad e ir acumulandolos.
+		if (menu != null && menu.isEmpty()!= true)
+		{
+			Iterator<String> key = menu.keySet().iterator();
+			while(key.hasNext())
+			{
+				Producto pro=menu.get(key.next());
+				sumaProductos+=pro.getCantDisponibleEnElRestaurante();
+			}
+		}
+		return sumaProductos;
+	}
+	
+	public String procentajeDeCadaProductoEnElVaLorToTal()
+	{
+		float cantidadTotal=calcularCantidadTotalProductos();
+		String datos="";
 		
-		return 0;
+		if(menu!=null && menu.isEmpty()!=true)
+		{
+			Iterator<String> key = menu.keySet().iterator();
+			while(key.hasNext())
+			{
+				Producto pro=menu.get(key.next());
+				float porcentaje=(pro.getCantDisponibleEnElRestaurante()*100)/cantidadTotal;
+				datos+=pro.getNombre()+" equivale al "+String.format("%.1f", porcentaje)+"%.\n";
+			}
+		}
+		return datos;
 	}
 
 
@@ -266,6 +303,22 @@ public class MapaMenu
 			arc.escribirTxTProductos(pro.getCodeProducto(), pro.getNombre(), Integer.toString(pro.getPrecioProducto()), Integer.toString(pro.getCantDisponibleEnElRestaurante()));
 	
 		}
+	}
+
+
+	public double obtenerGanancias()
+	{
+		double ganancias=0;
+		if(menu!=null && menu.isEmpty()==false)
+		{
+			Iterator<String> key = menu.keySet().iterator();
+			while(key.hasNext())
+			{
+				Producto pro=menu.get(key.next());
+				ganancias+=(50-pro.getCantDisponibleEnElRestaurante())*pro.getPrecioProducto();
+			}
+		}
+		return ganancias;
 	}
 	
 	

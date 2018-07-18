@@ -10,7 +10,6 @@ public interface InterfazYDatosDelPersonal
 	String obtenerInformacion();
 	String getRut();
 	String getNombre();
-	String getCodigo();
 	int getSueldo();
 	int getEdad ();
 	void setRut(String rut);

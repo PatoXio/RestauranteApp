@@ -21,7 +21,7 @@ public class ListaMesas
 	}
 	
 	
-	// M�todos
+	// Metodos
 	/*
 	 * 
 	 * 
@@ -41,7 +41,7 @@ public class ListaMesas
 	}
 	/*
 	 * buscarMesa recorre la lista de mesas del restaurante mediante sus CodeMesa y
-	 * busca la deseada. En el caso exitoso de �sta b�squeda, retorna un "true" o
+	 * busca la deseada. En el caso exitoso de esta busqueda, retorna un "true" o
 	 * "false" en caso contrario.
 	 */
 	public boolean buscarMesa(int id)
@@ -59,7 +59,7 @@ public class ListaMesas
 	
 	
 	/*
-	 * obtenerMesa busca obtener una mesa espec�fica mediante su codigo y as� poder
+	 * obtenerMesa busca obtener una mesa especifica mediante su codigo y asi poder
 	 * almacenarla y/o usarla
 	 */
 	public Mesa obtenerMesa(int codigo)
@@ -80,8 +80,8 @@ public class ListaMesas
 	/*
 	 * agregarMesa permite insertar en la lista de Mesas existentes una mesa nueva.
 	 * Para ello, se comprueba si la mesa que se desea agregar ya existe mediante la
-	 * b�squeda en la lista de mesas existentes. Posterior a ello, en caso de que no
-	 * sea as�, la mesa de adhiere a la lista de mesas que el restaurante posee.
+	 * busqueda en la lista de mesas existentes. Posterior a ello, en caso de que no
+	 * sea asi, la mesa de adhiere a la lista de mesas que el restaurante posee.
 	 */
 	public boolean agregarMesa(Mesa mesaPorAgregar)
 	{
@@ -96,8 +96,8 @@ public class ListaMesas
 	
 	
 	/*
-	 * darCodeMesa tiene la intenci�n de encontrar una mesa del restaurante por su
-	 * c�digo asignado. Si �sta existe, el m�todo retornar� el mismo CodeMesa, sino
+	 * darCodeMesa tiene la intencion de encontrar una mesa del restaurante por su
+	 * codigo asignado. Si esta existe, el metodo retornara el mismo CodeMesa, sino
 	 * un "-1" representativo de la no existencia.
 	 */
 	public int darCodeMesa(int id)
@@ -116,10 +116,10 @@ public class ListaMesas
 	
 	/*
 	 * eliminarMesa busca sacar la mesa del ArrayList de Mesas mediante el
-	 * recibimiento de su ID. En caso de que la mesa exista, �sta es removida de la
+	 * recibimiento de su ID. En caso de que la mesa exista, esta es removida de la
 	 * lista retornando el proceso de manera positiva. Metodo es implementado en
-	 * sobrecarga para el caso que se desee tener aquella mesa eliminada a�n habien
-	 * sido exitoso su removisi�n.
+	 * sobrecarga para el caso que se desee tener aquella mesa eliminada aun habien
+	 * sido exitoso su removision.
 	 */
 	public boolean eliminarMesa(int id)
 	{
@@ -168,8 +168,8 @@ public class ListaMesas
 	
 	/*
 	 * editarMesaX nos permite hacer funcional la dinamica del restaurante
-	 * en lo que respecta a las mesas que �ste posee.
-	 * Para ello buscamos la mesa espec�fica y le asignamos su estado.
+	 * en lo que respecta a las mesas que este posee.
+	 * Para ello buscamos la mesa especifica y le asignamos su estado.
 	 */
 	public void editarMesaX (int codeMesa, String estado)
 	{
@@ -186,11 +186,11 @@ public class ListaMesas
 	
 	
 	/*
-	 * restarCantidadPedidosMesa debe actuar una vez haya sido eliminado uno m�s
-	 * pedidos de la Mesa en que se est� actuando. En caso de que la mesa exista, en
-	 * ella se le resta 1 al total de pedidos en consecuencia a la eliminaci�n
-	 * previa de �ste. M�todo es implementado en sobrecarga para el caso especial de
-	 * que hayan eliminado todos los pedidos de la mesa de manera inmediata. Y as�
+	 * restarCantidadPedidosMesa debe actuar una vez haya sido eliminado uno mas
+	 * pedidos de la Mesa en que se esta actuando. En caso de que la mesa exista, en
+	 * ella se le resta 1 al total de pedidos en consecuencia a la eliminacion
+	 * previa de este. Metodo es implementado en sobrecarga para el caso especial de
+	 * que hayan eliminado todos los pedidos de la mesa de manera inmediata. Y asi
 	 * dejar la mesa en cantPedidos=0; lista para ocupar por otros clientes.
 	 */
 	public void restarCantidadPedidosMesa(int identificadorMesa)
@@ -274,8 +274,8 @@ public class ListaMesas
 	
 	
 	/*
-	 * obtenerMesaABoletear es un proceso que obtendr� todos los pedidos de la mesa en un arreglo
-	 * con el fin de hacer el pago e impresi�n de la boleta a el/los cliente/s de la misma mesa.
+	 * obtenerMesaABoletear es un proceso que obtendra todos los pedidos de la mesa en un arreglo
+	 * con el fin de hacer el pago e impresion de la boleta a el/los cliente/s de la misma mesa.
 	 */
 	public Pedido[] obtenerMesaABoletear(int identificadorMesa)
 	{

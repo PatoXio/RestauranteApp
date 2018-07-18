@@ -12,15 +12,20 @@ import javax.swing.JOptionPane;
 
 public class Archivos {
 	
-	private Secundaria sec;
-	
+	private Secundaria sec;	
 	public Archivos()
 	{
 		sec=new Secundaria();
 	}
 	
-	public void cargarDatos(ListaMesas mesasRestaurante,MapaMenu menuRestaurante,TablaEmpleados empleadosRestaurante)
+	public Archivos(Restaurante rest)
 	{
+		sec=new Secundaria();
+	}
+	
+	public void cargarDatos(ListaMesas mesasRestaurante,MapaMenu menuRestaurante,TablaEmpleados empleadosRestaurante, Restaurante rest) throws IOException
+	{
+		cargarRestaurante(rest);
 		cargarMesas(mesasRestaurante);
 		cargarProductos(menuRestaurante);
 		cargarPedidos(menuRestaurante,mesasRestaurante);
@@ -92,6 +97,56 @@ public class Archivos {
 		} catch (Exception e1) {
 			JOptionPane.showMessageDialog(null, "Revise los datos del archivo inicial de pedidos");
 			e1.printStackTrace();
+		}
+	}
+	public double cargarActivoNoCorriente(Restaurante rest)
+	{
+		File fr = new File("ActivoNoCorriente.txt");
+		Scanner sr;
+		double activo=0;
+		try {
+			sr=new Scanner(fr);
+			while(sr.hasNextLine()==true)
+			{
+				String linea =sr.nextLine();
+				StringTokenizer datos =new StringTokenizer(linea,",");
+				rest.setActivoNoCorriente(Double.parseDouble(datos.nextToken()));
+			}
+			sr.close();
+		}catch(FileNotFoundException e) {
+			JOptionPane.showMessageDialog(null, "Error al cargar el activo no corriente del restaurante\nEL TXT DE RESTAURANTE ESTA SUPER BUGUEADOOOOOOOOOOOOOOOOOOOOO.");
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(null, "Revise datos de Restaurante");
+			e1.printStackTrace();
+		}
+		return activo;
+	}
+	
+	public void cargarRestaurante(Restaurante rest) throws IOException
+	{
+		File f1 = new File("Restaurante.txt");
+		if (f1.exists()==true) { 
+			Scanner s1;
+			try {
+				s1=new Scanner(f1);
+				while(s1.hasNextLine()==true)
+				{
+					String linea =s1.nextLine();
+					StringTokenizer datos =new StringTokenizer(linea,",");
+					rest.setDireccion(datos.nextToken());
+					rest.setNombre(datos.nextToken());
+				}
+				s1.close();
+				cargarActivoNoCorriente(rest);
+			}catch(FileNotFoundException e) {
+				JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de Restaurante. Quizas no existe.");
+			} catch (Exception e1) {
+				JOptionPane.showMessageDialog(null, "Revise datos de Restaurante");
+				e1.printStackTrace();
+			}
+		}else
+		{
+			escribirTxTRestaurante(rest);
 		}
 	}
 	
@@ -264,8 +319,10 @@ public class Archivos {
 			e1.printStackTrace();
 		}
 	}
-	public void actualizarDatos(TablaEmpleados empleados,MapaMenu menuRestaurante,ListaMesas mesasRestaurante) throws IOException
+	public void actualizarDatos(TablaEmpleados empleados,MapaMenu menuRestaurante,ListaMesas mesasRestaurante, Restaurante rest) throws IOException
 	{
+		actualizarRestaurante(rest);
+		actualizarActivoNoCorriente(rest);
 		actualizarGarzones(empleados);
 		actualizarCajeros(empleados);
 		actualizarCocineros(empleados);
@@ -274,6 +331,26 @@ public class Archivos {
 		actualizarPedidos(mesasRestaurante, menuRestaurante);
 		actualizarProductos(menuRestaurante);
 		
+	}
+	
+	public void actualizarActivoNoCorriente(Restaurante rest) throws IOException
+	{
+		if(eliminarArchivoTxT("ActivoNoCorriente")==true)
+		{
+			escribirTxTActivoNoCorriente(rest);
+			cargarActivoNoCorriente(rest);
+		}
+	}
+	
+	public void actualizarRestaurante(Restaurante rest) throws IOException
+	{
+		if(eliminarArchivoTxT("Restaurante")==true)
+		{
+			escribirTxTRestaurante(rest);
+			cargarRestaurante(rest);
+		}else {
+			JOptionPane.showMessageDialog(null,"No puedo eliminar el archivo Restaurante aun xd");
+		}
 	}
 	
 	public void actualizarGarzones(TablaEmpleados empleados) throws IOException
@@ -382,13 +459,45 @@ public class Archivos {
 			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de Garzones. Quizas no existe.");
 		}
 	}
-	public void escribirTxTCocineros(String rut, String nombre, int sueldo, int edad) throws IOException{
+	public void escribirTxTActivoNoCorriente(Restaurante rest) throws IOException
+	{
+		File file = new File("ActivoNoCorriente.txt");
+		FileWriter escribir;
+		PrintWriter linea;
+		try {
+			escribir=new FileWriter(file,true);
+			linea = new PrintWriter(escribir);
+			String texto=Double.toString(rest.getActivoNoCorriente());
+			linea.println(texto);
+			escribir.close();
+		}catch(FileNotFoundException e){
+			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial del Activo no corriente. Quizas no existe.");
+		}
+	}
+	
+	public void escribirTxTRestaurante(Restaurante rest) throws IOException
+	{
+		File file = new File("Restaurante.txt");
+		FileWriter escribir;
+		PrintWriter linea;
+		try {			
+			escribir=new FileWriter(file,true);
+			linea = new PrintWriter(escribir);
+			String texto=rest.getDireccion()+","+rest.getNombre();
+			linea.println(texto);
+			escribir.close();
+			escribirTxTActivoNoCorriente(rest);
+		}catch(FileNotFoundException e) {
+			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial del Restaurante. Quizas no existe.");
+		}
+	}
+	
+	public void escribirTxTCocineros(String rut, String nombre, int sueldo, int edad) throws IOException
+	{
 		File file = new File("Cocineros.txt");// prepara el archivo para ser manipulado
 		FileWriter escribir; // escribir en el fichero
 		PrintWriter linea; // permite escribir en el ficher de la misma forma que por pantalla 
-		
 		try{
-			
 			escribir = new FileWriter(file,true);
 			linea = new PrintWriter(escribir);
 			String texto=rut + "," + nombre +","+ sueldo +"," + edad;
