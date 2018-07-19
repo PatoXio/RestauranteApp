@@ -22,6 +22,7 @@ public class ModificarEmpleados extends JFrame {
 	private JButton botonModificarJefe;
 	private JButton botonModificarGarzon;
 	private JButton botonModificarCocinero;
+	private JButton botonModificarCajero;
 	private JButton botonAtras;
 	private Restaurante restaurante;
 	private static final long serialVersionUID = 1L;
@@ -63,7 +64,7 @@ public class ModificarEmpleados extends JFrame {
 				dispose();
 			}
 		});
-		botonModificarJefe.setBounds(139, 45, 123, 28);
+		botonModificarJefe.setBounds(139, 57, 123, 28);
 		contentPane.add(botonModificarJefe);
 		
 		botonModificarGarzon = new JButton("Garzon");
@@ -77,7 +78,7 @@ public class ModificarEmpleados extends JFrame {
 				dispose();
 			}
 		});
-		botonModificarGarzon.setBounds(139, 84, 123, 28);
+		botonModificarGarzon.setBounds(139, 96, 123, 28);
 		contentPane.add(botonModificarGarzon);
 		
 		botonModificarCocinero = new JButton("Cocinero");
@@ -91,8 +92,22 @@ public class ModificarEmpleados extends JFrame {
 				dispose();
 			}
 		});
-		botonModificarCocinero.setBounds(139, 123, 123, 28);
+		botonModificarCocinero.setBounds(139, 135, 123, 28);
 		contentPane.add(botonModificarCocinero);
+		
+		botonModificarCajero = new JButton("Cajero");
+		botonModificarCajero.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		botonModificarCajero.addActionListener(new ActionListener()
+		{
+			public void actionPerformed (ActionEvent e) 
+			{
+				ModificarCajero ventanaModificar = new ModificarCajero(restaurante);
+				ventanaModificar.setVisible(true);
+				dispose();
+			}
+		});
+		botonModificarCajero.setBounds(139, 174, 123, 28);
+		contentPane.add(botonModificarCajero);
 		
 		
 		botonAtras = new JButton("Atras");
