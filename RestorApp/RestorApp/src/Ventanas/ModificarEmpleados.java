@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -17,7 +18,9 @@ public class ModificarEmpleados extends JFrame {
 	 * 
 	 */
 	private JPanel contentPane;
+	private JLabel titulo;
 	private JButton botonModificarJefe;
+	private JButton botonModificarGarzon;
 	private JButton botonAtras;
 	private Restaurante restaurante;
 	private static final long serialVersionUID = 1L;
@@ -44,6 +47,11 @@ public class ModificarEmpleados extends JFrame {
 	
 	private void inicializarComponentes() {
 		
+		titulo = new JLabel("¿Que empleado desea editar?");
+		titulo.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		titulo.setBounds(110, 11, 228, 28);
+		contentPane.add(titulo);
+		
 		botonModificarJefe = new JButton("Jefe"); 
 		botonModificarJefe.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		botonModificarJefe.addActionListener(new ActionListener() 
@@ -54,8 +62,22 @@ public class ModificarEmpleados extends JFrame {
 				dispose();
 			}
 		});
-		botonModificarJefe.setBounds(139, 45, 123, 42);
+		botonModificarJefe.setBounds(139, 45, 123, 28);
 		contentPane.add(botonModificarJefe);
+		
+		botonModificarGarzon = new JButton("Garzon");
+		botonModificarGarzon.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		botonModificarGarzon.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				ModificarGarzon ventanaModificar = new ModificarGarzon(restaurante); 
+				ventanaModificar.setVisible(true);
+				dispose();
+			}
+		});
+		botonModificarGarzon.setBounds(139, 84, 123, 28);
+		contentPane.add(botonModificarGarzon);
 		
 		botonAtras = new JButton("Atras");
 		botonAtras.addActionListener(new ActionListener() 
