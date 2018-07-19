@@ -21,6 +21,7 @@ public class ModificarEmpleados extends JFrame {
 	private JLabel titulo;
 	private JButton botonModificarJefe;
 	private JButton botonModificarGarzon;
+	private JButton botonModificarCocinero;
 	private JButton botonAtras;
 	private Restaurante restaurante;
 	private static final long serialVersionUID = 1L;
@@ -78,6 +79,21 @@ public class ModificarEmpleados extends JFrame {
 		});
 		botonModificarGarzon.setBounds(139, 84, 123, 28);
 		contentPane.add(botonModificarGarzon);
+		
+		botonModificarCocinero = new JButton("Cocinero");
+		botonModificarCocinero.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		botonModificarCocinero.addActionListener(new ActionListener()
+		{
+			public void actionPerformed (ActionEvent e) 
+			{
+				ModificarCocinero ventanaModificar = new ModificarCocinero(restaurante);
+				ventanaModificar.setVisible(true);
+				dispose();
+			}
+		});
+		botonModificarCocinero.setBounds(139, 123, 123, 28);
+		contentPane.add(botonModificarCocinero);
+		
 		
 		botonAtras = new JButton("Atras");
 		botonAtras.addActionListener(new ActionListener() 
