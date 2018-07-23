@@ -1,8 +1,10 @@
 package Ventanas;
 
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -91,12 +93,17 @@ public class ModificarProductos extends JFrame {
 						
 						if(e.getSource() == botonModificar)
 						{
-							if(restaurante.modificarProductos(claveProducto, cantidadProducto, precioProducto) == true) //Si se encuentra la mesa
-							{
-								JOptionPane.showMessageDialog(null, "Se Modifico correctamente el producto.");
-							}
-							else{
-								JOptionPane.showMessageDialog(null, "La clave del producto no corresponde,ingrese otra.");
+							try {
+								if(restaurante.modificarProductos(claveProducto, cantidadProducto, precioProducto) == true) //Si se encuentra la mesa
+								{
+									JOptionPane.showMessageDialog(null, "Se Modifico correctamente el producto.");
+								}
+								else{
+									JOptionPane.showMessageDialog(null, "La clave del producto no corresponde,ingrese otra.");
+								}
+							} catch (HeadlessException | IOException e1) {
+								JOptionPane.showMessageDialog(null, "Error al editar el producto");
+								e1.printStackTrace();
 							}
 						}
 					}

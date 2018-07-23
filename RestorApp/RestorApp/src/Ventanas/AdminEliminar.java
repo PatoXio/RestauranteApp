@@ -19,6 +19,7 @@ public class AdminEliminar extends JFrame
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JButton botonEliminarEmpleado;
 	//private JLabel titulo;
 	//private JButton botonEliminarMesa;
 	//private JButton botonEliminarPedido;
@@ -82,7 +83,7 @@ public class AdminEliminar extends JFrame
 		
 		JButton botonEliminarProducto = new JButton("Producto");
 		botonEliminarProducto.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		botonEliminarProducto.setBounds(157, 155, 102, 23);
+		botonEliminarProducto.setBounds(157, 153, 102, 23);
 		botonEliminarProducto.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				dispose();
@@ -93,6 +94,23 @@ public class AdminEliminar extends JFrame
 		
 		contentPane.add(botonEliminarProducto);
 		
+		
+		botonEliminarEmpleado = new JButton("Empleado");
+		botonEliminarEmpleado.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		botonEliminarEmpleado.setBounds(157, 203, 102, 23);
+		botonEliminarEmpleado.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				if(e.getSource() == botonEliminarEmpleado)
+				{
+					EliminarCocinero ventana = new EliminarCocinero(restaurante);
+					ventana.setVisible(true);
+					dispose();
+				}
+			}
+		});
+		contentPane.add(botonEliminarEmpleado);
 		
 		
 		final JButton botonAtras = new JButton("Atras");
@@ -110,5 +128,7 @@ public class AdminEliminar extends JFrame
 			}
 		});
 		contentPane.add(botonAtras);
+		
+		
      }
 }

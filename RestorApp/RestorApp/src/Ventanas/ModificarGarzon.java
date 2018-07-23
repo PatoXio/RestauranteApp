@@ -3,6 +3,7 @@ package Ventanas;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -117,7 +118,7 @@ public class ModificarGarzon extends JFrame {
 				{
 					try {
 						
-						if(restaurante.buscarGarzon(textoRutBusqueda.getText()))
+						if(restaurante.buscarEmpleade(textoRutBusqueda.getText()))
 						{
 							textoRut.setText(restaurante.traerGarzon(textoRutBusqueda.getText()).getRut());
 							textoNombre.setText(restaurante.traerGarzon(textoRutBusqueda.getText()).getNombre());
@@ -152,8 +153,14 @@ public class ModificarGarzon extends JFrame {
 							if(sec.validarNumeros(textoSueldo.getText()))
 							{
 								int sueldo = Integer.parseInt(textoSueldo.getText());
-								restaurante.modificarGarzon(rut, nombre, edad, sueldo);
-								JOptionPane.showMessageDialog(null, "Modificación exitosa");
+								try {
+									restaurante.modificarGarzon(rut, nombre, edad, sueldo);
+									JOptionPane.showMessageDialog(null, "Modificación exitosa");
+								} catch (IOException e1) {
+									JOptionPane.showMessageDialog(null, "Ha ocurrido un invonveniente");
+									e1.printStackTrace();
+								}
+								
 							}else {
 								JOptionPane.showMessageDialog(null, "El sueldo ingresado no es valido");
 							}

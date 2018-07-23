@@ -18,6 +18,7 @@ public class EliminarProducto extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JButton botonAtras;
 	private Restaurante restaurante;
 	
 	public EliminarProducto(Restaurante restaurante){
@@ -71,17 +72,16 @@ public class EliminarProducto extends JFrame {
 		botonEliminarProductoPedido.setBounds(131, 145, 168, 36);
 		contentPane.add(botonEliminarProductoPedido);
 		
-		JButton btnAtras = new JButton("Atras");
-		btnAtras.addActionListener(new ActionListener() 
-		{
+		botonAtras = new JButton("Atras");
+		botonAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
-				new AdminAgregar(restaurante).setVisible(true);
+				new AdminEliminar(restaurante).setVisible(true);
 				dispose();
 			}
 		});
-		btnAtras.setBounds(10, 227, 89, 23);
-		contentPane.add(btnAtras);
+		botonAtras.setBounds(10, 227, 89, 23);
+		contentPane.add(botonAtras);
 	}
 	
 }

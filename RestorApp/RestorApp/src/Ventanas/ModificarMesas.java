@@ -3,6 +3,7 @@ package Ventanas;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -86,7 +87,12 @@ public class ModificarMesas extends JFrame {
 					{
 						if(restaurante.buscarMesaX(codMesa) == true) //Si se encuentra la mesa
 						{
-							restaurante.editarMesa(codMesa, estadodMesa);
+							try {
+								restaurante.editarMesa(codMesa, estadodMesa);
+							} catch (IOException e1) {
+								JOptionPane.showMessageDialog(null, "Error al editar mesa");
+								e1.printStackTrace();
+							}
 							JOptionPane.showMessageDialog(null, "Se Modifico correctamente la mesa.");
 						}
 						else{

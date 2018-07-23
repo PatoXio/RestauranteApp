@@ -273,12 +273,14 @@ public class Archivos {
 				String rut = datos.nextToken().trim();
 				String nombre = datos.nextToken().trim();
 				String edad = datos.nextToken().trim();
-				String sueldo = datos.nextToken().trim(); 
+				String sueldo = datos.nextToken().trim();
+				String cantE=datos.nextToken().trim();
 				
 				int suel=Integer.parseInt(sueldo);
 				int age=Integer.parseInt(edad);
+				int cantEmp = Integer.parseInt(cantE);
 				
-				JefeRestaurante jefe=new JefeRestaurante(rut,nombre,age,suel);
+				JefeRestaurante jefe=new JefeRestaurante(rut,nombre,age,suel,cantEmp);
 				
 				
 				empleados.agregarJefe(jefe);
@@ -319,6 +321,14 @@ public class Archivos {
 			e1.printStackTrace();
 		}
 	}
+	
+	public void actualizarEmpleados(TablaEmpleados empleados) throws IOException
+	{
+		actualizarGarzones(empleados);
+		actualizarCajeros(empleados);
+		actualizarCocineros(empleados);
+	}
+	
 	public void actualizarDatos(TablaEmpleados empleados,MapaMenu menuRestaurante,ListaMesas mesasRestaurante, Restaurante rest) throws IOException
 	{
 		actualizarRestaurante(rest);
@@ -509,7 +519,7 @@ public class Archivos {
 			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de Cocineros. Quizas no existe.");
 		}
 	}
-	public void escribirTxTJefe(String rut, String nombre, int edad, int sueldo) throws IOException
+	public void escribirTxTJefe(String rut, String nombre, int edad, int sueldo, int cantE) throws IOException
 	{
 		File file = new File("Jefe.txt");// prepara el archivo para ser manipulado
 		FileWriter escribir; // escribir en el fichero
@@ -519,7 +529,7 @@ public class Archivos {
 			
 			escribir = new FileWriter(file,true);
 			linea = new PrintWriter(escribir);
-			String texto=rut + "," + nombre +","+ edad +"," + sueldo;
+			String texto=rut + "," + nombre +","+ edad +"," + sueldo + "," + cantE;
 			linea.println(texto);
 			escribir.close();
 			

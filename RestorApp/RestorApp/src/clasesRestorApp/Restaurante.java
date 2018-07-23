@@ -62,41 +62,66 @@ public class Restaurante
 	 */
 	public boolean agregarJefe(String rut,String nombre,int edad, int sueldo) throws IOException
 	{
-		JefeRestaurante nuevo=new JefeRestaurante(rut,nombre,edad,sueldo);
-		arc.escribirTxTJefe(rut,nombre,edad,sueldo);
+		int cantE = 0;
+		if(empleadosRestaurante!=null)
+		{
+			cantE = empleadosRestaurante.getSize();
+		}
+		JefeRestaurante nuevo=new JefeRestaurante(rut,nombre,edad,sueldo,cantE);
+		arc.escribirTxTJefe(rut,nombre,edad,sueldo,cantE);
 		return empleadosRestaurante.agregarJefe(nuevo);
 	}
 	
 	public boolean agregarGarzon(String rut, String nombre, int sueldo, int edad, String nivelDeIngles,int mesasAtendidas) throws IOException
 	{
 		Garzon nuevo = new Garzon(rut,nombre,sueldo,edad,nivelDeIngles,mesasAtendidas);
-		arc.escribirTxTGarzones(rut, nombre, sueldo, edad, nivelDeIngles, mesasAtendidas);
-		return empleadosRestaurante.agregarGarzon(nuevo);
+		if(empleadosRestaurante.agregarGarzon(nuevo)==true)
+		{
+			arc.actualizarJefe(empleadosRestaurante);
+			arc.escribirTxTGarzones(rut, nombre, sueldo, edad, nivelDeIngles, mesasAtendidas);
+			return true;
+		}
+		return false;
 	}
 	
 	public boolean agregarCocinero(String rut, String nombre, int sueldo, int edad) throws IOException
 	{
 		Cocinero nuevo = new Cocinero(rut,nombre,sueldo,edad);
-		arc.escribirTxTCocineros(rut, nombre, sueldo, edad);
-		return empleadosRestaurante.agregarCocinero(nuevo);
+		if(empleadosRestaurante.agregarCocinero(nuevo)==true)
+		{
+			arc.escribirTxTCocineros(rut, nombre, sueldo, edad);
+			arc.actualizarJefe(empleadosRestaurante);
+			return true;
+		}
+		return false;
 	}
 	
 	public boolean agregarCajero(String rut, String nombre, int sueldo, int edad,int total, int diferencia) throws IOException //Se cambia nombre por que estaba mal.
 	{
 		Cajero nuevo = new Cajero(rut,nombre,sueldo,edad,total,diferencia);
-		arc.escribirTxTCajeros(rut, nombre, sueldo, edad,total,diferencia);
-		return empleadosRestaurante.agregarCajero(nuevo);
+		if(empleadosRestaurante.agregarCajero(nuevo)==true)
+		{
+			arc.escribirTxTCajeros(rut, nombre, sueldo, edad,total,diferencia);
+			arc.actualizarJefe(empleadosRestaurante);
+			return true;
+		}
+		return false;
 	}
 	
 	/*
 	 * Este metodo se utilizara para agregar mesa desde la ventana AgregarMesa
 	 * Recibe el codMesa, se declara e instancia el objeto Mesa dado su codigo
-	 * Dependiendo de si la mesa se agrego o no, ser el booleano que retorne
+	 * Dependiendo de si la mesa se agrego o no, sera el booleano que retorne
 	 */
-	public boolean agregarMesa(int codMesa)//se ocupa en la ventana agregarMesa
+	public boolean agregarMesa(int codMesa) throws IOException//se ocupa en la ventana agregarMesa
 	{
 		Mesa mesaNueva = new Mesa(codMesa);
-		return mesasRestaurante.agregarMesa(mesaNueva);
+		if(mesasRestaurante.agregarMesa(mesaNueva)==true)
+		{
+			arc.actualizarMesas(mesasRestaurante);
+			return true;
+		}
+		return false;
 	}
 	
 	
@@ -108,17 +133,17 @@ public class Restaurante
 	 * Si no existe, retorna false. Si la mesa existe, se declara e instancia,
 	 * Retornara un booleano dependiendo si el pedido se logro agregar o no.
 	 */
-	public boolean agregarPedido(int codMesa,int codPedido)// se ocupa en la ventana agregarPedido
+	public boolean agregarPedido(int codMesa,int codPedido) throws IOException// se ocupa en la ventana agregarPedido
 	{
 		if(mesasRestaurante.buscarMesa(codMesa)==true){// si el codmesa existe  
 			Mesa m = mesasRestaurante.obtenerMesa(codMesa);  // obtengo la mesa para agregarle el pedido
-			return m.agregarPedido(codPedido);//retorna booleano dependiendo si fue agregado o no
+			if(m.agregarPedido(codPedido)==true)//retorna booleano dependiendo si fue agregado o no
+			{
+				arc.actualizarPedidos(mesasRestaurante, menuRestaurante);
+				return true;
+			}
 		}
-		else //La mesa no existe
-		{
-			
-			return false;
-		}
+		return false;
 	}
 	
 	/*
@@ -127,9 +152,14 @@ public class Restaurante
 	 * Recibe el objeto Producto, y dependiendo si el producto se logro
 	 * agregar o no, sera el retorno (true o false) de este proceso.
 	 */
-	public boolean agregarProductoMenu(Producto producto)//  se ocupa en la ventana agregarProductoMenu
+	public boolean agregarProductoMenu(Producto producto) throws IOException//  se ocupa en la ventana agregarProductoMenu
 	{
-		return menuRestaurante.agregarProductoAlMenu(producto);
+		if(menuRestaurante.agregarProductoAlMenu(producto)==true)
+		{
+			arc.actualizarProductos(menuRestaurante);
+			return true;
+		}
+		return false;
 	}
 	
 	
@@ -254,16 +284,28 @@ public class Restaurante
 		return false;
 	}
 	
+	/*
+	 * Eliminar empleados
+	 */
 	
-	
+	public boolean eliminarEmpleado(String rut) throws IOException
+	{
+		if(empleadosRestaurante.eliminarEmpleado(rut)==true)
+		{
+			arc.actualizarEmpleados(empleadosRestaurante);
+			return true;
+		}
+		return false;
+	}
 	
 	/*
 	 * editarMesa y buscarMesaX logran obtener manejo sobre el estado de la mesa y
 	 * la existensia de la misma en los casos que se necesite (agregar, eliminar, editar, etc.)
 	 */
-	public void editarMesa (int codeMesa, String estado ) 
+	public void editarMesa (int codeMesa, String estado ) throws IOException 
 	{
 		mesasRestaurante.editarMesaX(codeMesa, estado);
+		arc.actualizarMesas(mesasRestaurante);
 	}
 	
 	public boolean buscarMesaX(int id) 
@@ -274,9 +316,14 @@ public class Restaurante
 	/*
 	 * 
 	 */
-	public boolean modificarProductos(String key, int cantidad, int precio) 
+	public boolean modificarProductos(String key, int cantidad, int precio) throws IOException 
 	{
-		return menuRestaurante.modificarProductos(key, cantidad, precio);
+		if(menuRestaurante.modificarProductos(key, cantidad, precio)==true)
+		{
+			arc.actualizarProductos(menuRestaurante);
+			return true;
+		}
+		return false;
 	}
 	
 	
@@ -329,19 +376,21 @@ public class Restaurante
 	 * renovarInventario son aquellos metodos que le permite al restaurante renovar y proveer mas stock
 	 * Ya sea a un producto especifico, o a todos los productos al mismo tiempo.
 	 */
-	public boolean renovarInventarioDelProducto(String codigoProducto, int cantidadStock)
+	public boolean renovarInventarioDelProducto(String codigoProducto, int cantidadStock) throws IOException
 	{
 		if(menuRestaurante != null) {
 			menuRestaurante.renovarInventario(codigoProducto, cantidadStock);
+			arc.actualizarProductos(menuRestaurante);
 			return true;
 		}
 		return false;	
 	}
 	
-	public boolean renovarInventarioDelMenu(int cantidadStockTotal)
+	public boolean renovarInventarioDelMenu(int cantidadStockTotal) throws IOException
 	{
 		if(menuRestaurante != null) {
 			menuRestaurante.renovarInventario(cantidadStockTotal);
+			arc.actualizarProductos(menuRestaurante);
 			return true;
 		}
 		return false;	
@@ -363,8 +412,13 @@ public class Restaurante
 		return null;
 	}
 
-    public boolean AgregarPedido(int codMesa, int codPedido) {
-        return mesasRestaurante.AgregarPedido(codMesa,codPedido);
+    public boolean AgregarPedido(int codMesa, int codPedido) throws IOException {
+        if(mesasRestaurante.AgregarPedido(codMesa,codPedido)==true)
+        {
+        	arc.actualizarPedidos(mesasRestaurante, menuRestaurante);
+        	return true;
+        }
+        return false;
     }
     
     /*
@@ -388,7 +442,7 @@ public class Restaurante
     	return empleadosRestaurante.traerJefe();
     }
     
-    public boolean buscarGarzon(String rut)
+    /*public boolean buscarGarzon(String rut)
     {
     	return empleadosRestaurante.buscarGarzon(rut);
     }
@@ -403,6 +457,11 @@ public class Restaurante
     public boolean buscarJefe()
     {
     	return empleadosRestaurante.buscarJefe();
+    }*/
+    
+    public boolean buscarEmpleade(String rut)
+    {
+    	return empleadosRestaurante.buscarEmpleade(rut);
     }
     
     /*
@@ -410,24 +469,28 @@ public class Restaurante
      * 
      */
     
-    public void modificarGarzon(String rut, String nombre, int edad, int sueldo)
+    public void modificarGarzon(String rut, String nombre, int edad, int sueldo) throws IOException
     {
     	empleadosRestaurante.modificarGarzon(rut, nombre, edad, sueldo);
+    	arc.actualizarGarzones(empleadosRestaurante);
     }
     
-    public void modificarCocinero(String rut, String nombre, int edad, int sueldo)
+    public void modificarCocinero(String rut, String nombre, int edad, int sueldo) throws IOException
     {
     	empleadosRestaurante.modificarCocinero(rut, nombre, edad, sueldo);
+    	arc.actualizarCocineros(empleadosRestaurante);
     }
     
-    public void modificarCajero(String rut, String nombre, int edad, int sueldo)
+    public void modificarCajero(String rut, String nombre, int edad, int sueldo) throws IOException
     {
     	empleadosRestaurante.modificarCajero(rut, nombre, edad, sueldo);
+    	arc.actualizarCajeros(empleadosRestaurante);
     }
     
-    public void modificarJefe(String rut, String nombre, int edad, int sueldo)
+    public void modificarJefe(String rut, String nombre, int edad, int sueldo) throws IOException
     {
     	empleadosRestaurante.modificarJefe(rut, nombre, edad, sueldo);
+    	arc.actualizarJefe(empleadosRestaurante);
     }
     
     /*
@@ -525,7 +588,10 @@ public class Restaurante
 	}
     
     
-
+    
+    
+    
+    
     
     
 }

@@ -35,6 +35,11 @@ public class TablaEmpleados
 	 * proceso.
 	 * 
 	 */
+	public int getSize()
+	{
+		return tablaDeEmpleados.size();
+	}
+	
 	public boolean agregarJefe(JefeRestaurante jefeRes) {
 		if(jefe==null)
 		{
@@ -250,7 +255,7 @@ public class TablaEmpleados
 	public void escribirTxTCompletoJefe() throws IOException {
 		if(jefe.getRut()!=null)
 		{
-			arc.escribirTxTJefe(jefe.getRut(), jefe.getNombre(), jefe.getEdad(), jefe.getSueldo());
+			arc.escribirTxTJefe(jefe.getRut(), jefe.getNombre(), jefe.getEdad(), jefe.getSueldo(), jefe.getCantEmpleados());
 		}
 	}
 
@@ -280,7 +285,7 @@ public class TablaEmpleados
 		return jefe;
 	}
 	
-	public boolean buscarGarzon(String rut) {
+	/*public boolean buscarGarzon(String rut) {
 		if(tablaDeEmpleados.containsKey(rut)==false) return false;
 		Garzon gar = (Garzon) tablaDeEmpleados.get(rut);
 		if(gar.getCodigo().equals(rut+"Garzon")==false) return false;
@@ -299,6 +304,15 @@ public class TablaEmpleados
 		Cajero caj = (Cajero) tablaDeEmpleados.get(rut);
 		if(caj.getCodigo().equals(rut+"Cajero")==false) return false;
 		return true;
+	}*/
+	
+	public boolean buscarEmpleade(String rut)
+	{
+		if(tablaDeEmpleados.containsKey(rut)==true)
+		{
+			return true;
+		}
+		return false;
 	}
 	
 	public boolean buscarJefe()
@@ -307,9 +321,13 @@ public class TablaEmpleados
 		return false;
 	}
 
-
 	public void modificarGarzon(String rut, String nombre, int edad, int sueldo)
 	{
+		if(traerGarzon(rut)==null)
+		{
+			JOptionPane.showMessageDialog(null,"El garzon no existe");
+			return;
+		}
 		try {
 			Garzon gar=traerGarzon(rut);
 			gar.setEdad(edad);
@@ -325,6 +343,11 @@ public class TablaEmpleados
 	
 	public void modificarCocinero(String rut, String nombre, int edad, int sueldo)
 	{
+		if(traerCocinero(rut)==null)
+		{
+			JOptionPane.showMessageDialog(null,"El cocinero no existe");
+			return;
+		}
 		try {
 			Cocinero coc=traerCocinero(rut);
 			coc.setEdad(edad);
@@ -340,6 +363,11 @@ public class TablaEmpleados
 	
 	public void modificarCajero(String rut, String nombre, int edad, int sueldo)
 	{
+		if(traerCajero(rut)==null)
+		{
+			JOptionPane.showMessageDialog(null,"El cajero no existe");
+			return;
+		}
 		try {
 			Cajero caj=traerCajero(rut);
 			caj.setEdad(edad);
@@ -355,6 +383,11 @@ public class TablaEmpleados
 	
 	public void modificarJefe(String rut, String nombre, int edad, int sueldo)
 	{
+		if(jefe==null)
+		{
+			JOptionPane.showMessageDialog(null,"El jefe no existe");
+			return;
+		}
 		try {
 			JefeRestaurante jefe=traerJefe();
 			jefe.setEdad(edad);

@@ -3,6 +3,7 @@ package Ventanas;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -55,7 +56,7 @@ public class ModificarCocinero extends JFrame {
 	
 	private void inicializarComponentes() {
 		
-		titulo = new JLabel("Ingrese el rut del Garzon");
+		titulo = new JLabel("Ingrese el rut del Cocinero");
 		titulo.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		titulo.setBounds(134, 11, 228, 28);
 		contentPane.add(titulo);
@@ -115,7 +116,7 @@ public class ModificarCocinero extends JFrame {
 				{
 					try {
 						
-						if(restaurante.buscarCocinero(textoRutBusqueda.getText()))
+						if(restaurante.buscarEmpleade(textoRutBusqueda.getText()))
 						{
 							textoRut.setText(restaurante.traerCocinero(textoRutBusqueda.getText()).getRut());
 							textoNombre.setText(restaurante.traerCocinero(textoRutBusqueda.getText()).getNombre());
@@ -150,8 +151,14 @@ public class ModificarCocinero extends JFrame {
 							if(sec.validarNumeros(textoSueldo.getText()))
 							{
 								int sueldo = Integer.parseInt(textoSueldo.getText());
-								restaurante.modificarCocinero(rut, nombre, edad, sueldo);
-								JOptionPane.showMessageDialog(null, "Modificación exitosa");
+								try {
+									restaurante.modificarCocinero(rut, nombre, edad, sueldo);
+									JOptionPane.showMessageDialog(null, "Modificación exitosa");
+								} catch (IOException e1) {
+									JOptionPane.showMessageDialog(null, "Ha ocurrido un incoveniente");
+									e1.printStackTrace();
+								}
+								
 							}else {
 								JOptionPane.showMessageDialog(null, "El sueldo ingresado no es valido");
 							}

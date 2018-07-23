@@ -155,7 +155,13 @@ public class ModificarJefe extends JFrame {
 							if(sec.validarNumeros(textoSueldo.getText()))
 							{
 								int sueldo = Integer.parseInt(textoSueldo.getText());
-								restaurante.modificarJefe(rut, nombre, edad, sueldo);
+								try {
+									restaurante.modificarJefe(rut, nombre, edad, sueldo);
+									JOptionPane.showMessageDialog(null, "Modificación exitosa");
+								} catch (IOException e1) {
+									JOptionPane.showMessageDialog(null, "Ha ocurrido un inconveniente");
+									e1.printStackTrace();
+								}
 								JOptionPane.showMessageDialog(null, "Modificación exitosa");
 							}else {
 								JOptionPane.showMessageDialog(null, "El sueldo ingresado no es valido");

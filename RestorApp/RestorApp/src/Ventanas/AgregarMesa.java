@@ -1,6 +1,7 @@
 package Ventanas;
 
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.*;
 import java.io.IOException;
 
@@ -69,9 +70,6 @@ public class AgregarMesa extends JFrame
 		textMesa.setColumns(10);
 		
 		
-		botonRegistrar = new JButton("Registrar");
-		botonRegistrar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		botonRegistrar.setBounds(121, 186, 182, 31);
 		botonRegistrar.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e) {
@@ -81,20 +79,25 @@ public class AgregarMesa extends JFrame
 					
 					if(e.getSource() == botonRegistrar)
 					{// si el
-						if(restaurante.agregarMesa(codMesa)==true)
-						{
-							Archivos a = new Archivos();
-							try
+						try {
+							if(restaurante.agregarMesa(codMesa)==true)
 							{
-								a.escribirTxTMesas(textMesa.getText());
-							} catch (IOException e1) {
-								e1.printStackTrace();
+								Archivos a = new Archivos();
+								try
+								{
+									a.escribirTxTMesas(textMesa.getText());
+								} catch (IOException e1) {
+									e1.printStackTrace();
+								}
+								JOptionPane.showMessageDialog(null, "Se agrego correctamente la nueva mesa.");
 							}
-							JOptionPane.showMessageDialog(null, "Se agrego correctamente la nueva mesa.");
-						}
-						else{
-							JOptionPane.showMessageDialog(null, "El codigo de esa mesa ya se encuentra registrada,ingrese otra.");
-							textMesa.setText("");
+							else{
+								JOptionPane.showMessageDialog(null, "El codigo de esa mesa ya se encuentra registrada,ingrese otra.");
+								textMesa.setText("");
+							}
+						} catch (HeadlessException | IOException e1) {
+							JOptionPane.showMessageDialog(null, "Error al agregar la mesa");
+							e1.printStackTrace();
 						}
 					}
 				}else {

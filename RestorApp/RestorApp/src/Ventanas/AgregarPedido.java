@@ -1,6 +1,7 @@
 package Ventanas;
 
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -93,19 +94,24 @@ public class AgregarPedido extends JFrame {
 					{
 						int codPedido = Integer.parseInt(textPedido.getText());
 						if(e.getSource() == botonRegistrar){
-							if(restaurante.AgregarPedido(codMesa, codPedido)==true){
-								try {
-									arc.escribirSoloPedidoTxT(Integer.toString(codMesa),Integer.toString(codPedido));
-								} catch (IOException e1) {
-									JOptionPane.showMessageDialog(null, "Ocurrio un error sobreescribir el archivo");
+							try {
+								if(restaurante.AgregarPedido(codMesa, codPedido)==true){
+									try {
+										arc.escribirSoloPedidoTxT(Integer.toString(codMesa),Integer.toString(codPedido));
+									} catch (IOException e1) {
+										JOptionPane.showMessageDialog(null, "Ocurrio un error sobreescribir el archivo");
+									}
+									JOptionPane.showMessageDialog(null, "Se agrego con exito");
 								}
-								JOptionPane.showMessageDialog(null, "Se agrego con exito");
-							}
-							else{
-								JOptionPane.showMessageDialog(null, "No se logr� agregar el pedido");
-								textMesa.setText("");
-								textPedido.setText("");
-								
+								else{
+									JOptionPane.showMessageDialog(null, "No se logro agregar el pedido");
+									textMesa.setText("");
+									textPedido.setText("");
+									
+								}
+							} catch (HeadlessException | IOException e1) {
+								JOptionPane.showMessageDialog(null, "Error al agregar el pedido");								
+								e1.printStackTrace();
 							}
 						}
 					}

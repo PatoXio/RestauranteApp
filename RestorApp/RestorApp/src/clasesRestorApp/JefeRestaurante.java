@@ -10,6 +10,7 @@ public class JefeRestaurante implements InterfazYDatosDelPersonal{
 	private String nombre;
 	private int edad;
 	private int sueldo;
+	private int cantEmpleados;
 	
 	public JefeRestaurante()
 	{
@@ -17,21 +18,28 @@ public class JefeRestaurante implements InterfazYDatosDelPersonal{
 		nombre=null;
 		edad=0;
 		sueldo=0;
+		cantEmpleados=0;
 	}
-	public JefeRestaurante(String rut,String nombre,int edad, int sueldo)
+	public JefeRestaurante(String rut,String nombre,int edad, int sueldo, int cantEmpleados)
 	{
 		this.rut=rut;
 		this.nombre=nombre;
 		this.edad=edad;
 		this.sueldo=sueldo;
+		this.cantEmpleados=cantEmpleados;
 	}
 	@Override
 	public String obtenerInformacion()
 	{
 		String info="\n////////////////////-Jefe-////////////////////\nRut: " + getRut() + "\nNombre: " + getNombre() + "\nEdad: " + getEdad() +
-		"\nSalario: " + getSueldo() +"\n////////////////////-Jefe-////////////////////\n";
+		"\nSalario: " + getSueldo() + "\nCantidad de Empleados: " + getCantEmpleados()+ "\n////////////////////-Jefe-////////////////////\n";
 		return info;
 	}
+	public int getCantEmpleados()
+	{
+		return cantEmpleados;
+	}
+	
 	public int getSueldo()
 	{
 		return sueldo;
@@ -65,7 +73,13 @@ public class JefeRestaurante implements InterfazYDatosDelPersonal{
 	public void setSueldo(int sueldo) {
 		this.sueldo=sueldo;
 	}
-
+	
+	public void setCantEmpleados(int cantE)
+	{
+		cantEmpleados=cantE;
+	}
+	
+	
 	@Override
 	public void setEdad(int edad) {
 		this.edad=edad;

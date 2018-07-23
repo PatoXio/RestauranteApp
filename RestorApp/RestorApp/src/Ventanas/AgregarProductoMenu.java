@@ -1,6 +1,7 @@
 package Ventanas;
 
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -117,24 +118,29 @@ public class AgregarProductoMenu extends JFrame
 						{
 							int cant = Integer.parseInt(textCantidad.getText());
 							Producto producto = new Producto(codigo,nombre,cant,precio);
-							if(restaurante.agregarProductoMenu(producto)==true){
-								Archivos a = new Archivos();
-								try {
-									a.escribirTxTProductos(codigo,nombre,textPrecio.getText(),textCantidad.getText());
-								} catch(IOException e1){
-									JOptionPane.showMessageDialog(null, "Error al escribir en el archivo");
+							try {
+								if(restaurante.agregarProductoMenu(producto)==true){
+									Archivos a = new Archivos();
+									try {
+										a.escribirTxTProductos(codigo,nombre,textPrecio.getText(),textCantidad.getText());
+									} catch(IOException e1){
+										JOptionPane.showMessageDialog(null, "Error al escribir en el archivo");
+									}
+									JOptionPane.showMessageDialog(null, "Se agrego con exito");
+								
 								}
-								JOptionPane.showMessageDialog(null, "Se agrego con exito");
-							
-							}
-							else{
-								JOptionPane.showMessageDialog(null, "No se logr� agregar el producto");
-								textCodigo.setText("");
-								textNombre.setText("");
-								textPrecio.setText("");
-								textCantidad.setText("");
-								
-								
+								else{
+									JOptionPane.showMessageDialog(null, "No se logro agregar el producto");
+									textCodigo.setText("");
+									textNombre.setText("");
+									textPrecio.setText("");
+									textCantidad.setText("");
+									
+									
+								}
+							} catch (HeadlessException | IOException e1) {
+								JOptionPane.showMessageDialog(null, "Error al agregar el producto");
+								e1.printStackTrace();
 							}
 						}
 						else
