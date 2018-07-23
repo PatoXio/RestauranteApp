@@ -14,3 +14,4 @@ public class AppInicio
 		ventana.setVisible(true);
 	}	
 } //se mega acabo la weaita suprema
+	// gggggg
