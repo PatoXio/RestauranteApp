@@ -175,7 +175,6 @@ public class AgregarJefe extends JFrame
 					VentanaAdmin ventana = new VentanaAdmin(restaurante);
 					ventana.setVisible(true);
 				}
-				
 			}
 		});
 		botonSalir.setBounds(10, 227, 116, 23);

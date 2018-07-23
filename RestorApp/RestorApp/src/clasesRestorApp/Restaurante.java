@@ -116,7 +116,7 @@ public class Restaurante
 	public boolean agregarMesa(int codMesa) throws IOException//se ocupa en la ventana agregarMesa
 	{
 		Mesa mesaNueva = new Mesa(codMesa);
-		if(mesasRestaurante.agregarMesa(mesaNueva)==true)
+		if(mesasRestaurante.agregarMesa(mesaNueva)==true && empleadosRestaurante.atenderMesa(codMesa)==true)
 		{
 			arc.actualizarMesas(mesasRestaurante);
 			return true;
@@ -335,6 +335,11 @@ public class Restaurante
 	public void mostrarMesasVentana(JTextArea textArea) //FALTA EL METODO EN LISTAMESAS.
 	{
 		mesasRestaurante.mostrarMesasVentanaX(textArea);
+	}
+	
+	public void mostrarMesasGarzonesVentana(JTextArea textArea)
+	{
+		empleadosRestaurante.mostrarMesasGarzonesVentana(textArea);
 	}
 	
 	public void mostrarPedidosVentana(JTextArea textArea) 

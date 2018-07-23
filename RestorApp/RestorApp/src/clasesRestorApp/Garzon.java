@@ -42,6 +42,10 @@ public class Garzon extends Empleados
 	{
 		return mesasAtendidas;
 	}
+	public int getcantMesas()
+	{
+		return arrayMesasAtendiendo.size();
+	}
 	@Override
 	public int getSueldo()
 	{
@@ -53,7 +57,7 @@ public class Garzon extends Empleados
 		return ganancia;
 	}
 	
-	public boolean AtenderMesa(int numeroMesa)
+	public boolean atenderMesa(int numeroMesa)
 	{
 		if(arrayMesasAtendiendo.size()==5) return false;
 		String num=Integer.toString(numeroMesa);
@@ -90,16 +94,37 @@ public class Garzon extends Empleados
 			"\nSalario: " + getSueldo() ;
 		return info;
 	}
+	public String obtenerMesas()
+	{
+		String info ="Nombre: "+ getNombre()+"\nRut: "+ getRut()+"\nMesas: "+"0,0,0,0,0";
+		if(arrayMesasAtendiendo!=null && arrayMesasAtendiendo.size()>0)
+		{
+			info="Nombre: "+ getNombre()+"\nRut: "+ getRut()+"\nMesas: "+arrayMesasAtendiendo.get(0);
+			for(int i=1;i<arrayMesasAtendiendo.size();i++)
+			{
+				if(arrayMesasAtendiendo.get(i)==null)
+				{
+					info = info + "0";
+				}
+				info = info + "," + arrayMesasAtendiendo.get(i);
+			}
+		}
+		return info+".";
+	}
+	
 	@Override
 	public void mostrarPersonasArchivo() throws IOException{
 		Archivos archivo = new Archivos();
 		archivo.crearArchivoReporteEmpleados(obtenerInformacion());
-
 	}
 	@Override
-	public void mostrar(JTextArea textArea) {
-		{	
-			textArea.append("\n\n" + obtenerInformacion() +"\n\n");
-		}
+	public void mostrar(JTextArea textArea)
+	{	
+		textArea.append("\n\n" + obtenerInformacion() +"\n\n");
+	}
+		
+	public void mostrarMesas(JTextArea textArea)
+	{
+		textArea.append("\n\n" + obtenerMesas()+"\n\n");
 	}
 }

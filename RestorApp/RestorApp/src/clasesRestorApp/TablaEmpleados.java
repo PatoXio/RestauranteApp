@@ -131,6 +131,18 @@ public class TablaEmpleados
 		}
 	}
 	
+	public void mostrarMesasGarzonesVentana(JTextArea textArea) {
+		for(Map.Entry<String, Empleados> entrada : tablaDeEmpleados.entrySet())
+		{
+			String clave = entrada.getKey();
+			if(tablaDeEmpleados.get(clave).getCodigo().equals(clave+"Garzon")==true)
+			{
+				System.out.println("weaita");
+				Garzon gar=(Garzon) tablaDeEmpleados.get(clave);
+				gar.mostrarMesas(textArea);
+			}
+		}
+	}
 	
 	public void mostrarEmpleadosVentanaX(JTextArea textArea) 
 	{
@@ -221,6 +233,26 @@ public class TablaEmpleados
 				arc.escribirTxTGarzones(gar.getRut(), gar.getNombre(), gar.getSueldo(), gar.getEdad(), gar.getNivelDeIngles(), gar.getMesasAtendidas());
 			}
 		}
+	}
+	
+	public boolean atenderMesa (int numeroMesa)
+	{
+		Enumeration<String> e = tablaDeEmpleados.keys();
+		while(e.hasMoreElements())
+		{
+			String clave=(String) e.nextElement();
+			Empleados emp=tablaDeEmpleados.get(clave);
+			if(emp.getCodigo().equals(emp.getRut()+"Garzon")==true)
+			{
+				Garzon gar=(Garzon)emp;
+				if(gar.getcantMesas()<5)
+				{
+					gar.atenderMesa(numeroMesa);
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 	
 	public void escribirTxTCompletoCajeros() throws IOException
@@ -400,6 +432,7 @@ public class TablaEmpleados
 			JOptionPane.showMessageDialog(null,"Error al modificar Jefe");
 		}
 	}
+
 	
 	
 	
