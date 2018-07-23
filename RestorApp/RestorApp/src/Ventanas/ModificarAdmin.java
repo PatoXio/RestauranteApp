@@ -54,7 +54,8 @@ public class ModificarAdmin extends JFrame {
 		{
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				new VentanaAdmin(restaurante).setVisible(true);
+				VentanaAdmin ventana = new VentanaAdmin(restaurante);
+				ventana.setVisible(true);
 				dispose();
 			}
 		});

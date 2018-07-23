@@ -38,9 +38,10 @@ public class EliminarCocinero extends JFrame {
 	{
 		super();
 		this.restaurante=restaurante;
-		this.setLocationRelativeTo(null);
+		
 		sec = new Secundaria();
 		configurarVentana();
+		this.setLocationRelativeTo(null);
 		inicializarComponentes();
 	}
 	
@@ -126,7 +127,8 @@ public class EliminarCocinero extends JFrame {
 		{
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				new VentanaAdmin(restaurante).setVisible(true);
+				VentanaAdmin ventana = new VentanaAdmin(restaurante);
+				ventana.setVisible(true);
 				dispose();
 			}
 		});

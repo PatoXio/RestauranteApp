@@ -35,8 +35,8 @@ public class EliminarMesa extends JFrame  {
 	public EliminarMesa(Restaurante restaurante){
 		super();
 		this.restaurante = restaurante;
-		this.setLocationRelativeTo(null);
 		configurarVentana();
+		this.setLocationRelativeTo(null);
 		sec=new Secundaria();
 		inicializarComponentes();
 	}
@@ -103,7 +103,8 @@ public class EliminarMesa extends JFrame  {
 		botonAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
-				new AdminEliminar(restaurante).setVisible(true);
+				VentanaAdmin ventana = new VentanaAdmin(restaurante);
+				ventana.setVisible(true);
 				dispose();
 			}
 		});

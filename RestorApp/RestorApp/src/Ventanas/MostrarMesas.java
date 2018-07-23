@@ -34,8 +34,9 @@ public class MostrarMesas extends JFrame {
 	{
 		super();
 		configurarVentana();
-		inicializarComponentes(restaurante);
 		this.setLocationRelativeTo(null);
+		inicializarComponentes(restaurante);
+		
 		this.restaurante = restaurante;
 		
 	}

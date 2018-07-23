@@ -39,8 +39,8 @@ public class ModificarCajero extends JFrame {
 	public ModificarCajero(Restaurante restaurante) {
 		super();
 		configurarVentana();
-		inicializarComponentes();
 		this.setLocationRelativeTo(null);
+		inicializarComponentes();
 		sec = new Secundaria();
 		this.restaurante=restaurante;
 	}
@@ -180,7 +180,8 @@ public class ModificarCajero extends JFrame {
 		{
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				new VentanaAdmin(restaurante).setVisible(true);
+				VentanaAdmin ventana = new VentanaAdmin(restaurante);
+				ventana.setVisible(true);
 				dispose();
 			}
 		});

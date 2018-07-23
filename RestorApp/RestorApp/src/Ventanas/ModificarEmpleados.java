@@ -30,8 +30,9 @@ public class ModificarEmpleados extends JFrame {
 	public ModificarEmpleados (Restaurante restaurante) {
 		super();
 		configurarVentana();
-		inicializarComponentes();
 		this.setLocationRelativeTo(null);
+		inicializarComponentes();
+		
 		this.restaurante = restaurante;
 		
 	}
@@ -116,7 +117,8 @@ public class ModificarEmpleados extends JFrame {
 		{
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				new VentanaAdmin(restaurante).setVisible(true);
+				VentanaAdmin ventana = new VentanaAdmin(restaurante);
+				ventana.setVisible(true);
 				dispose();
 			}
 		});

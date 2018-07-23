@@ -41,8 +41,9 @@ public class AgregarMesa extends JFrame
 		super();
 		this.restaurante = restaurante;
 		sec=new Secundaria();
-		this.setLocationRelativeTo(null);
+		
 		configurarVentana();
+		this.setLocationRelativeTo(null);
 		inicializarComponentes();
 	}
 	private void configurarVentana(){
@@ -115,8 +116,9 @@ public class AgregarMesa extends JFrame
 		botonAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
-				new AdminAgregar(restaurante).setVisible(true);
 				dispose();
+				VentanaAdmin ventana = new VentanaAdmin(restaurante);
+				ventana.setVisible(true);
 			}
 		});
 		botonAtras.setBounds(10, 227, 89, 23);

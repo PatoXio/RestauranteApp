@@ -40,8 +40,8 @@ public class ModificarGarzon extends JFrame {
 	public ModificarGarzon(Restaurante restaurante) {
 		super();
 		configurarVentana();
-		inicializarComponentes();
 		this.setLocationRelativeTo(null);
+		inicializarComponentes();
 		sec = new Secundaria();
 		this.restaurante=restaurante;
 	}
@@ -181,7 +181,8 @@ public class ModificarGarzon extends JFrame {
 		{
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				new VentanaAdmin(restaurante).setVisible(true);
+				VentanaAdmin ventana = new VentanaAdmin(restaurante);
+				ventana.setVisible(true);
 				dispose();
 			}
 		});

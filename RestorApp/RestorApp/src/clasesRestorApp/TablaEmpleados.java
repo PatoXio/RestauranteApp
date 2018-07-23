@@ -262,30 +262,29 @@ public class TablaEmpleados
 		return false;
 	}
 	
-	public boolean atenderMesa(int numeroMesa)
-	{
-		Enumeration<String> e = tablaDeEmpleados.keys();
-		while(e.hasMoreElements())
-		{
-			String clave=(String) e.nextElement();
-			Empleados emp=tablaDeEmpleados.get(clave);
+	  public boolean atenderMesa(int numeroMesa)
+	    {
+	        Enumeration<String> e = tablaDeEmpleados.keys();
+	        while(e.hasMoreElements())
+	        {
+	            String clave=(String) e.nextElement();
+	            Empleados emp=tablaDeEmpleados.get(clave);
 
-			if(emp!=null)
-
-			if(emp==null) return false;
-			if(emp.getCodigo().equals(emp.getRut()+"Garzon")==true)
-
-			{
-				if(emp.getCodigo().equals(emp.getRut()+"Garzon")==true)
-				{
-					Garzon gar=(Garzon)emp;
-					System.out.print(gar.getcantMesas()<5);
-					return gar.atenderMesa(numeroMesa);
-				}
-			}
-		}
-		return false;
-	}
+	            if(emp!=null)
+	            {
+	                if(emp.getCodigo().equals(emp.getRut()+"Garzon")==true)
+	                {
+	                    if(emp.getCodigo().equals(emp.getRut()+"Garzon")==true)
+	                    {
+	                        Garzon gar=(Garzon)emp;
+	                        System.out.print(gar.getcantMesas()<5);
+	                        return gar.atenderMesa(numeroMesa);
+	                    }
+	                }
+	            }
+	        }
+	        return false;
+	    }
 	
 	public void escribirTxTCompletoCajeros() throws IOException
 	{

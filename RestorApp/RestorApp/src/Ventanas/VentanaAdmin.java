@@ -139,6 +139,8 @@ public class VentanaAdmin extends JFrame  {
 		{
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource() == botonSalir){
+					VentanaPrincipal ventana = new VentanaPrincipal(restaurante);
+					ventana.setVisible(true);
 					dispose();
 					
 				}

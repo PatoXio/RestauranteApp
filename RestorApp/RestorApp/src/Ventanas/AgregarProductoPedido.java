@@ -41,8 +41,8 @@ public class AgregarProductoPedido extends JFrame
 	public AgregarProductoPedido(Restaurante restaurante){
 		super();
 		this.restaurante = restaurante;
-		this.setLocationRelativeTo(null);
 		configurarVentana();
+		this.setLocationRelativeTo(null);
 		sec=new Secundaria();
 		inicializarComponentes();
 	}

@@ -46,8 +46,8 @@ public class AgregarProductoMenu extends JFrame
 	public AgregarProductoMenu(Restaurante restaurante){
 		super();
 		this.restaurante = restaurante;
-		this.setLocationRelativeTo(null);
 		configurarVentana();
+		this.setLocationRelativeTo(null);
 		sec=new Secundaria();
 		inicializarComponentes();
 	}
@@ -178,9 +178,10 @@ public class AgregarProductoMenu extends JFrame
 		botonSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource() == botonSalir ){
-					dispose();
+					
 					VentanaAdmin ventana = new VentanaAdmin(restaurante);
 					ventana.setVisible(true);
+					dispose();
 				}
 				
 			}

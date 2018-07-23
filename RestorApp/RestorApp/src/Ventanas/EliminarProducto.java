@@ -24,8 +24,8 @@ public class EliminarProducto extends JFrame {
 	public EliminarProducto(Restaurante restaurante){
 		super();
 		this.restaurante = restaurante;
-		this.setLocationRelativeTo(null);
 		configurarVentana();
+		this.setLocationRelativeTo(null);
 		inicializarComponentes();
 	}
 	private void configurarVentana(){
@@ -77,7 +77,8 @@ public class EliminarProducto extends JFrame {
 		botonAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
-				new AdminEliminar(restaurante).setVisible(true);
+				VentanaAdmin ventana = new VentanaAdmin(restaurante);
+				ventana.setVisible(true);
 				dispose();
 			}
 		});

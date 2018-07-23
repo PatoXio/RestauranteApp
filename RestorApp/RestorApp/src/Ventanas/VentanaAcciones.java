@@ -3,15 +3,14 @@ package Ventanas;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+
 import javax.swing.border.EmptyBorder;
 
 import clasesRestorApp.Restaurante;
 
 import javax.swing.JButton;
 import javax.swing.JSeparator;
-import javax.swing.JTextArea;
-import javax.swing.ScrollPaneConstants;
+
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.io.IOException;

@@ -31,8 +31,8 @@ public class EliminarPedido extends JFrame {
 	public EliminarPedido(Restaurante restaurante){
 		super();
 		this.restaurante = restaurante;
-		this.setLocationRelativeTo(null);
 		configurarVentana();
+		this.setLocationRelativeTo(null);
 		sec=new Secundaria();
 		inicializarComponentes();
 	}
@@ -132,7 +132,8 @@ public class EliminarPedido extends JFrame {
 			public void actionPerformed(ActionEvent e) 
 			{
 				dispose();
-				new AdminEliminar(restaurante).setVisible(true);
+				VentanaAdmin ventana = new VentanaAdmin(restaurante);
+				ventana.setVisible(true);
 				
 			}
 		});

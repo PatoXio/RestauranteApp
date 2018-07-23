@@ -30,8 +30,8 @@ public class EliminarEmpleado extends JFrame {
 	{
 		super();
 		this.restaurante=restaurante;
-		this.setLocationRelativeTo(null);
 		configurarVentana();
+		this.setLocationRelativeTo(null);
 		inicializarComponentes();
 	}
 	public void configurarVentana() 
@@ -56,7 +56,8 @@ public class EliminarEmpleado extends JFrame {
 		botonAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
-				new AdminEliminar(restaurante).setVisible(true);
+				VentanaAdmin ventana = new VentanaAdmin(restaurante);
+				ventana.setVisible(true);
 				dispose();
 			}
 		});

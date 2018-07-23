@@ -28,8 +28,8 @@ public class AgregarProducto extends JFrame
 	public AgregarProducto(Restaurante restaurante){
 		super();
 		this.restaurante = restaurante;
-		this.setLocationRelativeTo(null);
 		configurarVentana();
+		this.setLocationRelativeTo(null);
 		inicializarComponentes();
 	}
 	private void configurarVentana(){
@@ -82,7 +82,8 @@ public class AgregarProducto extends JFrame
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				new AdminAgregar(restaurante).setVisible(true);
+				VentanaAdmin ventana = new VentanaAdmin(restaurante);
+				ventana.setVisible(true);
 				dispose();
 			}
 		});

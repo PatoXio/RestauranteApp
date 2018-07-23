@@ -14,7 +14,6 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import clasesRestorApp.Restaurante;
-import clasesRestorApp.Secundaria;
 
 public class ModificarRestaurante extends JFrame {
 	private JPanel contentPane;
@@ -26,7 +25,6 @@ public class ModificarRestaurante extends JFrame {
 	private JButton botonModificar;
 	private JButton botonAtras;
 	private Restaurante restaurante;
-	private Secundaria sec;
 	private static final long serialVersionUID = 1L;
 	
 	public ModificarRestaurante(Restaurante restaurante) {
@@ -35,8 +33,6 @@ public class ModificarRestaurante extends JFrame {
 		configurarVentana();
 		this.setLocationRelativeTo(null);
 		inicializarComponentes();
-		
-		sec = new Secundaria();
 		this.restaurante=restaurante;
 	}
 	
@@ -107,7 +103,8 @@ public class ModificarRestaurante extends JFrame {
 		{
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				new VentanaAdmin(restaurante).setVisible(true);
+				VentanaAdmin ventana = new VentanaAdmin(restaurante);
+				ventana.setVisible(true);
 				dispose();
 			}
 		});

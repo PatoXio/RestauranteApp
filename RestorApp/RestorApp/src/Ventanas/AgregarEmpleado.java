@@ -33,8 +33,8 @@ public class AgregarEmpleado extends JFrame
 	{
 		super();
 		this.restaurante = restaurante;
-		this.setLocationRelativeTo(null);
 		configurarVentana();
+		this.setLocationRelativeTo(null);
 		inicializarComponenetes();
 	}
 

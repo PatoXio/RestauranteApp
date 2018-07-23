@@ -38,9 +38,10 @@ public class ModificarMesas extends JFrame {
 	{
 		super();
 		configurarVentana();
+		this.setLocationRelativeTo(null);
 		inicializarComponentes();
 		sec=new Secundaria();
-		this.setLocationRelativeTo(null);
+		
 		this.restaurante = restaurante;
 	}
 	
@@ -114,7 +115,8 @@ public class ModificarMesas extends JFrame {
 		botonAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
-				new ModificarAdmin(restaurante).setVisible(true);
+				VentanaAdmin ventana = new VentanaAdmin(restaurante);
+				ventana.setVisible(true);
 				dispose();
 			}
 		});

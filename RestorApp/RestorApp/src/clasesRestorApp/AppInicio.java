@@ -2,7 +2,6 @@ package clasesRestorApp;
 
 
 import java.io.IOException;
-import Ventanas.Ventana;
 import Ventanas.VentanaPrincipal;
 
 

@@ -42,9 +42,9 @@ public class ModificarJefe extends JFrame {
 	public ModificarJefe(Restaurante restaurante) {
 		super();
 		configurarVentana();
+		this.setLocationRelativeTo(null);
 		inicializarComponentes();
 		sec = new Secundaria();
-		this.setLocationRelativeTo(null);
 		this.restaurante=restaurante;
 	}
 	
@@ -183,7 +183,8 @@ public class ModificarJefe extends JFrame {
 		{
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				new VentanaAdmin(restaurante).setVisible(true);
+				VentanaAdmin ventana = new VentanaAdmin(restaurante);
+				ventana.setVisible(true);
 				dispose();
 			}
 		});
