@@ -1,2 +1,1 @@
-22222222-2,Cocinero DosDOS,200000,22
 44444444-4,Cocinero Cuatro,400000,44
