@@ -22,6 +22,7 @@ public class AgregarEmpleado extends JFrame
 	private JButton botonAgregarCocinero;
 	private JButton botonAgregarGarzon;
 	private JButton botonAgregarCajero;
+	private JButton botonAgregarJefe;
 	private JButton botonAtras;
 	
 	private Restaurante restaurante;
@@ -88,7 +89,7 @@ public class AgregarEmpleado extends JFrame
 		
 		botonAgregarCajero = new JButton("Cajero") ;
 		botonAgregarCajero.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		botonAgregarCajero.setBounds(152, 150, 106, 40);
+		botonAgregarCajero.setBounds(45, 150, 106, 40);
 		botonAgregarCajero.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e) {
@@ -100,6 +101,21 @@ public class AgregarEmpleado extends JFrame
 			}
 		});
 		contentPane.add(botonAgregarCajero);
+		
+		botonAgregarJefe =  new JButton("Jefe");
+		botonAgregarJefe.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		botonAgregarJefe.setBounds(260, 145, 106, 40);
+		botonAgregarJefe.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource() == botonAgregarJefe){
+					dispose();
+					AgregarJefe ventana = new AgregarJefe(restaurante);
+					ventana.setVisible(true);
+				}
+			}
+		});
+		contentPane.add(botonAgregarJefe);
 		
 		botonAtras = new JButton("Atras");
 		botonAtras.setFont(new Font("Tahoma", Font.PLAIN, 14));
