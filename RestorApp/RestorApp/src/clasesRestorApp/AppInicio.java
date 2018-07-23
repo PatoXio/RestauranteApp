@@ -13,4 +13,4 @@ public class AppInicio
 		Ventana ventana = new Ventana(restaurante);
 		ventana.setVisible(true);
 	}	
-}
+} //se acabo la wea
