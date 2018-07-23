@@ -31,6 +31,7 @@ public class ModificarEmpleados extends JFrame {
 		super();
 		configurarVentana();
 		inicializarComponentes();
+		this.setLocationRelativeTo(null);
 		this.restaurante = restaurante;
 		
 	}

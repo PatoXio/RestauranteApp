@@ -41,6 +41,7 @@ public class AgregarCajero extends JFrame {
 		super();
 		configurarVentana();
 		inicializarVentana();
+		this.setLocationRelativeTo(null);
 		this.restaurante = restaurante;
 		sec = new Secundaria();
 		

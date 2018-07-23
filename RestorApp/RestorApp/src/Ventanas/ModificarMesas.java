@@ -40,6 +40,7 @@ public class ModificarMesas extends JFrame {
 		configurarVentana();
 		inicializarComponentes();
 		sec=new Secundaria();
+		this.setLocationRelativeTo(null);
 		this.restaurante = restaurante;
 	}
 	

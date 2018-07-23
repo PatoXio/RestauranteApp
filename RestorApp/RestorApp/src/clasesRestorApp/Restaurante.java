@@ -21,11 +21,11 @@ public class Restaurante
 		direccion=null;
 		activoNoCorriente=0;
 		mesasRestaurante=new ListaMesas();
-		empleadosRestaurante=new TablaEmpleados();
+		empleadosRestaurante=new TablaEmpleados(this);
 		menuRestaurante=new MapaMenu();
 		arc = new Archivos();
-		arc.cargarDatos(mesasRestaurante,menuRestaurante,empleadosRestaurante,this);
-		arc.actualizarDatos(empleadosRestaurante,menuRestaurante,mesasRestaurante,this);
+		arc.cargarDatos(this);
+		//arc.actualizarDatos(this);
 	}
 	
 	// Getter & Setter
@@ -77,7 +77,7 @@ public class Restaurante
 		Garzon nuevo = new Garzon(rut,nombre,sueldo,edad,nivelDeIngles,mesasAtendidas);
 		if(empleadosRestaurante.agregarGarzon(nuevo)==true)
 		{
-			arc.actualizarJefe(empleadosRestaurante);
+			arc.actualizarJefe(this);
 			arc.escribirTxTGarzones(rut, nombre, sueldo, edad, nivelDeIngles, mesasAtendidas);
 			return true;
 		}
@@ -90,7 +90,7 @@ public class Restaurante
 		if(empleadosRestaurante.agregarCocinero(nuevo)==true)
 		{
 			arc.escribirTxTCocineros(rut, nombre, sueldo, edad);
-			arc.actualizarJefe(empleadosRestaurante);
+			arc.actualizarJefe(this);
 			return true;
 		}
 		return false;
@@ -102,7 +102,7 @@ public class Restaurante
 		if(empleadosRestaurante.agregarCajero(nuevo)==true)
 		{
 			arc.escribirTxTCajeros(rut, nombre, sueldo, edad,total,diferencia);
-			arc.actualizarJefe(empleadosRestaurante);
+			arc.actualizarJefe(this);
 			return true;
 		}
 		return false;
@@ -118,13 +118,22 @@ public class Restaurante
 		Mesa mesaNueva = new Mesa(codMesa);
 		if(mesasRestaurante.agregarMesa(mesaNueva)==true && empleadosRestaurante.atenderMesa(codMesa)==true)
 		{
-			arc.actualizarMesas(mesasRestaurante);
+			mesasRestaurante.ocuparMesa(codMesa);
+			arc.actualizarMesas(this);
 			return true;
 		}
 		return false;
 	}
 	
-	
+	public boolean retirarMesa(int numeroMesa, int propina)
+	{
+		if(empleadosRestaurante.retirarMesa(numeroMesa,propina)==true)
+		{
+			mesasRestaurante.limpiarMesa(numeroMesa);
+			return true;
+		}
+		return false;
+	}
 	
 	
 	/*
@@ -139,7 +148,7 @@ public class Restaurante
 			Mesa m = mesasRestaurante.obtenerMesa(codMesa);  // obtengo la mesa para agregarle el pedido
 			if(m.agregarPedido(codPedido)==true)//retorna booleano dependiendo si fue agregado o no
 			{
-				arc.actualizarPedidos(mesasRestaurante, menuRestaurante);
+				arc.actualizarPedidos(this);
 				return true;
 			}
 		}
@@ -156,7 +165,7 @@ public class Restaurante
 	{
 		if(menuRestaurante.agregarProductoAlMenu(producto)==true)
 		{
-			arc.actualizarProductos(menuRestaurante);
+			arc.actualizarProductos(this);
 			return true;
 		}
 		return false;
@@ -177,7 +186,7 @@ public class Restaurante
 		if(mesa !=null && producto!=null){
 			if(mesa.agregarProductoAPedido(codigoPedido, producto)==true)
 			{
-				arc.actualizarPedidos(mesasRestaurante, menuRestaurante);
+				arc.actualizarPedidos(this);
 			}
 		}
 		return false;
@@ -198,7 +207,7 @@ public class Restaurante
 		if(mesasRestaurante!=null){
 			if(mesasRestaurante.buscarMesa(codigoMesa) == true){
 				if(mesasRestaurante.eliminarMesa(codigoMesa)==true){
-					arc.actualizarMesas(mesasRestaurante);
+					arc.actualizarMesas(this);
 					return true;
 				}
 				
@@ -225,7 +234,7 @@ public class Restaurante
 		if(mesasRestaurante.buscarMesa(codMesa) == true){
 			Mesa mesa = mesasRestaurante.obtenerMesa(codMesa);
 			if(mesa.elimnarPedido(codPedido)==true){
-				arc.actualizarPedidos(mesasRestaurante, menuRestaurante);
+				arc.actualizarPedidos(this);
 				return true;
 			}
 			else{
@@ -248,7 +257,7 @@ public class Restaurante
 	{
 		if(menuRestaurante.eliminarProductoDelMenu(idProducto)==true)
 		{
-			arc.actualizarProductos(menuRestaurante);
+			arc.actualizarProductos(this);
 			return true;
 		}
 		else
@@ -276,8 +285,8 @@ public class Restaurante
 		if(mesa !=null && producto!=null){
 			if(mesa.eliminarProductoAPedido(codigoPedido, producto)==true)
 			{
-				arc.actualizarProductos(menuRestaurante);
-				arc.actualizarPedidos(mesasRestaurante, menuRestaurante);
+				arc.actualizarProductos(this);
+				arc.actualizarPedidos(this);
 				return true;
 			}
 		}
@@ -292,7 +301,7 @@ public class Restaurante
 	{
 		if(empleadosRestaurante.eliminarEmpleado(rut)==true)
 		{
-			arc.actualizarEmpleados(empleadosRestaurante);
+			arc.actualizarEmpleados(this);
 			return true;
 		}
 		return false;
@@ -305,7 +314,7 @@ public class Restaurante
 	public void editarMesa (int codeMesa, String estado ) throws IOException 
 	{
 		mesasRestaurante.editarMesaX(codeMesa, estado);
-		arc.actualizarMesas(mesasRestaurante);
+		arc.actualizarMesas(this);
 	}
 	
 	public boolean buscarMesaX(int id) 
@@ -320,7 +329,7 @@ public class Restaurante
 	{
 		if(menuRestaurante.modificarProductos(key, cantidad, precio)==true)
 		{
-			arc.actualizarProductos(menuRestaurante);
+			arc.actualizarProductos(this);
 			return true;
 		}
 		return false;
@@ -385,7 +394,7 @@ public class Restaurante
 	{
 		if(menuRestaurante != null) {
 			menuRestaurante.renovarInventario(codigoProducto, cantidadStock);
-			arc.actualizarProductos(menuRestaurante);
+			arc.actualizarProductos(this);
 			return true;
 		}
 		return false;	
@@ -395,7 +404,7 @@ public class Restaurante
 	{
 		if(menuRestaurante != null) {
 			menuRestaurante.renovarInventario(cantidadStockTotal);
-			arc.actualizarProductos(menuRestaurante);
+			arc.actualizarProductos(this);
 			return true;
 		}
 		return false;	
@@ -409,7 +418,7 @@ public class Restaurante
 	 * y ser adjuntados (en un arreglo) para imprimirlos en una boleta a ser recibida ante el pago de la misma.
 	 * Para ello (antes de eliminar los pedidos de la mesa) se busca esta y se pide obtener la Boleta de la mesa.
 	 */
-	public Pedido[] obteneBoletaDeMesa(int codeMesa)
+	public String obteneBoletaDeMesa(int codeMesa)
 	{
 		if (mesasRestaurante != null) {
 			return mesasRestaurante.obtenerMesa(codeMesa).obtenerBoletaMesa();
@@ -420,7 +429,7 @@ public class Restaurante
     public boolean AgregarPedido(int codMesa, int codPedido) throws IOException {
         if(mesasRestaurante.AgregarPedido(codMesa,codPedido)==true)
         {
-        	arc.actualizarPedidos(mesasRestaurante, menuRestaurante);
+        	arc.actualizarPedidos(this);
         	return true;
         }
         return false;
@@ -447,6 +456,14 @@ public class Restaurante
     	return empleadosRestaurante.traerJefe();
     }
     
+    public Mesa obtenerMesa(int codMesa)
+    {
+    	return mesasRestaurante.obtenerMesa(codMesa);
+    }
+    public Producto obtenerProductoEspecifico(String id)
+    {
+    	return menuRestaurante.obtenerProductoEspecifico(id);
+    }
     /*public boolean buscarGarzon(String rut)
     {
     	return empleadosRestaurante.buscarGarzon(rut);
@@ -477,25 +494,25 @@ public class Restaurante
     public void modificarGarzon(String rut, String nombre, int edad, int sueldo) throws IOException
     {
     	empleadosRestaurante.modificarGarzon(rut, nombre, edad, sueldo);
-    	arc.actualizarGarzones(empleadosRestaurante);
+    	arc.actualizarGarzones(this);
     }
     
     public void modificarCocinero(String rut, String nombre, int edad, int sueldo) throws IOException
     {
     	empleadosRestaurante.modificarCocinero(rut, nombre, edad, sueldo);
-    	arc.actualizarCocineros(empleadosRestaurante);
+    	arc.actualizarCocineros(this);
     }
     
     public void modificarCajero(String rut, String nombre, int edad, int sueldo) throws IOException
     {
     	empleadosRestaurante.modificarCajero(rut, nombre, edad, sueldo);
-    	arc.actualizarCajeros(empleadosRestaurante);
+    	arc.actualizarCajeros(this);
     }
     
     public void modificarJefe(String rut, String nombre, int edad, int sueldo) throws IOException
     {
     	empleadosRestaurante.modificarJefe(rut, nombre, edad, sueldo);
-    	arc.actualizarJefe(empleadosRestaurante);
+    	arc.actualizarJefe(this);
     }
     
     /*
@@ -590,6 +607,41 @@ public class Restaurante
 		this.nombre=nombre;
 		this.direccion=direccion;
 		arc.actualizarRestaurante(this);
+	}
+
+	public void escribirTxTCompletoMesas() throws IOException {
+		mesasRestaurante.escribirTxTCompletoMesas();
+		
+	}
+
+	public void escribirTxTCompletoPedidos() throws IOException {
+		mesasRestaurante.escribirTxTCompletoPedidos();
+		
+	}
+
+	public void putCodigoProducto(String codProducto, Producto producto) {
+		menuRestaurante.putCodigoProducto(codProducto, producto);
+	}
+
+	public void escribirTxTCompletoGarzones() throws IOException {
+		empleadosRestaurante.escribirTxTCompletoGarzones();
+		
+	}
+
+	public void escribirTxTCompletoCajeros() throws IOException {
+		empleadosRestaurante.escribirTxTCompletoCajeros();
+	}
+
+	public void escribirTxTCompletoCocineros() throws IOException {
+		empleadosRestaurante.escribirTxTCompletoCocineros();
+	}
+
+	public void escribirTxTCompletoJefe() throws IOException {
+		empleadosRestaurante.escribirTxTCompletoJefe();
+	}
+
+	public void escribirTxTCompletoProductos() throws IOException {
+		menuRestaurante.escribirTxTCompletoProductos();
 	}
     
     

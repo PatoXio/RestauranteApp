@@ -15,14 +15,16 @@ public class TablaEmpleados
 	private Archivos arc;
 	private Hashtable<String,Empleados> tablaDeEmpleados;
 	private JefeRestaurante jefe;
+	private Restaurante rest;
 
 	
 	// Constructor
-	public TablaEmpleados()
+	public TablaEmpleados(Restaurante rest)
 	{
 		jefe=null;
 		arc=new Archivos();
 		tablaDeEmpleados = new Hashtable<String, Empleados>();
+		this.rest=rest;
 	}
 
 	
@@ -123,7 +125,10 @@ public class TablaEmpleados
 	
 	public void repoteEmpleadosArchivo()throws IOException
 	{
-		jefe.mostrarPersonasArchivo();
+		if(jefe!=null)
+		{
+			jefe.mostrarPersonasArchivo();
+		}
 		for(Map.Entry<String,Empleados> entrada : tablaDeEmpleados.entrySet())
 		{
 			String clave = entrada.getKey(); //guardamos la clave
@@ -137,7 +142,6 @@ public class TablaEmpleados
 			String clave = entrada.getKey();
 			if(tablaDeEmpleados.get(clave).getCodigo().equals(clave+"Garzon")==true)
 			{
-				System.out.println("weaita");
 				Garzon gar=(Garzon) tablaDeEmpleados.get(clave);
 				gar.mostrarMesas(textArea);
 			}
@@ -146,7 +150,10 @@ public class TablaEmpleados
 	
 	public void mostrarEmpleadosVentanaX(JTextArea textArea) 
 	{
-		jefe.mostrar(textArea);
+		if(jefe!=null)
+		{
+			jefe.mostrar(textArea);
+		}
 		for (Map.Entry<String, Empleados> entrada : tablaDeEmpleados.entrySet() )
 		{
 			String clave = entrada.getKey(); //Guardamos la clave para luego buscar el objeto espechfico
@@ -235,20 +242,45 @@ public class TablaEmpleados
 		}
 	}
 	
-	public boolean atenderMesa (int numeroMesa)
+	public boolean retirarMesa(int numeroMesa, int propina) 
 	{
 		Enumeration<String> e = tablaDeEmpleados.keys();
 		while(e.hasMoreElements())
 		{
 			String clave=(String) e.nextElement();
 			Empleados emp=tablaDeEmpleados.get(clave);
+			if(emp==null) return false;
 			if(emp.getCodigo().equals(emp.getRut()+"Garzon")==true)
 			{
-				Garzon gar=(Garzon)emp;
-				if(gar.getcantMesas()<5)
+				Garzon gar=(Garzon) emp;
+				if(gar.retirarMesa(numeroMesa, propina)==true)
 				{
-					gar.atenderMesa(numeroMesa);
 					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public boolean atenderMesa(int numeroMesa)
+	{
+		Enumeration<String> e = tablaDeEmpleados.keys();
+		while(e.hasMoreElements())
+		{
+			String clave=(String) e.nextElement();
+			Empleados emp=tablaDeEmpleados.get(clave);
+
+			if(emp!=null)
+
+			if(emp==null) return false;
+			if(emp.getCodigo().equals(emp.getRut()+"Garzon")==true)
+
+			{
+				if(emp.getCodigo().equals(emp.getRut()+"Garzon")==true)
+				{
+					Garzon gar=(Garzon)emp;
+					System.out.print(gar.getcantMesas()<5);
+					return gar.atenderMesa(numeroMesa);
 				}
 			}
 		}
@@ -284,8 +316,9 @@ public class TablaEmpleados
 		}
 	}
 	
-	public void escribirTxTCompletoJefe() throws IOException {
-		if(jefe.getRut()!=null)
+	public void escribirTxTCompletoJefe() throws IOException
+	{
+		if(jefe!=null)
 		{
 			arc.escribirTxTJefe(jefe.getRut(), jefe.getNombre(), jefe.getEdad(), jefe.getSueldo(), jefe.getCantEmpleados());
 		}
@@ -366,7 +399,7 @@ public class TablaEmpleados
 			gar.setNombre(nombre);
 			gar.setRut(rut);
 			gar.setSueldo(sueldo);
-			arc.actualizarGarzones(this);
+			arc.actualizarGarzones(rest);
 		} catch (IOException e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, "Error al modificar garzon");
@@ -386,7 +419,7 @@ public class TablaEmpleados
 			coc.setNombre(nombre);
 			coc.setRut(rut);
 			coc.setSueldo(sueldo);
-			arc.actualizarCocineros(this);
+			arc.actualizarCocineros(rest);
 		}catch(IOException e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null,"Error al modificar cocinero");
@@ -406,7 +439,7 @@ public class TablaEmpleados
 			caj.setNombre(nombre);
 			caj.setRut(rut);
 			caj.setSueldo(sueldo);
-			arc.actualizarCajeros(this);
+			arc.actualizarCajeros(rest);
 		}catch(IOException e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null,"Error al modificar Cajero");
@@ -426,7 +459,7 @@ public class TablaEmpleados
 			jefe.setNombre(nombre);
 			jefe.setRut(rut);
 			jefe.setSueldo(sueldo);
-			arc.actualizarJefe(this);
+			arc.actualizarJefe(rest);
 		}catch(IOException e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null,"Error al modificar Jefe");

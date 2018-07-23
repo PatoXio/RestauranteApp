@@ -33,6 +33,7 @@ public class MostrarPedidos extends JFrame {
 	{
 		super();
 		configurarVentana();
+		this.setLocationRelativeTo(null);
 		inicializarComponentes(restaurante);
 		this.restaurante = restaurante;
 		

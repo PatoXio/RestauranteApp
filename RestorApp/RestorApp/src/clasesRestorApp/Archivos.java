@@ -23,19 +23,19 @@ public class Archivos {
 		sec=new Secundaria();
 	}
 	
-	public void cargarDatos(ListaMesas mesasRestaurante,MapaMenu menuRestaurante,TablaEmpleados empleadosRestaurante, Restaurante rest) throws IOException
+	public void cargarDatos(Restaurante rest) throws IOException
 	{
 		cargarRestaurante(rest);
-		cargarMesas(mesasRestaurante);
-		cargarProductos(menuRestaurante);
-		cargarPedidos(menuRestaurante,mesasRestaurante);
-		cargarGarzones(empleadosRestaurante);
-		cargarCajeros(empleadosRestaurante);
-		cargarCocineros(empleadosRestaurante);
-		cargarJefe(empleadosRestaurante);
+		cargarMesas(rest);
+		cargarProductos(rest);
+		cargarPedidos(rest);
+		cargarGarzones(rest);
+		cargarCajeros(rest);
+		cargarCocineros(rest);
+		cargarJefe(rest);
 	}
 	
-	public void cargarMesas(ListaMesas mesasRestaurante)
+	public void cargarMesas(Restaurante rest)
 	{
 		File f2 = new File("Mesas.txt"); // indica el archivo a manipular
 		Scanner s2; // clase para leer los archivos
@@ -44,8 +44,7 @@ public class Archivos {
 			while (s2.hasNextLine() == true)// Verifica si tiene otra linea
 			{
 				String linea = s2.nextLine().trim(); // A la linea se le eliminan los espacios
-				Mesa mesa = new Mesa(Integer.parseInt(linea)); // declaracion e instanciacion del objeto mesa
-				mesasRestaurante.agregarMesa(mesa); // se va agregando  a la lista mesas cada una de las mesas instanciadas con sus datos
+				rest.agregarMesa(Integer.parseInt(linea)); // se va agregando  a la lista mesas cada una de las mesas instanciadas con sus datos
 			}
 			s2.close(); // se cierra el archivo
 		} catch (FileNotFoundException e) {
@@ -55,7 +54,7 @@ public class Archivos {
 			e1.printStackTrace();
 		}
 	}
-	public void cargarPedidos(MapaMenu menuRestaurante, ListaMesas mesasRestaurante)
+	public void cargarPedidos(Restaurante rest)
 	{
 		File f3 = new File("Pedidos.txt");
 		Scanner s3;
@@ -71,14 +70,14 @@ public class Archivos {
 				if(lineaSeparada[0].trim().equals("")==false)
 				{
 					int codMesa = Integer.parseInt(lineaSeparada[0].trim()); //codMesa:1
-					Mesa m = mesasRestaurante.obtenerMesa(codMesa);
+					Mesa m = rest.obtenerMesa(codMesa);
 					codPedido = Integer.parseInt(lineaSeparada[1].substring(0, 1).trim()); // codPedido:1
 					if(sec.contarCaracter(linea,"/")>=1)
 					{
 						lineaProductos = lineaSeparada[1].substring(2); //lineaProductos = 1,4,7,12
 						idProductosSeparados = lineaProductos.split(",");
 						for (int i = 0; i < idProductosSeparados.length && idProductosSeparados[i] != null; i++) { // se va recorriendo el arreglo 
-							Producto producto = menuRestaurante.obtenerProductoEspecifico(idProductosSeparados[i]); // producto sera a una referencia  del objeto producto del menu
+							Producto producto = rest.obtenerProductoEspecifico(idProductosSeparados[i]); // producto sera a una referencia  del objeto producto del menu
 							if (producto != null && m!=null) {
 								m.agregarPedido(codPedido, producto);
 								m.setEstadoMesa("Ocupada");
@@ -150,7 +149,7 @@ public class Archivos {
 		}
 	}
 	
-	public void cargarCajeros(TablaEmpleados empleados)
+	public void cargarCajeros(Restaurante rest)
 	{
 		File f1 = new File("Cajeros.txt"); 
 		Scanner s1; 
@@ -174,10 +173,7 @@ public class Archivos {
 				int tot=Integer.parseInt(total);
 				int dif=Integer.parseInt(diferencia);
 				
-				
-				Cajero caj=new Cajero(rut,nombre,suel,age,tot,dif);
-				
-				empleados.agregarCajero(caj);	
+				rest.agregarCajero(rut,nombre,suel,age,tot,dif);	
 			}
 			s1.close(); 
 		} catch (FileNotFoundException e) {
@@ -187,7 +183,7 @@ public class Archivos {
 			e1.printStackTrace();
 		}
 	}
-	public void cargarCocineros(TablaEmpleados empleados)
+	public void cargarCocineros(Restaurante rest)
 	{
 		File f2 = new File("Cocineros.txt"); 
 		Scanner s2; 
@@ -207,9 +203,8 @@ public class Archivos {
 				int suel=Integer.parseInt(sueldo);
 				int age=Integer.parseInt(edad);
 				
-				Cocinero coc=new Cocinero(rut,nombre,suel,age);
 				
-				empleados.agregarCocinero(coc);
+				rest.agregarCocinero(rut,nombre,suel,age);
 				
 
 			}
@@ -221,7 +216,7 @@ public class Archivos {
 			e1.printStackTrace();
 		}
 	}
-	public void cargarGarzones(TablaEmpleados empleados)
+	public void cargarGarzones(Restaurante rest)
 	{
 		File f3 = new File("Garzones.txt"); 
 		Scanner s3; 
@@ -242,12 +237,9 @@ public class Archivos {
 				
 				int suel=Integer.parseInt(sueldo);
 				int age=Integer.parseInt(edad);
-				int mesas=Integer.parseInt(mesasAtendidas);
+				int mesas=Integer.parseInt(mesasAtendidas);				
 				
-				Garzon gar=new Garzon(rut,nombre,suel,age,nivelIngles,mesas);
-				
-				
-				empleados.agregarGarzon(gar);
+				rest.agregarGarzon(rut,nombre,suel,age,nivelIngles,mesas);
 			}
 			s3.close(); // se cierra el archivo
 		} catch (FileNotFoundException e) {
@@ -258,36 +250,29 @@ public class Archivos {
 		}
 	}
 	
-	public void cargarJefe(TablaEmpleados empleados)
+	public void cargarJefe(Restaurante rest)
 	{
 		File f4 = new File("Jefe.txt"); 
 		Scanner s4; 
 		try {
-			s4 = new Scanner(f4);
-			while (s4.hasNextLine() == true)
-			{
-				String linea = s4.nextLine().trim(); 
-				
-				StringTokenizer datos = new StringTokenizer(linea,",");
-				
-				String rut = datos.nextToken().trim();
-				String nombre = datos.nextToken().trim();
-				String edad = datos.nextToken().trim();
-				String sueldo = datos.nextToken().trim();
-				String cantE=datos.nextToken().trim();
-				
-				int suel=Integer.parseInt(sueldo);
-				int age=Integer.parseInt(edad);
-				int cantEmp = Integer.parseInt(cantE);
-				
-				JefeRestaurante jefe=new JefeRestaurante(rut,nombre,age,suel,cantEmp);
-				
-				
-				empleados.agregarJefe(jefe);
-			}
-			s4.close(); // se cierra el archivo
+				s4 = new Scanner(f4);
+					String linea = s4.nextLine().trim(); 
+					
+					StringTokenizer datos = new StringTokenizer(linea,",");
+					
+					String rut = datos.nextToken().trim();
+					String nombre = datos.nextToken().trim();
+					String edad = datos.nextToken().trim();
+					String sueldo = datos.nextToken().trim();
+					
+					int suel=Integer.parseInt(sueldo);
+					int age=Integer.parseInt(edad);
+					
+					rest.agregarJefe(rut,nombre,age,suel);
+				s4.close(); // se cierra el archivo
 		} catch (FileNotFoundException e) {
 			JOptionPane.showMessageDialog(null, "Error al abrir el archivo inicial de Jefe. Quizas no existe.");
+			return;
 		} catch (Exception e1) {
 			JOptionPane.showMessageDialog(null, "Revise datos Jefe");
 			e1.printStackTrace();
@@ -297,7 +282,7 @@ public class Archivos {
 	}
 
 	
-	public void cargarProductos(MapaMenu menuRestaurante)
+	public void cargarProductos(Restaurante rest)
 	{
 		File f3 = new File("Productos.txt");
 		Scanner s3;
@@ -311,7 +296,7 @@ public class Archivos {
 				int cantidadDisponibleDelProducto = Integer.parseInt(separacion[2].trim());
 				int precioProducto = Integer.parseInt(separacion[3].trim());
 				Producto producto = new Producto(codProducto, nombre,precioProducto, cantidadDisponibleDelProducto);
-				menuRestaurante.putCodigoProducto(codProducto, producto);
+				rest.putCodigoProducto(codProducto, producto);
 			}
 			s3.close();
 		} catch (FileNotFoundException e) {
@@ -322,24 +307,24 @@ public class Archivos {
 		}
 	}
 	
-	public void actualizarEmpleados(TablaEmpleados empleados) throws IOException
+	public void actualizarEmpleados(Restaurante rest) throws IOException
 	{
-		actualizarGarzones(empleados);
-		actualizarCajeros(empleados);
-		actualizarCocineros(empleados);
+		actualizarGarzones(rest);
+		actualizarCajeros(rest);
+		actualizarCocineros(rest);
 	}
 	
-	public void actualizarDatos(TablaEmpleados empleados,MapaMenu menuRestaurante,ListaMesas mesasRestaurante, Restaurante rest) throws IOException
+	public void actualizarDatos(Restaurante rest) throws IOException
 	{
 		actualizarRestaurante(rest);
 		actualizarActivoNoCorriente(rest);
-		actualizarGarzones(empleados);
-		actualizarCajeros(empleados);
-		actualizarCocineros(empleados);
-		actualizarJefe(empleados);
-		actualizarMesas(mesasRestaurante);
-		actualizarPedidos(mesasRestaurante, menuRestaurante);
-		actualizarProductos(menuRestaurante);
+		actualizarGarzones(rest);
+		actualizarCajeros(rest);
+		actualizarCocineros(rest);
+		actualizarJefe(rest);
+		actualizarMesas(rest);
+		actualizarPedidos(rest);
+		actualizarProductos(rest);
 		
 	}
 	
@@ -363,61 +348,61 @@ public class Archivos {
 		}
 	}
 	
-	public void actualizarGarzones(TablaEmpleados empleados) throws IOException
+	public void actualizarGarzones(Restaurante rest) throws IOException
 	{
 		if(eliminarArchivoTxT("Garzones")==true)
 		{
-			empleados.escribirTxTCompletoGarzones();
-			cargarGarzones(empleados);
+			rest.escribirTxTCompletoGarzones();
+			cargarGarzones(rest);
 		}
 	}
 
-	public void actualizarCajeros(TablaEmpleados empleados) throws IOException
+	public void actualizarCajeros(Restaurante rest) throws IOException
 	{
-		if(eliminarArchivoTxT("Cajeros")==true)
+		//if(eliminarArchivoTxT("Cajeros")==true)
 		{
-			empleados.escribirTxTCompletoCajeros();
-			cargarCajeros(empleados);
+			rest.escribirTxTCompletoCajeros();
+			cargarCajeros(rest);
 		}
 	}
-	public void actualizarCocineros(TablaEmpleados empleados) throws IOException
+	public void actualizarCocineros(Restaurante rest) throws IOException
 	{
 		if(eliminarArchivoTxT("Cocineros")==true)
 		{
-			empleados.escribirTxTCompletoCocineros();
-			cargarCocineros(empleados);
+			rest.escribirTxTCompletoCocineros();
+			cargarCocineros(rest);
 		}
 	}
-	public void actualizarJefe(TablaEmpleados empleados) throws IOException
+	public void actualizarJefe(Restaurante rest) throws IOException
 	{
-		if(eliminarArchivoTxT("Jefe")==true)
-		{
-			empleados.escribirTxTCompletoJefe();
-			cargarJefe(empleados);
-		}
+		//if(eliminarArchivoTxT("Jefe")==true)
+		//{
+			rest.escribirTxTCompletoJefe();
+			cargarJefe(rest);
+		//}
 	}
-	public void actualizarMesas(ListaMesas mesasRestaurante) throws IOException
+	public void actualizarMesas(Restaurante rest) throws IOException
 	{
 		if(eliminarArchivoTxT("Mesas")==true)
 		{
-			mesasRestaurante.escribirTxTCompletoMesas();
-			cargarMesas(mesasRestaurante);
+			rest.escribirTxTCompletoMesas();
+			cargarMesas(rest);
 		}
 	}
-	public void actualizarProductos(MapaMenu menuRestaurante) throws IOException
+	public void actualizarProductos(Restaurante rest) throws IOException
 	{
 		if(eliminarArchivoTxT("Productos")==true)
 		{
-			menuRestaurante.escribirTxTCompletoProductos();
-			cargarProductos(menuRestaurante);
+			rest.escribirTxTCompletoProductos();
+			cargarProductos(rest);
 		}
 	}
-	public void actualizarPedidos(ListaMesas mesasRestaurante,MapaMenu menuRestaurante) throws IOException
+	public void actualizarPedidos(Restaurante rest) throws IOException
 	{
 		if(eliminarArchivoTxT("Pedidos")==true)
 		{
-			mesasRestaurante.escribirTxTCompletoPedidos();
-			cargarPedidos(menuRestaurante,mesasRestaurante);
+			rest.escribirTxTCompletoPedidos();
+			cargarPedidos(rest);
 		}
 	}
 	

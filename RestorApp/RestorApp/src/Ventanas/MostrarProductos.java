@@ -27,6 +27,7 @@ public class MostrarProductos extends JFrame {
 	{
 		super();
 		configurarVentana();
+		this.setLocationRelativeTo(null);
 		inicializarComponentes(restaurante);
 		this.restaurante = restaurante;
 		

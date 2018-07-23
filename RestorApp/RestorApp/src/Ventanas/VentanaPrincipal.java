@@ -57,7 +57,7 @@ public class VentanaPrincipal extends JFrame{
 		
 		botonAccion = new JButton("Acciones");
 		botonAccion.setFont(new Font("Tahoma", Font.BOLD, 14));
-		botonAccion.setBounds(59, 269, 130, 42);
+		botonAccion.setBounds(95, 269, 130, 42);
 		botonAccion.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -74,7 +74,7 @@ public class VentanaPrincipal extends JFrame{
 		
 		botonAdmin = new JButton("Admin");
 		botonAdmin.setFont(new Font("Tahoma", Font.BOLD, 15));
-		botonAdmin.setBounds(371, 269, 130, 42);
+		botonAdmin.setBounds(454, 269, 130, 42);
 		botonAdmin.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -88,7 +88,7 @@ public class VentanaPrincipal extends JFrame{
 		
 		botonSalir = new JButton("Salir");
 		botonSalir.setFont(new Font("Tahoma", Font.BOLD, 14));
-		botonSalir.setBounds(223, 318, 110, 30);
+		botonSalir.setBounds(273, 318, 110, 30);
 		botonSalir.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)

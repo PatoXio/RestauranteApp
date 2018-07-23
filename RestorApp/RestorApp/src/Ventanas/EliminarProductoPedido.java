@@ -39,6 +39,7 @@ public class EliminarProductoPedido extends JFrame {
 	public EliminarProductoPedido(Restaurante restaurante){
 		super();
 		this.restaurante = restaurante;
+		this.setLocationRelativeTo(null);
 		configurarVentana();
 		sec=new Secundaria();
 		inicializarComponentes();

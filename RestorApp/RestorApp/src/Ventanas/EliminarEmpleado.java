@@ -30,6 +30,7 @@ public class EliminarEmpleado extends JFrame {
 	{
 		super();
 		this.restaurante=restaurante;
+		this.setLocationRelativeTo(null);
 		configurarVentana();
 		inicializarComponentes();
 	}

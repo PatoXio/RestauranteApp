@@ -18,7 +18,7 @@ public class ListaPedidos
 		pedidos = new ArrayList<Pedido>();
 	}
 
-	
+
 	// Metodos
 	/*
 	 * Busca el pedido en la lista de pedidos, recibiendo un numero y comparandolo
@@ -165,14 +165,21 @@ public class ListaPedidos
 	 * El metodo copia la lista de pedidos y retorna aquella copia para ser
 	 * "impresa" como parte de la boleta.
 	 */
-	public Pedido[] obtenerPedidosParaBoleta()
+	public String obtenerPedidosParaBoleta(int codMesa)
 	{
-		Pedido[] pedidosAImprimir = new Pedido[pedidos.size()];
-
-		if (pedidos != null) {
-			return pedidos.toArray(pedidosAImprimir);
+		int PrecioT=0;
+		String info="\nNo tiene pedidos\n";
+		if (pedidos != null && pedidos.size()>0)
+		{
+			for(int i=0;i<pedidos.size();i++)
+			{
+				if(i==0) info="\nMesa N°: "+codMesa+".\nN° del Pedido\tPrecio\n"+pedidos.get(i).getNumDePedido()+"\t\t"+pedidos.get(i).getPrecio()+"\n";
+				info=info+pedidos.get(i).getNumDePedido()+"\t\t"+pedidos.get(i).getPrecio()+"\n";
+				PrecioT+=pedidos.get(i).getPrecio();
+			}
+			info=info+"\nPrecio Total:   $"+PrecioT+".";
 		}
-		return null;
+		return info;
 	}
 
 	

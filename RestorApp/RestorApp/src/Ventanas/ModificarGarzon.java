@@ -41,6 +41,7 @@ public class ModificarGarzon extends JFrame {
 		super();
 		configurarVentana();
 		inicializarComponentes();
+		this.setLocationRelativeTo(null);
 		sec = new Secundaria();
 		this.restaurante=restaurante;
 	}

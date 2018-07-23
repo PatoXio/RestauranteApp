@@ -24,11 +24,13 @@ public class ModificarAdmin extends JFrame {
 	private JButton botonModificarProductos;
 	private JButton botonModificarEmpleados; // por diseño aun no defino si será así, ya no veo la logica de modificar los empleados en su totalidad, o mas bien no encontré los metodos para modificarlos a todos
 	private JLabel modificar;
+	private JButton btnRestaurante;
 
 	public ModificarAdmin(Restaurante restaurante)
 	{
 		super();
 		configurarVentana();
+		this.setLocationRelativeTo(null);
 		inicializarComponentes();
 		this.restaurante = restaurante;
 	}
@@ -82,7 +84,7 @@ public class ModificarAdmin extends JFrame {
 	    		dispose();
 			}
 		});
-		botonModificarProductos.setBounds(139, 112, 123, 42);
+		botonModificarProductos.setBounds(139, 99, 123, 42);
 		contentPane.add(botonModificarProductos);
 		
 		botonModificarEmpleados = new JButton("Empleados");
@@ -94,13 +96,25 @@ public class ModificarAdmin extends JFrame {
 			dispose();
 		}
 		});
-		botonModificarEmpleados.setBounds(139, 179, 123, 42);
+		botonModificarEmpleados.setBounds(139, 152, 123, 42);
 		contentPane.add(botonModificarEmpleados);
 		
 		modificar = new JLabel("Seleccione lo que desea modificar");
 		modificar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		modificar.setBounds(107, 11, 238, 23);
 		contentPane.add(modificar);
+		
+		btnRestaurante = new JButton("Restaurante");
+		btnRestaurante.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnRestaurante.setBounds(139, 208, 123, 42);
+		btnRestaurante.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+			ModificarRestaurante ventanaAdminModificar = new ModificarRestaurante(restaurante);
+			ventanaAdminModificar.setVisible(true);
+			dispose();
+		}
+		});
+		contentPane.add(btnRestaurante);
 		
 		
 	}

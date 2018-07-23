@@ -41,6 +41,7 @@ public class AgregarMesa extends JFrame
 		super();
 		this.restaurante = restaurante;
 		sec=new Secundaria();
+		this.setLocationRelativeTo(null);
 		configurarVentana();
 		inicializarComponentes();
 	}
@@ -70,6 +71,8 @@ public class AgregarMesa extends JFrame
 		textMesa.setColumns(10);
 		
 		
+		botonRegistrar = new JButton("Registrar");
+		botonRegistrar.setBounds(141, 161, 145, 37);
 		botonRegistrar.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e) {
@@ -129,6 +132,7 @@ public class AgregarMesa extends JFrame
 		});
 		botonAgregarOtro.setBounds(308, 227, 116, 23);
 		contentPane.add(botonAgregarOtro);
+		
 	}
 	
 	

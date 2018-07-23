@@ -41,6 +41,7 @@ public class ReporteAdmin extends JFrame
 	{
 		super();
 		configurarVentana();
+		this.setLocationRelativeTo(null);
 		inicializarComponentes();
 		this.restaurante = restaurante;
 	}

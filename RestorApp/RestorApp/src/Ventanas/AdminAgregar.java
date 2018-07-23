@@ -32,6 +32,7 @@ public class AdminAgregar extends JFrame
 	public AdminAgregar(Restaurante restaurante){
 		super();
 		this.restaurante = restaurante;
+		this.setLocationRelativeTo(null);
 		configurarVentana();
 		inicializarComponentes();
 	}

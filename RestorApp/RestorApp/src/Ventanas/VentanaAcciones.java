@@ -169,6 +169,8 @@ public class VentanaAcciones extends JFrame
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
+				VentanaPrincipal ventana = new VentanaPrincipal(restaurante);
+				ventana.setVisible(true);
 				dispose();
 			}
 		});

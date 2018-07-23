@@ -50,6 +50,7 @@ public class Ventana extends JFrame implements ActionListener
 	public Ventana(Restaurante restaurante){
 		super();							//Es el constructor de un JFrame, basicamente aqui se crea la ventana con valores predeterminados.
 		configurarVentana();				//Llamamos a este metodo para configurar la ventana (el JFrame).
+		this.setLocationRelativeTo(null);   //Ubicamos la ventana por defecto en el centro de la pantalla.
 		inicializarComponentes();			//Llamamos a este metodo para inicializar todos los componentes de la ventana y agregarlos a esta.
 		this.restaurante = restaurante;		//Iniciamos restaurante con la clase empresa que el usuario o la respectiva clase nos entregue.
 	}
@@ -114,7 +115,7 @@ public class Ventana extends JFrame implements ActionListener
 		pass.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		pass.setBounds(107, 147, 74, 14);
 		textpass.setBounds(185, 144, 143, 27);
-		botonIngresar = new JButton("ingresar");
+		botonIngresar = new JButton("Ingresar");
 		botonIngresar.setBounds(127, 211, 201, 23);
 		botonIngresar.addActionListener(this);
 		contentPane.add(titulo);

@@ -44,6 +44,7 @@ public class AgregarJefe extends JFrame
 		super();
 		this.restaurante = restaurante;
 		sec= new Secundaria();
+		this.setLocationRelativeTo(null);
 		configurarVentana();
 		inicializarVentana();
 	}

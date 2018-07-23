@@ -95,14 +95,6 @@ public class Mesa
 		return false;
 	}
 
-	public boolean mesaEnsuciada() {
-		if (estadoMesa.equals("Ocupada")) {
-			estadoMesa = "Sucia";
-			return true;
-		}
-		return false;
-	}
-
 	
 	/*
 	 * agregarPedido busca solventar varios casos espechficos en el sistema,
@@ -191,9 +183,9 @@ public class Mesa
 	 * Los manda en un arreglo copia para ser "impresos" en un recibo luego de hacer
 	 * efectivo el pago de la mesa.
 	 */
-	public Pedido[] obtenerBoletaMesa() {
+	public String obtenerBoletaMesa() {
 		if (pedidosMesa != null) {
-			return pedidosMesa.obtenerPedidosParaBoleta();
+			return pedidosMesa.obtenerPedidosParaBoleta(getCodeMesa());
 		}
 		return null;
 	}
@@ -227,10 +219,7 @@ public class Mesa
 	public void mostrarDatosPedidosArchivo() throws IOException{
 		pedidosMesa.mostrarSusDatos();
 	}
-	public String getCodigoPedido() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 	public void escribirTxTMesaPedidoProductos() throws IOException
 	{
 		pedidosMesa.escribirTxTMesaPedidoProductos();

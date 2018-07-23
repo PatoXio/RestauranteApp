@@ -28,6 +28,7 @@ public class ListaMesas
 	 * 
 	 * 
 	 */
+	
 	public boolean AgregarPedido(int codMesa, int codPedido)
 	{
 		for(int i=0;i<listaMesas.size();i++)
@@ -55,7 +56,33 @@ public class ListaMesas
 		return false;
 	}
 	
-	
+	public void ocuparMesa(int codMesa)
+	{
+		if(listaMesas!=null)
+		{
+			for(int i=0;i<listaMesas.size();i++)
+			{
+				if(listaMesas.get(i)!=null)
+				{
+					listaMesas.get(i).ocuparMesa();
+				}
+			}
+		}
+	}
+
+	public void limpiarMesa(int codMesa)
+	{
+		if(listaMesas!=null)
+		{
+			for(int i=0;i<listaMesas.size();i++)
+			{
+				if(listaMesas.get(i)!=null)
+				{
+					listaMesas.get(i).limpiarMesa();
+				}
+			}
+		}
+	}
 	
 	
 	/*
@@ -277,7 +304,7 @@ public class ListaMesas
 	 * obtenerMesaABoletear es un proceso que obtendra todos los pedidos de la mesa en un arreglo
 	 * con el fin de hacer el pago e impresion de la boleta a el/los cliente/s de la misma mesa.
 	 */
-	public Pedido[] obtenerMesaABoletear(int identificadorMesa)
+	public String obtenerMesaABoletear(int identificadorMesa)
 	{
 		if (listaMesas != null && listaMesas.isEmpty() != true) {
 			return obtenerMesa(identificadorMesa).obtenerBoletaMesa();

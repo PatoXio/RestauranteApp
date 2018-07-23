@@ -39,6 +39,7 @@ public class AgregarPedido extends JFrame {
 	public AgregarPedido(Restaurante restaurante){
 		super();
 		this.restaurante = restaurante;
+		this.setLocationRelativeTo(null);
 		configurarVentana();
 		inicializarComponentes();
 		sec=new Secundaria();

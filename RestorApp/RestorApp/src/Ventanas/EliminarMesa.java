@@ -35,6 +35,7 @@ public class EliminarMesa extends JFrame  {
 	public EliminarMesa(Restaurante restaurante){
 		super();
 		this.restaurante = restaurante;
+		this.setLocationRelativeTo(null);
 		configurarVentana();
 		sec=new Secundaria();
 		inicializarComponentes();

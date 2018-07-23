@@ -33,6 +33,7 @@ public class VentanaAdmin extends JFrame  {
 	public VentanaAdmin(Restaurante restaurante){
 		super();
 		configurarVentana();
+		this.setLocationRelativeTo(null);
 		inicializarComponentes();
 		this.restaurante =restaurante;
 	}

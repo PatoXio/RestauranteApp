@@ -24,6 +24,7 @@ public class EliminarProducto extends JFrame {
 	public EliminarProducto(Restaurante restaurante){
 		super();
 		this.restaurante = restaurante;
+		this.setLocationRelativeTo(null);
 		configurarVentana();
 		inicializarComponentes();
 	}

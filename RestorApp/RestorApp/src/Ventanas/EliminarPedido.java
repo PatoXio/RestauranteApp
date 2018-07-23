@@ -31,6 +31,7 @@ public class EliminarPedido extends JFrame {
 	public EliminarPedido(Restaurante restaurante){
 		super();
 		this.restaurante = restaurante;
+		this.setLocationRelativeTo(null);
 		configurarVentana();
 		sec=new Secundaria();
 		inicializarComponentes();

@@ -45,6 +45,7 @@ public class AgregarGarzon extends JFrame
 	public AgregarGarzon(Restaurante restaurante) {
 		super();
 		this.restaurante = restaurante;
+		this.setLocationRelativeTo(null);
 		sec = new Secundaria();
 		configurarVentana();
 		inicializarVentana();

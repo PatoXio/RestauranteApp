@@ -31,6 +31,7 @@ public class AdminEliminar extends JFrame
 	public AdminEliminar(Restaurante restaurante){
 		super();
 		this.restaurante = restaurante;
+		this.setLocationRelativeTo(null);
 		configurarVentana();
 		inicializarComponentes();
 	}

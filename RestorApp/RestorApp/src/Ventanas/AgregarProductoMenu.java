@@ -46,6 +46,7 @@ public class AgregarProductoMenu extends JFrame
 	public AgregarProductoMenu(Restaurante restaurante){
 		super();
 		this.restaurante = restaurante;
+		this.setLocationRelativeTo(null);
 		configurarVentana();
 		sec=new Secundaria();
 		inicializarComponentes();
