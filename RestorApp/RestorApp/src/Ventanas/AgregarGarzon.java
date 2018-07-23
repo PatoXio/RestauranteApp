@@ -172,6 +172,7 @@ public class AgregarGarzon extends JFrame
 					textoNombre.setText("");
 					textoSueldo.setText("");
 					textoEdad.setText("");
+					textoNivelIngles.setText("");
 				}	
 			}
 		});
