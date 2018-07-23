@@ -113,7 +113,7 @@ public class AdminAgregar extends JFrame
 		});
 		contentPane.add(botonAtras);
 		
-		JButton button = new JButton("Empleado");
+		JButton button = new JButton("Personal");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();

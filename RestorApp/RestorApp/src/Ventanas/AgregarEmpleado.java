@@ -49,7 +49,7 @@ public class AgregarEmpleado extends JFrame
 	}
 
 	private void inicializarComponenetes() {
-		titulo = new JLabel ("¿Que tipo de empleado ingresará?");
+		titulo = new JLabel ("¿Que tipo de personal ingresará?");
 		titulo.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		titulo.setBounds(107, 11, 238, 23);
 		contentPane.add(titulo);
