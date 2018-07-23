@@ -13,9 +13,4 @@ public class AppInicio
 		Ventana ventana = new Ventana(restaurante);
 		ventana.setVisible(true);
 	}	
-<<<<<<< HEAD
-} //se mega acabo la weaita suprema
-	// ggggggjojojo
-=======
-}//lmaaao
->>>>>>> 952228b8b4e510a5884e6c83f3c75569a25d71f4
+} //weaitas
